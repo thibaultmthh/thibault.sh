@@ -14,6 +14,7 @@ specifiers:
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   babel-loader: ^8.2.5
+  chromatic: ^6.7.3
   eslint: 8.21.0
   eslint-config-next: 12.2.4
   husky: ^8.0.0
@@ -41,6 +42,7 @@ devDependencies:
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   babel-loader: 8.2.5_@babel+core@7.18.10
+  chromatic: 6.7.3
   eslint: 8.21.0
   eslint-config-next: 12.2.4_qugx7qdu5zevzvxaiqyxfiwquq
   husky: 8.0.1
@@ -4831,6 +4833,14 @@ packages:
   /chownr/2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: true
+
+  /chromatic/6.7.3:
+    resolution: {integrity: sha512-QVeP9LRj/4r/eVCyX+TybFEl7iyQ+6QzrkPChtoDhFw0B24B1y13Mya3FElltb+EPDsEG6V5VYzYnG+w/VPmaw==}
+    hasBin: true
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@types/webpack-env': 1.17.0
     dev: true
 
   /chrome-trace-event/1.0.3:

@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js! new Thibault project</a>
+          Welcome to <a href="https://nextjs.org">Next.js, A new Thibault project</a>
         </h1>
 
         <p className={styles.description}>

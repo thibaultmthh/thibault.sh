@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic --auto-accept-changes"
   },
   "dependencies": {
     "next": "12.2.4",

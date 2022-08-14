@@ -14,12 +14,14 @@ specifiers:
   '@storybook/manager-webpack5': ^6.5.10
   '@storybook/react': ^6.5.10
   '@storybook/testing-library': ^0.0.13
+  '@tabler/icons': ^1.80.0
   '@types/node': 18.6.5
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
   autoprefixer: ^10.4.8
   babel-loader: ^8.2.5
   chromatic: ^6.7.3
+  classnames: ^2.3.1
   css-loader: ^6.7.1
   eslint: 8.21.0
   eslint-config-next: 12.2.4
@@ -41,6 +43,8 @@ specifiers:
 
 dependencies:
   '@reduxjs/toolkit': 1.8.3_kkwg4cbsojnjnupd3btipussee
+  '@tabler/icons': 1.80.0_biqbaboplfbrettd7655fr4n2y
+  classnames: 2.3.1
   next: 12.2.4_n4jygvn2hj75s7kw7xng46hwly
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -3456,6 +3460,21 @@ packages:
     dependencies:
       tslib: 2.4.0
 
+  /@tabler/icons/1.80.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Ij+9AU8DMW68lO4Q2jpDdJNMMNg4B/3mI59K1+l/V0EbiDHTIifTZM/u2oUqWu1Y2Zx3HGnnMA9SeAddkzhQ3Q==}
+    peerDependencies:
+      react: ^16.x || 17.x || 18.x
+      react-dom: ^16.x || 17.x || 18.x
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@testing-library/dom/8.16.1:
     resolution: {integrity: sha512-XEV2mBxgv6DKjL3+U3WEUzBgT2CjYksoXGlLrrJXYP8OvRfGkBonvelkorazpFlp8tkEecO06r43vN4DIEyegQ==}
     engines: {node: '>=12'}
@@ -5095,6 +5114,10 @@ packages:
       isobject: 3.0.1
       static-extend: 0.1.2
     dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}

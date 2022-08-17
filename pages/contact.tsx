@@ -8,7 +8,7 @@ export default function Contact() {
       <PageTitle title="Contact" description="" />
       <p className="text-white">
         If you have any questions or a project in mind, feel free to contact me. <br /> Send me an email :{" "}
-        <a className="text-violet-400 underline" href="mailto:contact@thibault">
+        <a className="text-violet-400 underline" href="mailto:contact@thibault.sh">
           contact@thibault.sh
         </a>
         <br />

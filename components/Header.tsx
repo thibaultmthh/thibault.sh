@@ -9,11 +9,7 @@ const sections = ["Home", "About", "Projects", "Dashboard", "Guestbook", "Contac
 export default function Header() {
   const router = useRouter();
   const { pathname } = router;
-  const isActive = (path: string) => {
-    console.log(pathname, path.toLocaleLowerCase(), pathname.includes(path.toLocaleLowerCase()));
-
-    return pathname.includes(path.toLocaleLowerCase());
-  };
+  const isActive = (path: string) => pathname.includes(path.toLocaleLowerCase());
 
   const destPath = (section: string) => (section === "Home" ? "/" : `/${section.toLocaleLowerCase()}`);
   return (

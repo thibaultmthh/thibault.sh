@@ -2,8 +2,9 @@ import Button from "components/Button";
 import Contener from "components/Contener";
 import Project from "components/Project";
 import type { NextPage } from "next";
-import Head from "next/head";
+
 import Image from "next/image";
+import Link from "next/link";
 import me from "public/images/me.jpg";
 
 const Home: NextPage = () => {
@@ -27,7 +28,9 @@ const Home: NextPage = () => {
           I am a fullstack developper living in Grenoble. I love to code and I love to create. I am a self-taught
           developer and I am always looking for new challenges.
           <div className="my-3 sm:float-right sm:my-2	">
-            <Button>More</Button>
+            <Button>
+              <Link href={"/about"}>More</Link>
+            </Button>
           </div>
         </p>
       </div>
@@ -39,7 +42,9 @@ const Home: NextPage = () => {
           <Project name="Seig" />
         </ul>
         <div className="mt-10 flex justify-around">
-          <Button>See all projects</Button>
+          <Button>
+            <Link href={"/projects"}> See all projects</Link>
+          </Button>
         </div>
       </div>
     </Contener>

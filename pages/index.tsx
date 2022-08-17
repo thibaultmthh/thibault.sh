@@ -2,10 +2,10 @@ import Button from "components/Button";
 import Contener from "components/Contener";
 import Project from "components/Project";
 import type { NextPage } from "next";
-import Head from "next/head";
+
 import Image from "next/image";
 import Link from "next/link";
-import me from "public/images/me.png";
+import me from "public/images/me.jpg";
 
 const Home: NextPage = () => {
   return (

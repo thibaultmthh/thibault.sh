@@ -8,7 +8,12 @@ const sections = ["Home", "About", "Projects", "Dashboard", "Guestbook", "Contac
 
 export default function Header() {
   const router = useRouter();
-  const isActive = (path: string) => router.pathname.includes(path.toLocaleLowerCase());
+  const { pathname } = router;
+  const isActive = (path: string) => {
+    console.log(pathname, path.toLocaleLowerCase(), pathname.includes(path.toLocaleLowerCase()));
+
+    return pathname.includes(path.toLocaleLowerCase());
+  };
 
   const destPath = (section: string) => (section === "Home" ? "/" : `/${section.toLocaleLowerCase()}`);
   return (
@@ -19,8 +24,8 @@ export default function Header() {
           <Link href={destPath(section)} key={section}>
             <a
               className={cn(
-                " text-neutral-50 rounded-lg py-2 px-3 hover:bg-neutral-700 ",
-                isActive(section) && "text-violet-400"
+                "  rounded-lg py-2 px-3 hover:bg-neutral-700 ",
+                isActive(section) ? "text-violet-400" : "text-neutral-50"
               )}
             >
               {section}

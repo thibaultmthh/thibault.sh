@@ -8,7 +8,10 @@ import me from "public/images/me.jpg";
 
 const Home: NextPage = () => {
   return (
-    <Contener title="Home" description="home2">
+    <Contener
+      title="Thibault Mathian"
+      description="I am a fullstack developper living in Grenoble. I love to code and I love to create. I am a self-taught developer and I am always looking for new challenges."
+    >
       <div className="flex flex-col-reverse  sm:flex-row sm:justify-between mb-32">
         <div>
           <h1 className="font-bold text-5xl text-white">Thibault Mathian</h1>

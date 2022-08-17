@@ -35,14 +35,16 @@ export default function Projects() {
         {keywords.map((keyword) => (
           <Keyword key={keyword} keyword={keyword} strong={keywordSelected.includes(keyword)} onClick={handleClick} />
         ))}
-
-        <FlipMove>
-          {projectsDisplayed.map((project) => (
-            <div key={project}>
-              <Project name={project} />
-            </div>
-          ))}
-        </FlipMove>
+        {
+          // @ts-ignore (waiting for new verstion to be pushed on npm)
+          <FlipMove>
+            {projectsDisplayed.map((project) => (
+              <div key={project}>
+                <Project name={project} />
+              </div>
+            ))}
+          </FlipMove>
+        }
       </div>
     </Contener>
   );

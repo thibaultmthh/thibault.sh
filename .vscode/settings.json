@@ -17,11 +17,7 @@
         "next-env.d.ts": true,
         "build-storybook.log": true,
         "pnpm-lock.yaml": true,
-        "": true,
-        "next.config.js": true,
-        ".github/workflows": true,
-        ".github": true,
-        "public": true
+        "": true
     },
     "hide-files.files": [
         ".vscode",
@@ -31,10 +27,6 @@
         "next-env.d.ts",
         "build-storybook.log",
         "pnpm-lock.yaml",
-        "",
-        "next.config.js",
-        ".github/workflows",
-        ".github",
-        "public"
+        ""
     ]
 }

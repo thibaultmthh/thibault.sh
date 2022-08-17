@@ -1,0 +1,16 @@
+
+.projectList > li {
+    opacity: 0;
+    transform: rotateY(-90deg);
+    transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    position: absolute;
+}
+
+
+
+.projectList > li.show {
+    opacity: 1;
+    transform: none;
+    transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    position: relative;
+}

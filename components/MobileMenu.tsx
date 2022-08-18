@@ -8,6 +8,8 @@ const sections = ["Home", "About", "Projects", "Dashboard", "Guestbook", "Contac
 
 export default function MobileMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const destPath = (section: string) => (section === "Home" ? "/" : `/${section.toLocaleLowerCase()}`);
+
   return (
     <div className="visible flex flex-col sm:hidden">
       <a
@@ -28,7 +30,7 @@ export default function MobileMenu() {
             }}
             key={section}
           >
-            <Link href={`/${section.toLocaleLowerCase()}`} key={section}>
+            <Link href={destPath(section)} key={section}>
               <a className="text-neutral-50 ">{section}</a>
             </Link>
           </li>

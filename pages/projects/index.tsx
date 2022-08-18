@@ -33,8 +33,11 @@ export default function Projects({ projects, tags }: Props) {
   const projectsDisplayed = projects.filter((p) => keywordSelected.some((k) => p.tags.map((t) => t.tag).includes(k)));
 
   return (
-    <Contener title="Projects" description="Projects">
-      <PageTitle title="Projects" description="Find all my projects here. Every projects is documented 📖" />
+    <Contener title="Projects" description="Find all my projects here. Every projects is documented 📖">
+      <PageTitle
+        title="Projects"
+        description="Find all my projects here. Every projects is documented 📖 Sadly some project must remain private for now ;)"
+      />
       <div className="mb-16">
         <h2 className="font-bold text-2xl text-white mb-3">Sort project by keyword : </h2>
         {keywords.map((keyword) => (

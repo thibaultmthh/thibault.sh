@@ -72,9 +72,7 @@ export async function getStaticProps() {
       }
     }`,
   });
-
   const projects = projectsR.data.errors ? [] : projectsR.data.data.allProject;
-
   return {
     props: {
       projects: projects,

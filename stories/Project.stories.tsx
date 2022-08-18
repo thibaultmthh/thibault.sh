@@ -14,4 +14,4 @@ const main = {
 
 export default main;
 
-export const Primary = () => <Project name="parakeet" />;
+// export const Primary = () => <Project name="parakeet" />;

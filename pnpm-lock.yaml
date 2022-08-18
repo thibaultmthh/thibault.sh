@@ -33,6 +33,7 @@ specifiers:
   eslint-config-next: 12.2.4
   husky: ^8.0.0
   next: 12.2.4
+  next-sitemap: ^3.1.20
   postcss: ^8
   postcss-loader: ^7.0.1
   react: 18.2.0
@@ -60,6 +61,7 @@ dependencies:
   axios: 0.27.2
   classnames: 2.3.1
   next: 12.2.4_n4jygvn2hj75s7kw7xng46hwly
+  next-sitemap: 3.1.20_next@12.2.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-flip-move: 3.0.4_biqbaboplfbrettd7655fr4n2y
@@ -1556,6 +1558,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@corex/deepmerge/4.0.29:
+    resolution: {integrity: sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==}
+    dev: false
 
   /@design-systems/utils/2.12.0_zxljzmqdrxwnuenbkrz77w74uy:
     resolution: {integrity: sha512-Y/d2Zzr+JJfN6u1gbuBUb1ufBuLMJJRZQk+dRmw8GaTpqKx5uf7cGUYGTwN02dIb3I+Tf+cW8jcGBTRiFxdYFg==}
@@ -8953,7 +8959,6 @@ packages:
 
   /minimist/1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
-    dev: true
 
   /minipass-collect/1.0.2:
     resolution: {integrity: sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA==}
@@ -9102,6 +9107,19 @@ packages:
   /nested-error-stacks/2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
+
+  /next-sitemap/3.1.20_next@12.2.4:
+    resolution: {integrity: sha512-ugcSQpAtwc9fk7fsr5to0yrlA/RjY0kw2wHOUqcrRXnZDwFfBwGnEVvaYbI7C4ZlhvxjJTA3G15QMpvpmvPquw==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.29
+      minimist: 1.2.6
+      next: 12.2.4_n4jygvn2hj75s7kw7xng46hwly
+    dev: false
 
   /next/12.2.4_n4jygvn2hj75s7kw7xng46hwly:
     resolution: {integrity: sha512-b1xlxEozmAWokAXzXsi5vlmU/IfJcFNIJA8dpU5UdkFbyDPio8wwb8mAQ/Y7rGtfTgG/t/u49BiyEA+xAgFvow==}

@@ -28,7 +28,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const r = await sanityGraphql.post("/", {
     query: `
       {
-        allProject (where: {slug: {current: {eq: "parakeet"}}}){
+        allProject (where: {slug: {current: {eq: "${params.slug}"}}}){
           title,
           tags {tag},
           image {asset {metadata {dimensions {height width}} url}},

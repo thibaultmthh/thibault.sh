@@ -2,11 +2,16 @@ import classNames from "classnames";
 import Contener from "components/Contener";
 import Keyword from "components/Keyword";
 import PageTitle from "components/PageTitle";
-import Project from "components/Project";
+import Project, { IProject } from "components/Project";
+import { sanityGraphql } from "lib/sanity";
 import { useState } from "react";
 import FlipMove from "react-flip-move";
 
-export default function Projects() {
+interface Props {
+  projects: IProject[];
+}
+
+export default function Projects({ projects }: Props) {
   const [keywordSelected, setKeywordSelected] = useState<string[]>(["Electron"]);
 
   const handleClick = (keyword: string) => {
@@ -21,9 +26,7 @@ export default function Projects() {
 
   const a = keywordSelected.includes("Typescript");
 
-  const projects = ["Typescript", "Electron", "R", "RR"];
-
-  const projectsDisplayed = projects.filter((p) => keywordSelected.includes(p));
+  const projectsDisplayed = projects.filter((p) => keywordSelected.some((k) => p.tags.map((t) => t.tag).includes(k)));
 
   console.log(projectsDisplayed);
 
@@ -39,8 +42,8 @@ export default function Projects() {
           // @ts-ignore (waiting for new verstion to be pushed on npm)
           <FlipMove>
             {projectsDisplayed.map((project) => (
-              <div key={project}>
-                <Project name={project} />
+              <div key={project.title}>
+                <Project project={project} />
               </div>
             ))}
           </FlipMove>
@@ -48,4 +51,29 @@ export default function Projects() {
       </div>
     </Contener>
   );
+}
+
+export async function getStaticProps() {
+  const projectsR = await sanityGraphql.post("/", {
+    query: `{
+      allProject {
+        title,
+        slug{current},
+        shortDescription,
+        tags {
+          tag
+        }
+        image {asset {url,metadata{dimensions{height, width}}}},
+        dateStarted,
+        dateFinished
+      }
+    }`,
+  });
+  const projects = projectsR.data.errors ? [] : projectsR.data.data.allProject;
+  return {
+    props: {
+      projects: projects,
+    },
+    revalidate: 60, // In seconds
+  };
 }

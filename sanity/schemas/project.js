@@ -20,6 +20,12 @@ export default {
             validation: Rule => Rule.required()
         },
         {
+            title: 'Pinned',
+            name: 'pinned',
+            type: 'boolean',
+            validation: Rule => Rule.required()
+        },
+        {
             title: 'Short description',
             name: 'shortDescription',
             type: 'text',
@@ -29,7 +35,14 @@ export default {
             title: 'Description',
             name: 'description',
             type: 'array',
-            of: [{ type: 'block' }],
+            of: [
+                {
+                    type: 'block'
+                },
+                {
+                    type: 'image'
+                }
+            ],
             validation: Rule => Rule.required()
         },
         {

@@ -9,10 +9,18 @@ import FlipMove from "react-flip-move";
 
 interface Props {
   projects: IProject[];
+  tags: string[];
 }
 
-export default function Projects({ projects }: Props) {
-  const [keywordSelected, setKeywordSelected] = useState<string[]>(["Electron"]);
+export default function Projects({ projects, tags }: Props) {
+  const keywords = tags
+    .map((tag) => ({
+      tag,
+      count: projects.filter((project) => project.tags.map((t) => t.tag).includes(tag)).length,
+    }))
+    .sort((a, b) => b.count - a.count);
+
+  const [keywordSelected, setKeywordSelected] = useState<string[]>(keywords.map((keyword) => keyword.tag));
 
   const handleClick = (keyword: string) => {
     if (keywordSelected.includes(keyword)) {
@@ -22,13 +30,7 @@ export default function Projects({ projects }: Props) {
     }
   };
 
-  const keywords = ["Typescript", "Electron", "R"];
-
-  const a = keywordSelected.includes("Typescript");
-
   const projectsDisplayed = projects.filter((p) => keywordSelected.some((k) => p.tags.map((t) => t.tag).includes(k)));
-
-  console.log(projectsDisplayed);
 
   return (
     <Contener title="Projects" description="Projects">
@@ -36,8 +38,15 @@ export default function Projects({ projects }: Props) {
       <div className="mb-16">
         <h2 className="font-bold text-2xl text-white mb-3">Sort project by keyword : </h2>
         {keywords.map((keyword) => (
-          <Keyword key={keyword} keyword={keyword} strong={keywordSelected.includes(keyword)} onClick={handleClick} />
+          <Keyword
+            key={keyword.tag}
+            keyword={`${keyword.tag} (${keyword.count})`}
+            strong={!keywordSelected.includes(keyword.tag)}
+            onClick={() => handleClick(keyword.tag)}
+          />
         ))}
+        <Keyword keyword="All" onClick={() => setKeywordSelected(keywords.map((keyword) => keyword.tag))} />
+        <Keyword keyword="Clear" onClick={() => setKeywordSelected([])} />
         {
           // @ts-ignore (waiting for new verstion to be pushed on npm)
           <FlipMove>
@@ -69,10 +78,19 @@ export async function getStaticProps() {
       }
     }`,
   });
+
+  const tagsR = await sanityGraphql.post("/", {
+    query: `{
+        tags: allTag {tag}
+      }`,
+  });
+
   const projects = projectsR.data.errors ? [] : projectsR.data.data.allProject;
+  const tags = tagsR.data.errors ? [] : tagsR.data.data.tags.map((t: { tag: string }) => t.tag);
   return {
     props: {
-      projects: projects,
+      projects,
+      tags,
     },
     revalidate: 60, // In seconds
   };

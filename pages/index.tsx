@@ -59,7 +59,7 @@ export default function Home({ projects }: Props) {
 export async function getStaticProps() {
   const projectsR = await sanityGraphql.post("/", {
     query: `{
-      allProject {
+      allProject (where: {pinned: {eq: true}}) {
         title,
         slug{current},
         shortDescription,

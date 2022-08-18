@@ -1,13 +1,18 @@
 import Button from "components/Button";
 import Contener from "components/Contener";
-import Project from "components/Project";
+import Project, { IProject } from "components/Project";
+import { sanityGraphql } from "lib/sanity";
 import type { NextPage } from "next";
 
 import Image from "next/image";
 import Link from "next/link";
 import me from "public/images/me.jpg";
 
-const Home: NextPage = () => {
+interface Props {
+  projects: IProject[];
+}
+
+export default function Home({ projects }: Props) {
   return (
     <Contener
       title="Thibault Mathian"
@@ -37,9 +42,9 @@ const Home: NextPage = () => {
       <div className="mb-20">
         <h1 className="font-bold text-2xl text-white mb-5">Some of my Projects</h1>
         <ul>
-          <Project name="Parakeet" />
-          <Project name="Brolt" />
-          <Project name="Seig" />
+          {projects.map((project) => (
+            <Project project={project} key={project.title} />
+          ))}
         </ul>
         <div className="mt-10 flex justify-around">
           <Button>
@@ -49,6 +54,31 @@ const Home: NextPage = () => {
       </div>
     </Contener>
   );
-};
+}
 
-export default Home;
+export async function getStaticProps() {
+  const projectsR = await sanityGraphql.post("/", {
+    query: `{
+      allProject {
+        title,
+        slug{current},
+        shortDescription,
+        tags {
+          tag
+        }
+        image {asset {url,metadata{dimensions{height, width}}}},
+        dateStarted,
+        dateFinished
+      }
+    }`,
+  });
+
+  const projects = projectsR.data.errors ? [] : projectsR.data.data.allProject;
+
+  return {
+    props: {
+      projects: projects,
+    },
+    revalidate: 60, // In seconds
+  };
+}

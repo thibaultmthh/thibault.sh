@@ -54,6 +54,17 @@ export default {
             type: 'reference',
             to: [{ type: 'projectType' }],
             validation: Rule => Rule.required()
+        },
+        {
+            title: "Date started",
+            name: "dateStarted",
+            type: "date",
+            validation: Rule => Rule.required()
+        },
+        {
+            title: "Date finished",
+            name: "dateFinished",
+            type: "date",
         }
     ],
 }

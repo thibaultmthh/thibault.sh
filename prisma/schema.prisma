@@ -13,7 +13,8 @@ datasource db {
 }
 
 model View {
-  slug String @id @unique @db.VarChar(255)
+  slug  String @id @unique @db.VarChar(255)
+  count Int    @db.Int
 }
 
 model Guestbook {

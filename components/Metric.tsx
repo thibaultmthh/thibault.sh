@@ -7,7 +7,7 @@ export default function Metric({
 }: {
   name: string;
   description: string;
-  fetcher: () => void;
+  fetcher: () => Promise<number | string>;
 }) {
   const { isLoading, isError, data } = useQuery([name], fetcher);
 
@@ -16,7 +16,7 @@ export default function Metric({
   return (
     <div className="  p-5 border border-violet-600 rounded-md w-full shadow-none  hover:shadow-md hover:shadow-violet-500 ">
       <h2 className="text-base text-right mt-1 text-neutral-300 mr-4">{description}</h2>
-      <p className="text-white text-3xl font-medium">{value ? "" : ""}</p>
+      <p className="text-white text-3xl font-medium">{value}</p>
     </div>
   );
 }

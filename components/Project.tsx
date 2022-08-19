@@ -49,9 +49,9 @@ export default function Project({ project }: { project: IProject }) {
       </div>
 
       <div className="flex justify-around mt-2 sm:block sm:mt-0 sm:float-right">
-        <Button>
-          <Link href={`/projects/${project.slug.current}`}>Learn more</Link>
-        </Button>
+        <Link href={`/projects/${project.slug.current}`}>
+          <Button>Learn more</Button>
+        </Link>
       </div>
     </div>
   );

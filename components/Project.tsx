@@ -25,7 +25,7 @@ export default function Project({ project }: { project: IProject }) {
       </div>
 
       <div className="block lg:flex ">
-        <div className="max-w-lg  md:max-w-xl">
+        <div className="w-lg  md:max-w-xl">
           <Image
             src={project.image.asset.url}
             height={project.image.asset.metadata.dimensions.height}

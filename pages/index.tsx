@@ -33,9 +33,9 @@ export default function Home({ projects }: Props) {
           I am a fullstack developper living in Grenoble. I love to code and I love to create. I am a self-taught
           developer and I am always looking for new challenges.
           <div className="my-3 sm:float-right sm:my-2	">
-            <Button>
-              <Link href={"/about"}>More</Link>
-            </Button>
+            <Link href={"/about"}>
+              <Button>More</Button>
+            </Link>
           </div>
         </p>
       </div>
@@ -47,9 +47,9 @@ export default function Home({ projects }: Props) {
           ))}
         </ul>
         <div className="mt-10 flex justify-around">
-          <Button>
-            <Link href={"/projects"}> See all projects</Link>
-          </Button>
+          <Link href={"/projects"}>
+            <Button>See all projects</Button>
+          </Link>
         </div>
       </div>
     </Contener>

@@ -25,7 +25,7 @@ export default function Project({ project }: { project: IProject }) {
       </div>
 
       <div className="block lg:flex ">
-        <div className="max-w-lg  md:max-w-xl">
+        <div className="w-lg  md:max-w-xl">
           <Image
             src={project.image.asset.url}
             height={project.image.asset.metadata.dimensions.height}
@@ -49,9 +49,9 @@ export default function Project({ project }: { project: IProject }) {
       </div>
 
       <div className="flex justify-around mt-2 sm:block sm:mt-0 sm:float-right">
-        <Button>
-          <Link href={`/projects/${project.slug.current}`}>Learn more</Link>
-        </Button>
+        <Link href={`/projects/${project.slug.current}`}>
+          <Button>Learn more</Button>
+        </Link>
       </div>
     </div>
   );

@@ -9,8 +9,6 @@ import { sanityClient } from "lib/sanity";
 // Barebones lazy-loaded image component
 const SampleImageComponent = ({ value, isInline }: any) => {
   const { width, height } = getImageDimensions(value);
-  console.log(value, isInline);
-
   return (
     <Image
       src={urlBuilder(sanityClient)

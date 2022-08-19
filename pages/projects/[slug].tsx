@@ -3,10 +3,12 @@ import PageTitle from "components/PageTitle";
 import { sanityGraphql, SanityImage } from "lib/sanity";
 import { PortableText } from "@portabletext/react";
 import PostBody from "components/PostBody";
+import useVueConter from "components/hooks/useVueConter";
 
 interface Props {
   project: {
     title: string;
+    slug: { current: string };
     shortDescription: string;
     tags: { tag: string }[];
     image: SanityImage;
@@ -17,8 +19,15 @@ interface Props {
 }
 
 export default function ProjectDetails({ project }: Props) {
+  const view = useVueConter({ slug: project.slug.current });
   return (
     <Contener title={project.title} description={project.shortDescription}>
+      <div>
+        <PageTitle
+          title={project.title}
+          description={`${project.dateStarted.split("-")[0]} - ${project.dateFinished.split("-")[0]}  |  ${view} views`}
+        />
+      </div>
       <PostBody content={project.descriptionRaw} />
     </Contener>
   );
@@ -31,6 +40,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
         allProject (where: {slug: {current: {eq: "${params.slug}"}}}){
           title,
           tags {tag},
+          slug{current},
           image {asset {metadata {dimensions {height width}} url}},
           dateStarted,
           dateFinished,
@@ -63,13 +73,9 @@ export async function getStaticPaths() {
     `,
   });
 
-  console.log(r.data);
-
   const slugs = r.data.errors
     ? []
     : (r.data.data.allProject.map((p: { slug: { current: string } }) => p.slug.current) as string[]);
-
-  console.log(slugs, r.data.errors);
 
   return {
     paths: slugs.map((slug) => ({ params: { slug } })),

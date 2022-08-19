@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.18.10
   '@portabletext/react': ^1.0.6
+  '@prisma/client': ^4.2.1
   '@reduxjs/toolkit': ^1.8.3
   '@sanity/asset-utils': ^1.3.0
   '@sanity/client': ^3.3.3
@@ -36,6 +37,7 @@ specifiers:
   next-sitemap: ^3.1.20
   postcss: ^8
   postcss-loader: ^7.0.1
+  prisma: ^4.2.1
   react: 18.2.0
   react-dom: 18.2.0
   react-flip-move: ^3.0.4
@@ -46,12 +48,14 @@ specifiers:
   sass-loader: ^13.0.2
   storybook-addon-next: ^1.6.7
   style-loader: ^3.3.1
+  swr: ^1.3.0
   tailwindcss: ^3.1.8
   typescript: 4.7.4
   webpack: '5'
 
 dependencies:
   '@portabletext/react': 1.0.6_react@18.2.0
+  '@prisma/client': 4.2.1_prisma@4.2.1
   '@reduxjs/toolkit': 1.8.3_kkwg4cbsojnjnupd3btipussee
   '@sanity/asset-utils': 1.3.0
   '@sanity/client': 3.3.3
@@ -68,6 +72,7 @@ dependencies:
   react-redux: 8.0.2_76am3hp3mjvgy3cckgdecixdi4
   react-spring: 9.5.2_biqbaboplfbrettd7655fr4n2y
   sass: 1.54.4
+  swr: 1.3.0_react@18.2.0
 
 devDependencies:
   '@babel/core': 7.18.10
@@ -94,6 +99,7 @@ devDependencies:
   husky: 8.0.1
   postcss: 8.4.16
   postcss-loader: 7.0.1_qjv4cptcpse3y5hrjkrbb7drda
+  prisma: 4.2.1
   resolve-url-loader: 5.0.0
   sass-loader: 13.0.2_sass@1.54.4+webpack@5.74.0
   storybook-addon-next: 1.6.7_nnq7skq7izc7fhntw66lpt5trq
@@ -2033,6 +2039,28 @@ packages:
     resolution: {integrity: sha512-SDDsdury2SaTI2D5Ea6o+Y39SSZMYHRMWJHxkxYl3yzFP0n/0EknOhoXcoaV+bxGr2dTTqZi2TOEj+uWYuavSw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: false
+
+  /@prisma/client/4.2.1_prisma@4.2.1:
+    resolution: {integrity: sha512-PZBkY60+k5oix+e6IUfl3ub8TbRLNsPLdfWrdy2eh80WcHTaT+/UfvXf/B7gXedH7FRtbPFHZXk1hZenJiJZFQ==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.2.0-33.2920a97877e12e055c1333079b8d19cee7f33826
+      prisma: 4.2.1
+    dev: false
+
+  /@prisma/engines-version/4.2.0-33.2920a97877e12e055c1333079b8d19cee7f33826:
+    resolution: {integrity: sha512-tktkqdiwqE4QhmE088boPt+FwPj1Jub/zk+5F6sEfcRHzO5yz9jyMD5HFVtiwxZPLx/8Xg9ElnuTi8E5lWVQFQ==}
+    dev: false
+
+  /@prisma/engines/4.2.1:
+    resolution: {integrity: sha512-0KqBwREUOjBiHwITsQzw2DWfLHjntvbqzGRawj4sBMnIiL5CXwyDUKeHOwXzKMtNr1rEjxEsypM14g0CzLRK3g==}
+    requiresBuild: true
 
   /@react-spring/animated/9.5.2_react@18.2.0:
     resolution: {integrity: sha512-oRlX+MmYLbK8IuUZR7SQUnRjXxJ4PMIZeBkBd1SUWVgVJAHMTfJzPltzm+I6p59qX+qLlklYHfnWaonQKDqLuQ==}
@@ -10117,6 +10145,14 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  /prisma/4.2.1:
+    resolution: {integrity: sha512-HuYqnTDgH8atjPGtYmY0Ql9XrrJnfW7daG1PtAJRW0E6gJxc50lY3vrIDn0yjMR3TvRlypjTcspQX8DT+xD4Sg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.2.1
+
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -11644,6 +11680,14 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /swr/1.3.0_react@18.2.0:
+    resolution: {integrity: sha512-dkghQrOl2ORX9HYrMDtPa7LTVHJjCTeZoB1dqTbnnEDlSvN8JEKpYIYurDfvbQFUUS8Cg8PceFVZNkW0KNNYPw==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /symbol.prototype.description/1.0.5:
     resolution: {integrity: sha512-x738iXRYsrAt9WBhRCVG5BtIC3B7CUkFwbHW2zOvGtwM33s7JjrCDyq8V0zgMYVb5ymsL8+qkzzpANH63CPQaQ==}

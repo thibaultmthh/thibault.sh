@@ -29,7 +29,7 @@ export default function Guestbook() {
   const [guestbook, setGuestbook] = useState([l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l, l]);
 
   return (
-    <Contener title="Guestbook" description="Leave a message on this guestbook">
+    <Contener title="Guestbook - Thibault Mathian" description="Leave a message on this guestbook">
       <PageTitle
         title="Guestbook"
         description="Leave a pixel below, this is community art created by this website visitors. For each pixels you can leave a short message. "

@@ -13,7 +13,7 @@ const NetworkLinks = ({ href, title, slug }: { href: string; title: string; slug
 
 export default function About() {
   return (
-    <Contener title="About" description="About">
+    <Contener title="About - Thibault Mathian" description="About me. Where to find me and contact me.">
       <PageTitle title="About" description="" />
       <div className="mb-16">
         <h1 className="font-bold text-2xl text-white ">Links</h1>

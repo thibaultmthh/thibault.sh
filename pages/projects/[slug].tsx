@@ -21,7 +21,7 @@ interface Props {
 export default function ProjectDetails({ project }: Props) {
   const view = useVueConter({ slug: project.slug.current });
   return (
-    <Contener title={project.title} description={project.shortDescription}>
+    <Contener title={`${project.title} - Thibault Mathian`} description={project.shortDescription}>
       <div>
         <PageTitle
           title={project.title}

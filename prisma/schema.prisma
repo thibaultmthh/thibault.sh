@@ -18,10 +18,10 @@ model View {
 }
 
 model Guestbook {
-  id        Int      @id @db.Int
+  id        Int      @id @default(autoincrement()) @db.Int
   name      String   @db.VarChar(255)
   message   String   @db.Text
-  createdAt DateTime @db.Timestamp
+  createdAt DateTime @default(now())
   positionX Int      @db.Int
   positionY Int      @db.Int
   color     String   @db.VarChar(255)

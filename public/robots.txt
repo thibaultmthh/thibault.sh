@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://thibault.sh
+
+# Sitemaps
+Sitemap: https://thibault.sh/sitemap.xml

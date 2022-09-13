@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Contact() {
   return (
-    <Contener title="Contact" description="Contact">
+    <Contener title="Contact - Thibault Mathian" description="Contact">
       <PageTitle title="Contact" description="" />
       <p className="text-white">
         If you have any questions or a project in mind, feel free to contact me. <br /> Send me an email :{" "}

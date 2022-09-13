@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import MobileMenu from "./MobileMenu";
 
-const sections = ["Home", "About", "Projects", "Dashboard", "Guestbook", "Contact"];
+const sections = ["Home", "About", "Projects", "Contact"];
 
 export default function Header() {
   const router = useRouter();

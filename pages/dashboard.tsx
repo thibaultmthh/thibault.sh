@@ -5,7 +5,7 @@ import PageTitle from "components/PageTitle";
 
 export default function Dashboard() {
   return (
-    <Contener title="Dashboard" description="Dashboard">
+    <Contener title="Dashboard - Thibault Mathian" description="Dashboard">
       <PageTitle
         title="Dashboard"
         description="You can track here my metrics about my diffents project from various sources 🌐"

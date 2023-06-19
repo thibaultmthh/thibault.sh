@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/client";
-import guestbookTo2D from "lib/guestbook";
 import { Guestbook } from "types";
 import Pixel from "./Pixel";
 

@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { Guestbook } from "types";
 import Pixel from "./Pixel";
 

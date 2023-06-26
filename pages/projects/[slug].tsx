@@ -25,7 +25,9 @@ export default function ProjectDetails({ project }: Props) {
       <div>
         <PageTitle
           title={project.title}
-          description={`${project.dateStarted.split("-")[0]} - ${project.dateFinished.split("-")[0]}  |  ${view} views`}
+          description={`${project?.dateStarted?.split("-")?.[0]} - ${
+            project?.dateFinished?.split("-")?.[0]
+          }  |  ${view} views`}
         />
       </div>
       <PostBody content={project.descriptionRaw} />

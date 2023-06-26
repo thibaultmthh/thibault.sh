@@ -21,7 +21,7 @@ export default function Project({ project }: { project: IProject }) {
         <div className="mb-3">
           <span className="font-medium text-xl text-white mr-5 ">{project.title}</span>
           <span className="text-neutral-300 text-sm">
-            {project.dateStarted.split("-")[0]} - {project.dateFinished.split("-")[0]}
+            {project.dateStarted?.split("-")?.[0]} - {project.dateFinished?.split("-")?.[0]}
           </span>
         </div>
 

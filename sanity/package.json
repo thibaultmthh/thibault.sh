@@ -1,7 +1,7 @@
 {
   "name": "thibaultsh",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Repository of https://thibault.sh website ( portfolio and personal website ) ",
   "main": "package.json",
   "author": "Thibault Mthh <thibault.mathian@free.fr>",

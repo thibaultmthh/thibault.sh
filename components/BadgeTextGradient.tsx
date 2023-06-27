@@ -17,12 +17,12 @@ const BadgeTextGradient = ({
   return (
     <span
       className={
-        "inline-flex cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-black px-3 py-1 text-sm font-medium text-slate-300 backdrop-blur-3xl opacity-70 " +
+        "inline-flex cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-black px-3 py-1 text-sm font-medium text-slate-300 backdrop-blur-3xl opacity-80 " +
         className
       }
       {...props}
     >
-      <span className={`bg-gradient-to-t ${from} to-[#fff] bg-clip-text text-transparent`}>{children}</span>
+      <span className={`bg-gradient-to-t ${from} to-[#c8c8c8] bg-clip-text text-transparent`}>{children}</span>
     </span>
   );
 };

@@ -40,9 +40,9 @@ export default async function Page() {
   const projects = projectsR.error || projectsR.errors ? [] : (projectsR.data?.allProject as any[]); // TODO: Fix type
 
   projects.sort((a, b) => {
-    if (a.dateFinished === null) return -1;
-    if (b.dateFinished === null) return 1;
-    return new Date(b.dateFinished).getTime() - new Date(a.dateFinished).getTime();
+    if (a.dateStarted === null) return -1;
+    if (b.dateStarted === null) return 1;
+    return new Date(b.dateStarted).getTime() - new Date(a.dateStarted).getTime();
   });
 
   console.log(projects);
@@ -74,7 +74,12 @@ export default async function Page() {
 
           {projects?.map((project) => (
             <CardSpotlight key={project.title} className="relative">
-              <h3 className="text-white text-xl font-bold">{project.title}</h3>
+              <h3 className="text-white text-xl font-bold">
+                {project.title}{" "}
+                <span className="text-xs text-[#939393]">
+                  {project.dateStarted ? `(${new Date(project.dateStarted).getFullYear()})` : ""}
+                </span>
+              </h3>
               <BadgeTextGradient
                 className="absolute top-0 right-0 mt-4 mr-4"
                 color={project.status === "finished" ? "green" : project.status === "inProgress" ? "yellow" : "red"}

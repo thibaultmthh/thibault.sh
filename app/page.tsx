@@ -6,6 +6,7 @@ import CardSpotlight from "components/ProjectCard";
 import Link from "next/link";
 import ButtonAnimatedGradient from "components/ButtonAnimatedGradient";
 import { sanityGraphql, sanityGraphqlBaseURL } from "lib/sanity";
+import BadgeTextGradient from "components/BadgeTextGradient";
 
 export default async function Page() {
   // sanityGraphqlBaseURL
@@ -15,6 +16,7 @@ export default async function Page() {
         slug{current},
         shortDescription,
         website,
+        status,
 
         tags {
           tag
@@ -71,13 +73,20 @@ export default async function Page() {
           <br />
 
           {projects?.map((project) => (
-            <CardSpotlight key={project.title}>
+            <CardSpotlight key={project.title} className="relative">
               <h3 className="text-white text-xl font-bold">{project.title}</h3>
+              <BadgeTextGradient
+                className="absolute top-0 right-0 mt-4 mr-4"
+                color={project.status === "finished" ? "green" : project.status === "inProgress" ? "yellow" : "red"}
+              >
+                {project.status}
+              </BadgeTextGradient>
+
               <Link href={project.website || "#"} className="text-[#939393]">
+                <IconLink className="inline-block mr-1" size={14} />
                 {project.website?.replace("https://", "")?.replace("http://", "")}
-                <IconLink className="inline-block" size={14} />
               </Link>
-              <p className="text-white text-sm mt-2 md:w-[calc(100%-150px)]">{project.shortDescription}</p>
+              <p className="text-white text-sm mt-2">{project.shortDescription}</p>
             </CardSpotlight>
           ))}
         </div>

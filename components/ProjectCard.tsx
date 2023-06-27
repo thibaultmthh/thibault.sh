@@ -1,7 +1,15 @@
 "use client";
 import React, { useRef, useState } from "react";
 
-const CardSpotlight = ({ children }: { children: React.ReactNode }) => {
+const CardSpotlight = ({
+  children,
+  className,
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: React.HTMLAttributes<HTMLDivElement>["className"];
+  props?: React.HTMLAttributes<HTMLDivElement>;
+}) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -42,7 +50,11 @@ const CardSpotlight = ({ children }: { children: React.ReactNode }) => {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative flex overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-r from-black to-slate-950 px-6 py-6 shadow-2xl my-4"
+      className={
+        "relative flex overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-r from-black to-slate-950 px-6 py-6 shadow-2xl my-4 " +
+        className
+      }
+      {...props}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"

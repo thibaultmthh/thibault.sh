@@ -20,6 +20,25 @@ export default {
             validation: Rule => Rule.required()
         },
         {
+            title: 'Website',
+            name: 'website',
+            type: 'url',
+            validation: Rule => Rule.required()
+        },
+        {
+            title: 'Status',
+            name: 'status',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'In progress', value: 'inProgress' },
+                    { title: 'Finished', value: 'finished' },
+                    { title: 'Abandoned', value: 'abandoned' },
+                ],
+                layout: 'radio',
+            },
+        },
+        {
             title: 'Pinned',
             name: 'pinned',
             type: 'boolean',

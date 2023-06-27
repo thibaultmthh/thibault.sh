@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ['media.giphy.com', "cdn.sanity.io"],
   },
+  experimental: {
+    appDir: true,
+  }
 }
 
 module.exports = nextConfig

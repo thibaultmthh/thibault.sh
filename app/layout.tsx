@@ -21,6 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}
       </Script>
       <body className="mx-5  max-w-5xl sm:mx-auto sm:px-20 my-10 bg-black ">{children}</body>
+      <footer className="text-center text-gray-400 text-sm mt-10 mb-3">
+        <p>
+          Made with <span className="text-red-500">❤</span> by Thibault Mathian
+        </p>
+      </footer>
     </html>
   );
 }

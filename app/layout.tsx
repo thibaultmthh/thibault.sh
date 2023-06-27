@@ -1,4 +1,3 @@
-import Header from "components/Header";
 import Script from "next/script";
 import "../styles/globals.scss";
 import "styles/Projects.scss";

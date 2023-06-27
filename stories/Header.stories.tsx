@@ -1,6 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Home from "../pages";
+
 import Header from "components/Header";
 
 const main = {

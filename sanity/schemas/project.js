@@ -20,6 +20,12 @@ export default {
             validation: Rule => Rule.required()
         },
         {
+            title: 'Website',
+            name: 'website',
+            type: 'url',
+            validation: Rule => Rule.required()
+        },
+        {
             title: 'Pinned',
             name: 'pinned',
             type: 'boolean',

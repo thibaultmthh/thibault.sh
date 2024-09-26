@@ -1,13 +1,11 @@
-"use client";
-import {
-  GlobeIcon,
-  FileTextIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-  CubeIcon,
-} from "@radix-ui/react-icons";
-import { useRef, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
+import CardSpotlight from "@/components/CardSpotLight";
+import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import Parakeet from "./parakeet/page";
+import Brolt from "./brolt/page";
+import Choicyful from "./choicyful/page";
+import SwiftTech from "./swifttech/page";
+import SosPassport from "./sos-passport/page";
 
 export default function Home() {
   return (
@@ -27,13 +25,24 @@ export default function Home() {
 
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <CardSpotlight
+            title="Elevora"
+            year="2024"
+            status="In Progress"
+            link="https://elevora.app"
+            description="Elevora is a platform that allows buisness to create giveaway or waitlist where users can increase their rank or chance by inviting friends and completing tasks"
+            type="personal"
+            projectType="app"
+            screenshots={["/path/to/elevora-screenshot1.jpg", "/path/to/elevora-screenshot2.jpg"]}
+          />
+          <CardSpotlight
             title="Kboom"
             year="2023-2024"
             status="In Progress"
             link="https://app.kboom.gg/"
-            description="Kboom is a platform that help Esport club generate engagnement and fideltiy with their fans"
+            description="Kboom is a platform that helps esports clubs generate engagement and loyalty with their fans."
             type="client"
             projectType="app"
+            myImplication="Developed frontend with React/Next.js and contributed to Django backend."
           />
           <CardSpotlight
             title="Tornado.fun"
@@ -43,12 +52,14 @@ export default function Home() {
             description="Tornado.fun is an app that allows you to create crypto tokens on the Blast blockchain."
             type="client"
             projectType="app"
+            myImplication="Built React frontend with Web3 integration, contributed to NestJS backend."
           />
           <CardSpotlight
             title="SOS-passeport"
             year="2023"
             status="Discontinued"
-            link="https://sos-passeport.fr"
+            // link="https://sos-passeport.fr"
+            moreInfo={<SosPassport />}
             description="Sos-passeport is a website that references all mairies and their availabilities for passport creation appointments"
             type="personal"
             projectType="website"
@@ -57,11 +68,11 @@ export default function Home() {
             title="Swift tech"
             year="2022"
             status="Discontinued"
-            link="/swift-tech"
-            //
+            // link="/swift-tech"
             description="Swifttech was a desktop app that enabled you to mint nfts faster than conventional methods."
             type="personal"
             projectType="app"
+            moreInfo={<SwiftTech />}
           />
           <CardSpotlight
             title="Peoplesphere"
@@ -71,15 +82,18 @@ export default function Home() {
             description="Peoplesphere is a startup that centralize HR data in France."
             type="client"
             projectType="app"
+            myImplication="Developed MVP frontend with React, Redux, and Redux Saga. Conducted code reviews and unit testing."
           />
           <CardSpotlight
             title="Choicyful"
             year="2023"
             status="Discontinued"
-            link="https://apps.shopify.com/choicyful-1"
+            // link="https://apps.shopify.com/choicyful-1"
             description="A Shopify app enables merchants to customize product variant swatches."
             type="client"
             projectType="app"
+            moreInfo={<Choicyful />}
+            myImplication="Built full Shopify app with React frontend, Express backend, and Liquid theme extension."
           />
           <CardSpotlight
             title="Minting Bot"
@@ -103,28 +117,29 @@ export default function Home() {
             title="Parakeet"
             year="2020-2023"
             status="Finished"
-            link="https://parakeet.fr"
             description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
             type="personal"
             projectType="app"
+            moreInfo={<Parakeet />}
           />
           <CardSpotlight
             title="Brolt"
             year="2020"
             status="Discontinued"
-            link="https://github.com/thibaultmthh/BROLT-IG-BOT"
             description="Brolt is a bot developed for Instagram, designed to participate in giveaways using multiple accounts."
             type="personal"
             projectType="app"
+            moreInfo={<Brolt />}
           />
           <CardSpotlight
-            title="Brolt"
+            title="Seig Robotics"
             year="2019"
             status="Discontinued"
             link="https://x.com/SeigRobotics"
             description="Seig Robotics was a deskop app to manage multiple twitter profiles and enter twitter giveaways."
             type="client"
             projectType="app"
+            myImplication="Created MVP with Python/Flask, built Electron desktop app, and implemented Shopify licensing."
           />
         </main>
 
@@ -134,136 +149,12 @@ export default function Home() {
             <SocialLink icon={<LinkedInLogoIcon />} href="#" />
             <SocialLink icon={<TwitterLogoIcon />} href="#" />
           </div>
-          <p className="text-sm sm:text-base text-gray-600">© 2023 Your Name. All rights reserved.</p>
+          <p className="text-sm sm:text-base text-gray-600">Made with ❤️ by Thibault Mathian</p>
         </footer>
       </div>
     </div>
   );
 }
-
-interface CardSpotlightProps {
-  title: string;
-  year: string;
-  status: "In Progress" | "Finished" | "Discontinued";
-  link: string;
-  description: string;
-  type: "personal" | "client";
-  projectType: "website" | "app" | "other";
-}
-
-const ProjectIcon: React.FC<{ projectType: CardSpotlightProps["projectType"] }> = ({ projectType }) => {
-  console.log({ projectType });
-
-  switch (projectType) {
-    case "website":
-      return <GlobeIcon className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mr-2" />;
-    case "app":
-      return <CubeIcon className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mr-2" />;
-    default:
-      return <FileTextIcon className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 mr-2" />;
-  }
-};
-
-const CardSpotlight: React.FC<CardSpotlightProps> = ({ title, year, status, link, description, type, projectType }) => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
-
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
-
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    setOpacity(1);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    setOpacity(0);
-  };
-
-  const handleMouseEnter = () => {
-    setOpacity(1);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacity(0);
-  };
-
-  const statusColors = {
-    "In Progress": "bg-blue-500",
-    Finished: "bg-green-500",
-    Discontinued: "bg-red-500",
-  };
-
-  return (
-    <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl sm:rounded-3xl border border-orange-200 bg-white p-6 sm:p-8 shadow-lg flex flex-col h-full`}
-    >
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-        style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,166,0,.1), transparent 40%)`,
-        }}
-      />
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center">
-          <ProjectIcon projectType={projectType} />
-          <span
-            className={`text-xs font-semibold px-2 py-1 rounded-full ${
-              type === "client" ? "bg-orange-200 text-orange-800" : "bg-gray-200 text-gray-800"
-            }`}
-          >
-            {type === "client" ? "Client" : "Personal"}
-          </span>
-        </div>
-        <span className={`px-2 py-1 text-xs font-semibold text-white rounded-full ${statusColors[status]}`}>
-          {status}
-        </span>
-      </div>
-      <h3 className="mb-2 text-lg sm:text-xl font-semibold text-orange-600">{title}</h3>
-      <p className="text-sm text-gray-600 mb-4 flex-grow">{description}</p>
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0 mt-auto">
-        <span className="text-xs text-gray-500">{year}</span>
-        <Button icon={<FileTextIcon />} href={link}>
-          View Project
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-interface ButtonProps {
-  children: React.ReactNode;
-  icon?: React.ReactNode;
-  href: string;
-}
-
-const Button: React.FC<ButtonProps> = ({ children, icon, href }) => (
-  <a
-    href={href}
-    className="group h-10 select-none rounded-[4px] bg-orange-600 px-4 leading-10 text-white shadow-[0_-1px_0_1px_#9a3412_inset,0_0_0_1px_#ea580c_inset,0_0.5px_0_1.5px_#fdba74_inset] hover:bg-orange-700 active:bg-orange-800 active:shadow-[-1px_0px_1px_0px_rgba(0,0,0,.2)_inset,1px_0px_1px_0px_rgba(0,0,0,.2)_inset,0px_0.125rem_0px_0px_rgba(0,0,0,.2)_inset] inline-block"
-  >
-    <span className="flex items-center justify-center space-x-2 group-active:[transform:translate3d(0,1px,0)]">
-      {icon && <span className="text-orange-100 group-hover:text-white">{icon}</span>}
-      <span>{children}</span>
-    </span>
-  </a>
-);
 
 interface SocialLinkProps {
   icon: React.ReactNode;

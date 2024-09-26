@@ -13,13 +13,16 @@ export default function Home() {
       <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#9775412c_1px,transparent_1px),linear-gradient(to_bottom,#9775412c_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        <header className="text-center mb-12 sm:mb-16">
+        <header className="text-center mb-10 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-orange-600">Thibault Mathian</h1>
-          <p className="text-xl sm:text-2xl text-orange-500">Freelance Fullstack developper 🧑‍💻</p>
+          <p className="text-xl sm:text-2xl text-orange-500">Freelance Fullstack developer 🧑‍💻</p>
           <div className="flex justify-center mt-4 sm:mt-5 space-x-4">
-            <SocialLink icon={<TwitterLogoIcon />} href="https://twitter.com/thibault_mthh" />
-            <SocialLink icon={<LinkedInLogoIcon />} href="https://www.linkedin.com/in/thibault-mathian/" />
-            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" />
+            <SocialLink icon={<TwitterLogoIcon className="size-6" />} href="https://twitter.com/thibault_mthh" />
+            <SocialLink
+              icon={<LinkedInLogoIcon className="size-6" />}
+              href="https://www.linkedin.com/in/thibault-mathian/"
+            />
+            <SocialLink icon={<GitHubLogoIcon className="size-6" />} href="https://github.com/thibaultmthh" />
           </div>
         </header>
 
@@ -29,7 +32,7 @@ export default function Home() {
             year="2024"
             status="In Progress"
             link="https://elevora.app"
-            description="Elevora is a platform that allows buisness to create giveaway or waitlist where users can increase their rank or chance by inviting friends and completing tasks"
+            description="Elevora is a platform that allows businesses to create giveaways or waitlists where users can increase their rank or chance by inviting friends and completing tasks"
             type="personal"
             projectType="app"
             screenshots={["/path/to/elevora-screenshot1.jpg", "/path/to/elevora-screenshot2.jpg"]}
@@ -79,7 +82,7 @@ export default function Home() {
             year="2022-2023"
             status="Discontinued"
             link="https://peoplespheres.com/fr/"
-            description="Peoplesphere is a startup that centralize HR data in France."
+            description="Peoplesphere is a startup that centralizes HR data in France."
             type="client"
             projectType="app"
             myImplication="Developed MVP frontend with React, Redux, and Redux Saga. Conducted code reviews and unit testing."
@@ -136,7 +139,7 @@ export default function Home() {
             year="2019"
             status="Discontinued"
             link="https://x.com/SeigRobotics"
-            description="Seig Robotics was a deskop app to manage multiple twitter profiles and enter twitter giveaways."
+            description="Seig Robotics was a desktop app to manage multiple Twitter profiles and enter Twitter giveaways."
             type="client"
             projectType="app"
             myImplication="Created MVP with Python/Flask, built Electron desktop app, and implemented Shopify licensing."
@@ -145,9 +148,9 @@ export default function Home() {
 
         <footer className="mt-16 sm:mt-20 text-center">
           <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-            <SocialLink icon={<GitHubLogoIcon />} href="#" />
-            <SocialLink icon={<LinkedInLogoIcon />} href="#" />
-            <SocialLink icon={<TwitterLogoIcon />} href="#" />
+            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" />
+            <SocialLink icon={<LinkedInLogoIcon />} href="https://www.linkedin.com/in/thibault-mathian/" />
+            <SocialLink icon={<TwitterLogoIcon />} href="https://twitter.com/thibault_mthh" />
           </div>
           <p className="text-sm sm:text-base text-gray-600">Made with ❤️ by Thibault Mathian</p>
         </footer>

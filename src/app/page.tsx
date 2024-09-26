@@ -6,6 +6,8 @@ import Brolt from "./brolt/page";
 import Choicyful from "./choicyful/page";
 import SwiftTech from "./swifttech/page";
 import SosPassport from "./sos-passport/page";
+import Button from "@/components/Button";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
   return (
@@ -15,7 +17,7 @@ export default function Home() {
       <div className="relative max-w-6xl mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <header className="text-center mb-10 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-orange-600">Thibault Mathian</h1>
-          <p className="text-xl sm:text-2xl text-orange-500">Freelance Fullstack developer 🧑‍💻</p>
+          <p className="text-xl sm:text-2xl text-orange-500 mb-4">Freelance Fullstack developer 🧑‍💻</p>
           <div className="flex justify-center mt-4 sm:mt-5 space-x-4">
             <SocialLink icon={<TwitterLogoIcon className="size-6" />} href="https://twitter.com/thibault_mthh" />
             <SocialLink
@@ -23,6 +25,11 @@ export default function Home() {
               href="https://www.linkedin.com/in/thibault-mathian/"
             />
             <SocialLink icon={<GitHubLogoIcon className="size-6" />} href="https://github.com/thibaultmthh" />
+          </div>
+          <div className="mt-6">
+            <Button href="mailto:dev@thibault.sh" icon={<EnvelopeClosedIcon />}>
+              Contact Me
+            </Button>
           </div>
         </header>
 
@@ -35,7 +42,6 @@ export default function Home() {
             description="Elevora is a platform that allows businesses to create giveaways or waitlists where users can increase their rank or chance by inviting friends and completing tasks"
             type="personal"
             projectType="app"
-            screenshots={["/path/to/elevora-screenshot1.jpg", "/path/to/elevora-screenshot2.jpg"]}
           />
           <CardSpotlight
             title="Kboom"

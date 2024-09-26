@@ -12,7 +12,7 @@ export default function Parakeet() {
         Buy a license
       </a>
       <h3 className="text-lg font-bold">Video demo</h3>
-      <video src="/parakeet/Parakeet_IO_Promo_Video.mp4" className="w-full" controls />
+      <video src="/parakeet/Parakeet_IO_Promo_Video.m4v" className="w-full" controls />
     </div>
   );
 }

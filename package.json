@@ -26,6 +26,7 @@
     "colorthief": "^2.6.0",
     "diff": "^7.0.0",
     "hash-wasm": "^4.11.0",
+    "jszip": "^3.10.1",
     "lucide-react": "^0.454.0",
     "mathjs": "^13.2.0",
     "next": "14.2.11",
@@ -33,6 +34,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons\n": "link:@radix-ui/react-icons\n",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },

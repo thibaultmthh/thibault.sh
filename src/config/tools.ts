@@ -61,15 +61,33 @@ export const tools = {
       },
     ],
   },
-  "Color Tools": {
+  "Design Tools": {
     icon: Palette,
-    path: "color",
+    path: "design",
     items: [
+      {
+        id: "pattern-generator",
+        name: "Pattern Generator",
+        description: "Create custom SVG patterns",
+        path: "/tools/design/pattern-generator",
+      },
       {
         id: "color-palette",
         name: "Color Palette Generator",
         description: "Extract color palettes from images",
-        path: "/tools/color/color-palette",
+        path: "/tools/design/color-palette",
+      },
+      {
+        id: "unit-converter",
+        name: "CSS Unit Converter",
+        description: "Convert between px, rem, and em",
+        path: "/tools/design/unit-converter",
+      },
+      {
+        id: "favicon-generator",
+        name: "Favicon Generator",
+        description: "Generate multi-platform favicons",
+        path: "/tools/design/favicon-generator",
       },
     ],
   },

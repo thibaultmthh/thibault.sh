@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.454.0",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons\n": "link:@radix-ui/react-icons\n"
+    "react-icons\n": "link:@radix-ui/react-icons\n",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",

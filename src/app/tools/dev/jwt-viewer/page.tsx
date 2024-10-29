@@ -471,7 +471,7 @@ export default function JWTViewer() {
             <li>The header typically contains the signing algorithm used</li>
             <li>The payload contains the claims (data)</li>
             <li>Common claims include: exp (expiration), iat (issued at), sub (subject)</li>
-            <li>The signature is used to verify the token's authenticity</li>
+            <li>The signature is used to verify the token&apos;s authenticity</li>
           </ul>
         </Card>
       </div>

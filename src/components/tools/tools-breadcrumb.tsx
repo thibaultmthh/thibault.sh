@@ -27,10 +27,6 @@ export function ToolsBreadcrumb() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <BreadcrumbLink href="/tools">Tools</BreadcrumbLink>
         </BreadcrumbItem>
 

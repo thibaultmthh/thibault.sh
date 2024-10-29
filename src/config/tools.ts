@@ -65,6 +65,12 @@ export const tools = {
         description: "Decode and inspect JWT tokens",
         path: "/tools/dev/jwt-viewer",
       },
+      {
+        id: "cron-debugger",
+        name: "Cron Debugger",
+        description: "Debug and test cron expressions",
+        path: "/tools/dev/cron-debugger",
+      },
     ],
   },
   "Design Tools": {

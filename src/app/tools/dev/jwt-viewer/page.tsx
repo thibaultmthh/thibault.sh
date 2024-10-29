@@ -72,6 +72,30 @@ const verifySignature = async (token: string, secret: string): Promise<boolean> 
   }
 };
 
+const JWT_EXAMPLES = [
+  {
+    name: "Simple Token",
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    secret: "your-256-bit-secret",
+    description: "Basic JWT with standard claims",
+  },
+  {
+    name: "Expiring Token",
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE5NTE2MjM5fQ.OFAF9HAxFf2PP-J4Xat5eq9wbZ4KSpVpBKP2dhynVlA",
+    secret: "your-256-bit-secret",
+    description: "Token with expiration date",
+  },
+  {
+    name: "Custom Claims",
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4iLCJwZXJtaXNzaW9ucyI6WyJyZWFkIiwid3JpdGUiLCJkZWxldGUiXX0.h2iOCz-iLcuQYg2mznPH5hImrVc1MMcQY6QrT0xwRwI",
+    secret: "your-256-bit-secret",
+    description: "Token with custom claims (role, permissions)",
+  },
+];
+
 export default function JWTViewer() {
   const [token, setToken] = useState("");
   const [decoded, setDecoded] = useState<DecodedJWT | null>(null);
@@ -81,6 +105,9 @@ export default function JWTViewer() {
     isValid: boolean | null;
     error?: string;
   }>({ isValid: null });
+
+  // Add a state to track if we're using a custom token
+  const [isCustomToken, setIsCustomToken] = useState(false);
 
   const decodeToken = (token: string): DecodedJWT | null => {
     try {
@@ -103,14 +130,21 @@ export default function JWTViewer() {
     }
   };
 
+  // Update handleTokenChange to track custom tokens
   const handleTokenChange = (value: string) => {
     setToken(value);
     setError("");
+
+    // Check if this is a custom token (not from examples)
+    const isFromExample = JWT_EXAMPLES.some((example) => example.token === value);
+    setIsCustomToken(!isFromExample && value.trim() !== "");
+
     if (value.trim()) {
       const result = decodeToken(value);
       setDecoded(result);
     } else {
       setDecoded(null);
+      setIsCustomToken(false);
     }
   };
 
@@ -241,6 +275,31 @@ export default function JWTViewer() {
               </p>
             )}
           </div>
+
+          {/* Example Tokens - Only show if no custom token is set */}
+          {!isCustomToken && (
+            <div className="space-y-2 mb-6">
+              <Label>Example Tokens</Label>
+              <div className="grid gap-2">
+                {JWT_EXAMPLES.map((example, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    className="justify-start h-auto py-2 px-3"
+                    onClick={() => {
+                      handleTokenChange(example.token);
+                      setSecret(example.secret);
+                    }}
+                  >
+                    <div className="flex flex-col items-start text-left">
+                      <span className="font-medium">{example.name}</span>
+                      <span className="text-sm text-muted-foreground">{example.description}</span>
+                    </div>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Secret Key Input */}
           {decoded && (

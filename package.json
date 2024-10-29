@@ -24,6 +24,8 @@
     "clsx": "^2.1.1",
     "colord": "^2.9.3",
     "colorthief": "^2.6.0",
+    "cron-parser": "^4.9.0",
+    "cronstrue": "^2.51.0",
     "diff": "^7.0.0",
     "hash-wasm": "^4.11.0",
     "jsonwebtoken-esm": "^2.0.1",

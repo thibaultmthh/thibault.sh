@@ -152,10 +152,6 @@ export default function JWTViewer() {
     navigator.clipboard.writeText(text);
   };
 
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp * 1000).toLocaleString();
-  };
-
   const getExpirationStatus = (payload: JWTPayload) => {
     if (!payload.exp) {
       return {

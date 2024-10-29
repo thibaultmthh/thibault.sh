@@ -59,6 +59,12 @@ export const tools = {
         description: "Encode and decode URLs",
         path: "/tools/dev/url-encoder",
       },
+      {
+        id: "jwt-viewer",
+        name: "JWT Viewer",
+        description: "Decode and inspect JWT tokens",
+        path: "/tools/dev/jwt-viewer",
+      },
     ],
   },
   "Design Tools": {

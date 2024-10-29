@@ -59,6 +59,9 @@ importers:
       hash-wasm:
         specifier: ^4.11.0
         version: 4.11.0
+      jsonwebtoken-esm:
+        specifier: ^2.0.1
+        version: 2.0.1
       jszip:
         specifier: ^3.10.1
         version: 3.10.1
@@ -1683,6 +1686,10 @@ packages:
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
+
+  jsonwebtoken-esm@2.0.1:
+    resolution: {integrity: sha512-uZwq66J1WgwevzBheW8AMj8STn9QLXHLtY5cI52ztzip8VFPwoqaz/RQmgfNMivt+yD2Lfi4YS4uYHoKz0Fw9g==}
+    engines: {node: '>=14.18'}
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -4128,6 +4135,8 @@ snapshots:
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
+
+  jsonwebtoken-esm@2.0.1: {}
 
   jsx-ast-utils@3.3.5:
     dependencies:

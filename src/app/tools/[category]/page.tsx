@@ -4,12 +4,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage(props: CategoryPageProps) {
+  const params = await props.params;
   // Find the category data based on the path parameter
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const categoryEntry = Object.entries(tools).find(([_, data]) => data.path === params.category);

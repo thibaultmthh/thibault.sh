@@ -27,5 +27,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
+  // Add all category pages
+  Object.values(tools).forEach((category) => {
+    routes.push({
+      url: `${baseUrl}/tools/${category.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+  });
+
   return routes;
 }

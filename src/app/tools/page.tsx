@@ -20,9 +20,9 @@ export default function Tools() {
       </p>
       <p className="text-md text-muted-foreground mb-8">
         Part of{" "}
-        <a href="/" className="text-primary hover:underline">
+        <Link href="/" className="text-primary hover:underline">
           Thibault Mathian&apos;s portfolio
-        </a>{" "}
+        </Link>{" "}
         - a collection of projects built with React, Next.js, and TypeScript.
       </p>
 

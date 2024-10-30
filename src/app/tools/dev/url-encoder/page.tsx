@@ -28,7 +28,7 @@ export default function UrlEncoder() {
       const encoded = encodeURI(fullUrl);
       setEncodedUrl(encoded);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Invalid URL format");
     }
   };
@@ -38,7 +38,7 @@ export default function UrlEncoder() {
       const decoded = decodeURI(fullUrl);
       setEncodedUrl(decoded);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Invalid encoded URL");
     }
   };
@@ -69,7 +69,7 @@ export default function UrlEncoder() {
 
       setEncodedUrl(url.toString());
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Invalid base URL format");
     }
   };

@@ -22,6 +22,7 @@ import { FavoritesList } from "@/components/tools/favorites-list";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import { getToolMetadata } from "@/lib/get-tool-metadata";
+import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -64,18 +65,18 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
           <Sidebar>
             <SidebarHeader className="px-2 mt-2">
               <div className="space-y-2">
-                <a href="/tools" className="text-primary font-semibold text-xl block">
+                <Link href="/tools" className="text-primary font-semibold text-xl block">
                   Thibault.sh toolbox
-                </a>
+                </Link>
                 <div className="flex flex-col text-sm text-muted-foreground">
-                  <a href="/" className="hover:underline inline-flex items-center gap-2">
+                  <Link href="/" className="hover:underline inline-flex items-center gap-2">
                     ← Back to portfolio
-                  </a>
+                  </Link>
                   <span>
                     Made by{" "}
-                    <a href="/" className="font-semibold hover:underline">
+                    <Link href="/" className="font-semibold hover:underline">
                       Thibault
-                    </a>
+                    </Link>
                   </span>
                 </div>
               </div>

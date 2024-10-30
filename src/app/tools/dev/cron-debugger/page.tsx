@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import { Calendar, AlertCircle, Copy, Info } from "lucide-react";
 import cronstrue from "cronstrue";
+import parser from "cron-parser";
 
 interface NextDates {
   date: Date;
@@ -19,7 +20,6 @@ const calculateNextDates = (cronExpression: string, count: number = 5): NextDate
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const parser = require("cron-parser");
     const interval = parser.parseExpression(cronExpression);
 
     for (let i = 0; i < count; i++) {
@@ -74,8 +74,7 @@ export default function CronDebugger() {
   const validateAndParse = (expression: string) => {
     try {
       // Try to parse with cron-parser first to validate
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      require("cron-parser").parseExpression(expression);
+      parser.parseExpression(expression);
 
       // If valid, get human readable version using cronstrue
       const readable = cronstrue.toString(expression);

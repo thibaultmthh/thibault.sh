@@ -124,7 +124,7 @@ export default function JWTViewer() {
         payload,
         signature: parts[2],
       };
-    } catch (err) {
+    } catch {
       setError("Invalid JWT token");
       return null;
     }
@@ -231,7 +231,7 @@ export default function JWTViewer() {
 
       const isValid = await verifySignature(token, secret);
       setVerificationStatus({ isValid });
-    } catch (err) {
+    } catch {
       setVerificationStatus({
         isValid: false,
         error: "Failed to verify signature",

@@ -31,7 +31,7 @@ export default function Home() {
             <Button href="mailto:dev@thibault.sh" icon={<EnvelopeClosedIcon />}>
               Contact Me
             </Button>
-            <Button href="/tools" icon={<BoxIcon />}>
+            <Button href="/tools" icon={<BoxIcon className="size-4" />} variant="secondary">
               Check out my Developer Tools
             </Button>
           </div>

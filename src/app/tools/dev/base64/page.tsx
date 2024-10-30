@@ -20,7 +20,7 @@ export default function Base64Tool() {
       const encoded = btoa(inputText);
       setOutputText(encoded);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Invalid input for Base64 encoding. Make sure your input contains valid characters.");
     }
   };
@@ -30,7 +30,7 @@ export default function Base64Tool() {
       const decoded = atob(inputText);
       setOutputText(decoded);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Invalid Base64 string. Please check your input.");
     }
   };
@@ -75,7 +75,7 @@ export default function Base64Tool() {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    } catch (e) {
+    } catch {
       setError("Error downloading file. The Base64 string might be invalid.");
     }
   };

@@ -24,7 +24,7 @@ import { headers } from "next/headers";
 import { getToolMetadata } from "@/lib/get-tool-metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
 
   // Split path and filter out empty strings

@@ -8,6 +8,7 @@ import SwiftTech from "./swifttech/page";
 import SosPassport from "./sos-passport/page";
 import Button from "@/components/Button";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
+import { BoxIcon } from "lucide-react";
 
 export default function Home() {
   return (
@@ -26,9 +27,12 @@ export default function Home() {
             />
             <SocialLink icon={<GitHubLogoIcon className="size-6" />} href="https://github.com/thibaultmthh" />
           </div>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col gap-4 items-center">
             <Button href="mailto:dev@thibault.sh" icon={<EnvelopeClosedIcon />}>
               Contact Me
+            </Button>
+            <Button href="/tools" icon={<BoxIcon />}>
+              Check out my Developer Tools
             </Button>
           </div>
         </header>

@@ -11,6 +11,13 @@ import Button from "@/components/Button";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { BoxIcon } from "lucide-react";
 import { Terminal } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Thibault Mathian - Freelance Fullstack Developer",
+  description:
+    "Passionate fullstack developer with expertise in React, Next.js, and Node.js. Currently freelancing from France.",
+};
 
 export default function Home() {
   return (

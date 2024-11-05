@@ -11,6 +11,7 @@ interface CategoryPageProps {
 
 export default async function CategoryPage(props: CategoryPageProps) {
   const params = await props.params;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const categoryEntry = Object.entries(tools).find(([_, data]) => data.path === params.category);
 
   if (!categoryEntry) {

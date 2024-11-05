@@ -28,7 +28,8 @@ export default function Home() {
 
           <div className="bg-[#252526] p-6 rounded-lg border border-[#2D2D2D]">
             <p className="text-[#D4D4D4] leading-relaxed mb-4">
-              Hi! I'm a passionate fullstack developer with expertise in React, Next.js, and Node.js...
+              Hi! I&apos;m a passionate fullstack developer with expertise in React, Next.js, and Node.js. I&apos;m
+              currently freelancing from France.
             </p>
             <div className="flex gap-3">
               <SocialLink icon={<GitHubLogoIcon className="size-5" />} href="https://github.com/thibaultmthh" />

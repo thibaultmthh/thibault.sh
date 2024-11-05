@@ -55,11 +55,11 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Check out my developer tools</span>
               </Button>
-              <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
+              {/* <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --blog
                 <br />
                 <span className="text-[#858585]">Read my latest articles</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </section>

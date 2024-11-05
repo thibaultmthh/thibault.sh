@@ -4,6 +4,7 @@ import { CubeIcon, FileTextIcon, GlobeIcon, ExternalLinkIcon } from "@radix-ui/r
 import { useState } from "react";
 import Modal from "./Modal"; // You'll need to create this component
 import Button from "./Button";
+import { motion } from "framer-motion";
 
 interface CardSpotlightProps {
   title: string;
@@ -52,6 +53,7 @@ export default function CardSpotlight({
         <div>
           <h3 className="text-orange-500 mb-2 flex items-center gap-3">
             <ProjectIcon projectType={projectType} />
+
             {title}
             <span className="text-xs bg-[#2D2D2D] px-2 py-1 rounded text-[#D4D4D4]">{year}</span>
           </h3>
@@ -98,13 +100,15 @@ export default function CardSpotlight({
       )}
 
       <div className="flex justify-end space-x-2 items-center mt-auto">
-        <Button
-          icon={link ? <ExternalLinkIcon className="w-4 h-4" /> : <FileTextIcon />}
-          href={link}
-          onClick={link ? undefined : openModal}
-        >
-          {link ? `open --url ${title.toLowerCase()}` : `more --info ${title.toLowerCase()}`}
-        </Button>
+        <motion.div whileHover={{ translateX: 10 }} transition={{ type: "spring", stiffness: 400, damping: 100 }}>
+          <Button
+            icon={link ? <ExternalLinkIcon className="w-4 h-4" /> : <FileTextIcon />}
+            href={link}
+            onClick={link ? undefined : openModal}
+          >
+            {link ? `open --url ${title.toLowerCase()}` : `more --info ${title.toLowerCase()}`}
+          </Button>
+        </motion.div>
       </div>
 
       {isModalOpen && (

@@ -27,6 +27,7 @@
     "cron-parser": "^4.9.0",
     "cronstrue": "^2.51.0",
     "diff": "^7.0.0",
+    "framer-motion": "^11.11.11",
     "hash-wasm": "^4.11.0",
     "jsonwebtoken-esm": "^2.0.1",
     "jszip": "^3.10.1",

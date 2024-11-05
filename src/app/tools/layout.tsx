@@ -6,6 +6,7 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -13,7 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { ChevronDown, Star } from "lucide-react";
+import { ChevronDown, Star, Terminal } from "lucide-react";
 import { ToolsBreadcrumb } from "@/components/tools/tools-breadcrumb";
 import { tools } from "@/config/tools";
 import { FavoritesProvider } from "@/contexts/favorites-context";
@@ -59,33 +60,28 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ToolsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="relative min-h-screen font-mono">
       <FavoritesProvider>
         <SidebarProvider>
-          <Sidebar>
+          <Sidebar variant="inset">
             <SidebarHeader className="px-2 mt-2">
-              <div className="space-y-2">
-                <Link href="/tools" className="text-primary font-semibold text-xl block">
-                  Thibault.sh toolbox
+              <Link href="/tools" className="flex items-center gap-2 mb-4 text-orange-500">
+                <Terminal className="w-5 h-5" />
+                <span className="text-sm">thibault.sh/tools</span>
+              </Link>
+
+              <div className="flex items-center gap-2 mb-4">
+                <Link href="/" className="flex items-center gap-2 text-sm hover:text-orange-500 transition-colors">
+                  <span>←</span>
+                  <span>Portfolio</span>
                 </Link>
-                <div className="flex flex-col text-sm text-muted-foreground">
-                  <Link href="/" className="hover:underline inline-flex items-center gap-2">
-                    ← Back to portfolio
-                  </Link>
-                  <span>
-                    Made by{" "}
-                    <Link href="/" className="font-semibold hover:underline">
-                      Thibault
-                    </Link>
-                  </span>
-                </div>
               </div>
             </SidebarHeader>
             <SidebarContent>
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarGroup>
                   <SidebarGroupLabel asChild>
-                    <CollapsibleTrigger>
+                    <CollapsibleTrigger className="hover:text-orange-500 transition-colors">
                       <Star className="mr-2 h-4 w-4" />
                       Favorites
                       <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
@@ -100,7 +96,7 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
                 <Collapsible key={category} defaultOpen className="group/collapsible">
                   <SidebarGroup>
                     <SidebarGroupLabel asChild>
-                      <CollapsibleTrigger>
+                      <CollapsibleTrigger className="hover:text-orange-500 transition-colors">
                         <Icon className="mr-2 h-4 w-4" />
                         {category}
                         <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
@@ -112,10 +108,10 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
                           {items.map((tool) => (
                             <SidebarMenuItem key={tool.id} className="group">
                               <SidebarMenuButton asChild>
-                                <a href={tool.path}>
+                                <Link href={tool.path} className="hover:text-orange-500 transition-colors">
                                   <span>{tool.name}</span>
                                   <FavoriteButton toolId={tool.id} />
-                                </a>
+                                </Link>
                               </SidebarMenuButton>
                             </SidebarMenuItem>
                           ))}
@@ -127,13 +123,15 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
               ))}
             </SidebarContent>
           </Sidebar>
-          <main className="p-3">
-            <div className="flex mb-4 items-center">
-              <SidebarTrigger className="mr-2" />
-              <ToolsBreadcrumb />
+          <SidebarInset>
+            <div className="p-3">
+              <div className="flex mb-4 items-center">
+                <SidebarTrigger className="mr-2 hover:text-orange-500 transition-colors" />
+                <ToolsBreadcrumb />
+              </div>
+              <div className="p-2">{children}</div>
             </div>
-            <div>{children}</div>
-          </main>
+          </SidebarInset>
         </SidebarProvider>
       </FavoritesProvider>
     </div>

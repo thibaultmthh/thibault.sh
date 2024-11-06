@@ -62,13 +62,13 @@ export default function TransactionDecoder() {
             decoded.args.map((arg: any, index: number) => {
               // Handle BigInt conversion
               const value = typeof arg === "bigint" ? arg.toString() : arg;
-              return [decoded.functionFragment.inputs[index]?.name || `arg${index}`, value];
+              return [decoded.fragment.inputs[index]?.name || `arg${index}`, value];
             })
           ),
-          sighash: decoded.sighash,
+          sighash: decoded.signature,
           functionFragment: {
-            inputs: decoded.functionFragment.inputs,
-            outputs: decoded.functionFragment.outputs,
+            inputs: decoded.fragment.inputs,
+            outputs: decoded.fragment.outputs,
           },
         });
       } catch (abiError) {

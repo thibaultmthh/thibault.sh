@@ -143,6 +143,30 @@ export const tools = {
           keywords: "hash analyzer, hash identifier, hash type detector, md5, sha1, sha256, bcrypt, online tool",
         },
       },
+      {
+        id: "package-analyzer",
+        name: "Package.json Analyzer",
+        description: "Analyze and validate package.json files",
+        path: "/tools/dev/package-analyzer",
+        seo: {
+          title: "Package.json Analyzer - Analyze and Validate Package.json Files Online",
+          description:
+            "Analyze package.json files online with this free tool. Check dependencies, validate structure, and get insights about your Node.js projects.",
+          keywords: "package.json analyzer, npm dependencies, node.js, package validator, dependency checker",
+        },
+      },
+      {
+        id: "requirements-analyzer",
+        name: "Requirements.txt Analyzer",
+        description: "Analyze and validate Python requirements.txt files",
+        path: "/tools/dev/requirements-analyzer",
+        seo: {
+          title: "Requirements.txt Analyzer - Analyze Python Dependencies Online",
+          description:
+            "Analyze requirements.txt files online with this free tool. Check dependencies, validate versions, and get insights about your Python projects.",
+          keywords: "requirements.txt analyzer, python dependencies, pip requirements, dependency checker",
+        },
+      },
     ],
   },
   "Design Tools": {

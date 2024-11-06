@@ -137,9 +137,9 @@ importers:
       remark-rehype:
         specifier: ^11.1.1
         version: 11.1.1
-      sharp:
-        specifier: ^0.33.5
-        version: 0.33.5
+      semver:
+        specifier: ^7.6.3
+        version: 7.6.3
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
@@ -168,6 +168,9 @@ importers:
       '@types/react-dom':
         specifier: npm:types-react-dom@19.0.0-rc.1
         version: types-react-dom@19.0.0-rc.1
+      '@types/semver':
+        specifier: ^7.5.8
+        version: 7.5.8
       eslint:
         specifier: ^8
         version: 8.57.1
@@ -904,6 +907,9 @@ packages:
 
   '@types/node@22.8.4':
     resolution: {integrity: sha512-SpNNxkftTJOPk0oN+y2bIqurEXHTA2AOZ3EJDDKeJ5VzkvvORSvmQXGQarcOzWV1ac7DCaPBEdMDxBsM+d8jWw==}
+
+  '@types/semver@7.5.8':
+    resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
@@ -3658,6 +3664,8 @@ snapshots:
   '@types/node@22.8.4':
     dependencies:
       undici-types: 6.19.8
+
+  '@types/semver@7.5.8': {}
 
   '@types/unist@2.0.11': {}
 

@@ -17,7 +17,8 @@ const processor = unified()
   .use(rehypeShiki, {
     theme: "dark-plus",
   })
-  .use(rehypeWrap, {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  .use(rehypeWrap as any, {
     selector: "pre",
     wrapper: "div.code-block",
   })

@@ -24,6 +24,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { getToolMetadata } from "@/lib/get-tool-metadata";
 import Link from "next/link";
+import { CommandMenu } from "../../components/command-menu";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -75,6 +76,10 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
                   <span>←</span>
                   <span>Portfolio</span>
                 </Link>
+              </div>
+
+              <div className="px-2 mb-4">
+                <CommandMenu />
               </div>
             </SidebarHeader>
             <SidebarContent>

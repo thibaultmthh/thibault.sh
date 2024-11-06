@@ -128,7 +128,7 @@ export default function HashAnalyzer() {
   };
 
   return (
-    <div className="p-3">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Hash Analyzer</h1>
 
       <div className="grid gap-6 max-w-4xl mx-auto">

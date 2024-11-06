@@ -125,7 +125,7 @@ export default function PasswordGenerator() {
   const strengthInfo = calculateStrength();
 
   return (
-    <div className="p-3">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Password Generator</h1>
 
       <div className="max-w-2xl mx-auto">

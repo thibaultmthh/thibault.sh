@@ -480,7 +480,7 @@ export default function PackageAnalyzer() {
     <div className="p-3">
       <h1 className="text-3xl font-bold mb-4">Package.json Analyzer</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="p-4">
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-sm font-medium">Input package.json</h2>

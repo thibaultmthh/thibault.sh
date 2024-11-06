@@ -90,7 +90,7 @@ export default function ColorPalette() {
   };
 
   return (
-    <div className="p-3">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Color Palette Generator</h1>
 
       <div className="max-w-4xl mx-auto">

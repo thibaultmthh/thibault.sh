@@ -81,7 +81,7 @@ export default function Base64Tool() {
   };
 
   return (
-    <div className="p-3">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Base64 Encoder/Decoder</h1>
 
       <Tabs defaultValue="text" className="mb-4">

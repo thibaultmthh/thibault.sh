@@ -79,7 +79,7 @@ export default function UrlEncoder() {
   };
 
   return (
-    <div className="p-3">
+    <div>
       <h1 className="text-3xl font-bold mb-4">URL Encoder/Decoder</h1>
 
       <Tabs defaultValue="full" className="mb-4">

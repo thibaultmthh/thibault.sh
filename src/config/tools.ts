@@ -131,6 +131,18 @@ export const tools = {
           keywords: "cron debugger, cron expressions, cron automation, online tool, content creation",
         },
       },
+      {
+        id: "hash-analyzer",
+        name: "Hash Analyzer",
+        description: "Identify and analyze hash types",
+        path: "/tools/dev/hash-analyzer",
+        seo: {
+          title: "Hash Analyzer - Identify and Analyze Hash Types Online",
+          description:
+            "Analyze and identify different types of hashes online with this free tool. Detect MD5, SHA-1, SHA-256, bcrypt, and more hash types. Perfect for developers and security professionals.",
+          keywords: "hash analyzer, hash identifier, hash type detector, md5, sha1, sha256, bcrypt, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

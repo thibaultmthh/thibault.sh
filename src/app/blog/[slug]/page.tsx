@@ -12,7 +12,7 @@ export default async function BlogPostPage({
   const post = getPostBySlug((await params).slug);
 
   return (
-    <div className="relative min-h-screen bg-white text-gray-800 font-mono">
+    <div className="relative min-h-screen bg-white text-gray-800 font-mono  ">
       <div className="relative max-w-4xl mx-auto px-4 py-6 sm:px-6 sm:py-8">
         <article className="bg-gray-50 p-8 rounded-lg border border-gray-200">
           <header className="mb-8">

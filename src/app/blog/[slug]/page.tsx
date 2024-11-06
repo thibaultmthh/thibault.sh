@@ -6,10 +6,10 @@ export default async function BlogPostPage({
   params,
 }: {
   params: {
-    slug: string;
+    slug: Promise<string>;
   };
 }) {
-  const post = getPostBySlug(params.slug);
+  const post = getPostBySlug(await params.slug);
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">

@@ -64,7 +64,7 @@ export function CommandMenu() {
                     router.push(tool.path);
                     setOpen(false);
                   }}
-                  keywords={tool.seo.keywords.split(",")}
+                  // keywords={tool.seo.keywords.split(",")}
                 >
                   <Icon className="mr-2 h-4 w-4 text-muted-foreground" />
                   <span>{tool.name}</span>

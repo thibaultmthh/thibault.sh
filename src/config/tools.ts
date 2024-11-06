@@ -1,4 +1,4 @@
-import { FileText, Code, Calculator, Palette } from "lucide-react";
+import { FileText, Code, Calculator, Palette, Wallet } from "lucide-react";
 
 export const tools = {
   "Text Tools": {
@@ -219,6 +219,60 @@ export const tools = {
           description:
             "Generate multi-platform favicons online with this free tool. Create favicons for your website and use them across different platforms. Perfect for designers and content creators.",
           keywords: "favicon generator, multi-platform favicons, favicons, online tool, design",
+        },
+      },
+    ],
+  },
+  "Web3 Tools": {
+    icon: Wallet,
+    path: "web3",
+    items: [
+      {
+        id: "ens-lookup",
+        name: "ENS Lookup",
+        description: "Resolve ENS names to addresses and vice versa",
+        path: "/tools/web3/ens-lookup",
+        seo: {
+          title: "ENS Lookup - Ethereum Name Service Resolution Tool",
+          description:
+            "Free ENS lookup tool to resolve Ethereum Name Service domains to addresses and reverse lookup addresses to ENS names. Perfect for Web3 developers and users.",
+          keywords: "ens lookup, ethereum name service, ens resolver, eth domains, web3 tools, blockchain",
+        },
+      },
+      {
+        id: "gas-calculator",
+        name: "Gas Calculator",
+        description: "Calculate Ethereum transaction costs in different currencies",
+        path: "/tools/web3/gas-calculator",
+        seo: {
+          title: "Ethereum Gas Calculator - Calculate Transaction Costs",
+          description:
+            "Calculate Ethereum transaction gas costs in real-time. Convert gas prices to different currencies and estimate transaction fees.",
+          keywords: "ethereum gas calculator, gas fees, wei calculator, gwei calculator, eth calculator, web3 tools",
+        },
+      },
+      {
+        id: "transaction-decoder",
+        name: "Transaction Decoder",
+        description: "Decode Ethereum transaction data and function calls",
+        path: "/tools/web3/transaction-decoder",
+        seo: {
+          title: "Ethereum Transaction Decoder - Decode Transaction Data Online",
+          description:
+            "Decode Ethereum transaction data and smart contract function calls. Analyze transaction input data and understand contract interactions.",
+          keywords: "ethereum transaction decoder, smart contract decoder, transaction data, web3 tools, blockchain",
+        },
+      },
+      {
+        id: "signature-verifier",
+        name: "Signature Verifier",
+        description: "Verify Ethereum signatures and recover signing addresses",
+        path: "/tools/web3/signature-verifier",
+        seo: {
+          title: "Ethereum Signature Verifier - Verify Messages and Recover Addresses",
+          description:
+            "Verify Ethereum signatures and recover signing addresses from signed messages. Validate signed messages and personal signatures.",
+          keywords: "ethereum signature verifier, message signing, signature verification, web3 tools, blockchain",
         },
       },
     ],

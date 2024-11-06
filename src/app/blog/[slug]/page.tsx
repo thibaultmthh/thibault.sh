@@ -5,11 +5,11 @@ import { Metadata } from "next";
 export default async function BlogPostPage({
   params,
 }: {
-  params: {
-    slug: Promise<string>;
-  };
+  params: Promise<{
+    slug: string;
+  }>;
 }) {
-  const post = getPostBySlug(await params.slug);
+  const post = getPostBySlug((await params).slug);
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">

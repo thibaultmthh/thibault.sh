@@ -1,4 +1,4 @@
-import { getPostBySlug } from "@/lib/get-blog-by-slug";
+import { getPostBySlug, getPosts } from "@/lib/get-blog-by-slug";
 import { markdownToHtml } from "@/lib/markdown-to-html";
 import { Metadata } from "next";
 
@@ -43,4 +43,8 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     title: post.title,
     description: post.excerpt,
   };
+}
+
+export async function generateStaticParams() {
+  return getPosts().map((post) => ({ slug: post.slug }));
 }

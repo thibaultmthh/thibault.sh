@@ -2,7 +2,6 @@
 
 import CardSpotlight from "@/components/CardSpotLight";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import Parakeet from "./parakeet/page";
 import Brolt from "./brolt/page";
 import Choicyful from "./choicyful/page";
 import SwiftTech from "./swifttech/page";
@@ -63,11 +62,11 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Check out my developer tools</span>
               </Button>
-              {/* <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
+              <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --blog
                 <br />
                 <span className="text-[#858585]">Read my latest articles</span>
-              </Button> */}
+              </Button>
             </div>
           </div>
         </section>
@@ -170,7 +169,7 @@ export default function Home() {
               description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
               type="personal"
               projectType="app"
-              moreInfo={<Parakeet />}
+              // moreInfo={<Parakeet />}
             />
             <CardSpotlight
               title="Brolt"

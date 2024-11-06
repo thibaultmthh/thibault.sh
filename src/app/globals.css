@@ -73,13 +73,95 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Blog post styling */
+  .prose {
+    @apply text-gray-700 text-base leading-relaxed font-[system-ui,-apple-system,sans-serif];
+  }
+
+  .prose h2 {
+    @apply text-2xl font-semibold text-orange-600 mt-8 mb-4 font-mono;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold text-orange-500 mt-6 mb-3 font-mono;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed max-w-[70ch];
+  }
+
+  .prose a {
+    @apply text-orange-600 hover:text-orange-700 transition-colors underline decoration-orange-200 hover:decoration-orange-400;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-4 ml-6 space-y-2;
+  }
+
+  .prose li {
+    @apply mb-1 max-w-[70ch];
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-orange-500 pl-4 my-4 italic text-gray-600;
+  }
+
+  .prose pre {
+    @apply p-4 rounded-lg my-4 bg-gray-50 text-sm;
+  }
+
+  .prose code {
+    @apply px-1.5 py-0.5 rounded text-sm bg-gray-50 text-gray-800 font-mono;
+  }
+
+  .prose pre code {
+    @apply p-0 bg-transparent;
+  }
+
+  /* Improved spacing between elements */
+  .prose > * + * {
+    @apply mt-4;
+  }
+
+  /* Better list markers */
+  .prose ul {
+    @apply list-disc marker:text-orange-400;
+  }
+
+  .prose ol {
+    @apply list-decimal marker:text-orange-400;
+  }
+
+  /* Video and details element styling */
+  .prose details {
+    @apply my-4 rounded-lg border border-gray-200 bg-gray-50 overflow-hidden;
+  }
+
+  .prose details summary {
+    @apply p-2 cursor-pointer flex items-center gap-2 text-gray-700 hover:bg-gray-100 transition-colors;
+  }
+
+  .prose details summary svg {
+    @apply text-orange-600;
+  }
+
+  .prose details video {
+    @apply w-full max-h-[640px] bg-black;
+  }
+
+  .prose details[open] summary {
+    @apply border-b border-gray-200;
   }
 }

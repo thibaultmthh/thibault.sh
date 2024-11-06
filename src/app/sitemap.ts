@@ -1,4 +1,5 @@
 import { tools } from "@/config/tools";
+import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -34,6 +35,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+    });
+  });
+
+  // Add all blog posts
+  const posts = getPosts();
+  posts.forEach((post) => {
+    routes.push({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly",
+      priority: 0.5,
     });
   });
 

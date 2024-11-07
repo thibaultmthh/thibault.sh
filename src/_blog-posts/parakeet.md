@@ -71,11 +71,13 @@ Since Parakeet, I'm eager to start another successful project.
 
 
 ## Bonus : 
+
+
+The user documentation (with some screenshots of the app): 
+[Parakeet User docs](https://parakeet-bots.notion.site/Parakeet-docs-v2-e261515e7e254900a53b5b90b94ff9bb) 
+
 Here you can find how much revenue Parakeet made me during my college years : 
 
 ![Parakeet revenue pt1](/assets/parakeet/dashboard-results.png)
 ![Parakeet revenue pt2](/assets/parakeet/dashboard-results2.png)
 
-
-The user documentation (with some screenshots of the app): 
-[Parakeet User docs](https://parakeet-bots.notion.site/Parakeet-docs-v2-e261515e7e254900a53b5b90b94ff9bb) 

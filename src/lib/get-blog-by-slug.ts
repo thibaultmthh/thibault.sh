@@ -19,12 +19,17 @@ export type Post = {
 };
 
 export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  try {
+    const realSlug = slug.replace(/\.md$/, "");
+    const fullPath = join(postsDirectory, `${realSlug}.md`);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContents);
 
-  return { ...(data as Post), slug: realSlug, content };
+    return { ...(data as Post), slug: realSlug, content };
+  } catch (error) {
+    console.error(`Error getting post by slug ${slug}:`, error);
+    return null;
+  }
 }
 
 export function getPosts() {

@@ -167,6 +167,18 @@ export const tools = {
           keywords: "requirements.txt analyzer, python dependencies, pip requirements, dependency checker",
         },
       },
+      {
+        id: "og-preview",
+        name: "OG Preview",
+        description: "Preview and validate Open Graph meta tags",
+        path: "/tools/dev/og-preview",
+        seo: {
+          title: "Open Graph Preview - Test and Validate OG Meta Tags",
+          description:
+            "Preview how your website appears when shared on social media. Test and validate Open Graph meta tags for Facebook, Twitter, LinkedIn, and more.",
+          keywords: "og preview, open graph, meta tags, social media preview, seo tools, facebook preview",
+        },
+      },
     ],
   },
   "Design Tools": {

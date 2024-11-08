@@ -42,7 +42,7 @@ export async function GET(request: Request) {
     };
 
     return NextResponse.json(feedData);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch or parse RSS feed" }, { status: 500 });
   }
 }

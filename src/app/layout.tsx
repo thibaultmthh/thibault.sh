@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <GoogleAnalytics gaId="G-M9YN517WD9" /> {/* Replace with your actual GA4 Measurement ID */}
+        {process.env.NEXT_PUBLIC_GA_ENABLED === "true" && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />}
       </body>
     </html>
   );

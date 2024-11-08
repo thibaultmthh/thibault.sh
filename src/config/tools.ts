@@ -216,6 +216,18 @@ export const tools = {
             "regex playground, regular expressions, regex tester, regex debugger, pattern matching, online tool",
         },
       },
+      {
+        id: "security-headers",
+        name: "Security Headers Analyzer",
+        description: "Analyze website security headers",
+        path: "/tools/dev/security-headers",
+        seo: {
+          title: "Security Headers Analyzer - Check Website Security Headers",
+          description:
+            "Analyze and validate website security headers. Check for HSTS, CSP, X-Frame-Options, and other security headers to improve your website's security.",
+          keywords: "security headers, security analyzer, hsts, csp, x-frame-options, web security, security testing",
+        },
+      },
     ],
   },
   "Design Tools": {

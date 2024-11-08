@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#1E1E1E] text-[#D4D4D4] font-mono">
+    <div className="relative min-h-screen bg-white text-gray-800 font-mono">
       <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex items-center gap-2 mb-8 text-orange-500">
           <Terminal className="w-5 h-5" />
@@ -28,12 +28,12 @@ export default function Home() {
         </div>
 
         <header className="mb-10">
-          <div className="text-sm text-[#858585] mb-2">→ whoami</div>
+          <div className="text-sm text-gray-500 mb-2">→ whoami</div>
           <h1 className="text-4xl font-bold mb-2 text-orange-500">Thibault Mathian</h1>
           <p className="text-xl text-orange-400 mb-6">Freelance Fullstack Developer 🧑‍💻</p>
 
-          <div className="bg-[#252526] p-6 rounded-lg border border-[#2D2D2D]">
-            <p className="text-[#D4D4D4] leading-relaxed mb-4">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+            <p className="text-gray-700 leading-relaxed mb-4">
               Hi! I&apos;m a passionate fullstack developer with expertise in React, Next.js, and Node.js. I&apos;m
               currently freelancing from France.
             </p>
@@ -49,8 +49,8 @@ export default function Home() {
         </header>
 
         <section className="mb-12">
-          <div className="text-sm text-[#858585] mb-4">→ navigation --list</div>
-          <div className="bg-[#252526] p-6 rounded-lg border border-[#2D2D2D]">
+          <div className="text-sm text-gray-500 mb-4">→ navigation --list</div>
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex flex-col gap-4">
               <Button href="mailto:dev@thibault.sh" icon={<EnvelopeClosedIcon />}>
                 contact --email
@@ -72,7 +72,7 @@ export default function Home() {
         </section>
 
         <section>
-          <div className="text-sm text-[#858585] mb-4">→ projects --list</div>
+          <div className="text-sm text-gray-500 mb-4">→ projects --list</div>
           <div className="space-y-8">
             <CardSpotlight
               title="Elevora"
@@ -193,7 +193,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mt-16 sm:mt-20 text-center text-zinc-400">
+        <footer className="mt-16 sm:mt-20 text-center text-gray-500">
           <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
             <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" />
             <SocialLink icon={<LinkedInLogoIcon />} href="https://www.linkedin.com/in/thibault-mathian/" />

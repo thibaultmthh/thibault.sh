@@ -48,19 +48,18 @@ export default function CardSpotlight({
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="group bg-[#252526] rounded-lg border border-[#2D2D2D] p-6 hover:border-orange-500/50 transition-colors">
+    <div className="group bg-gray-50 rounded-lg border border-gray-200 p-6 hover:border-orange-500/50 transition-colors">
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="text-orange-500 mb-2 flex items-center gap-3">
             <ProjectIcon projectType={projectType} />
-
             {title}
-            <span className="text-xs bg-[#2D2D2D] px-2 py-1 rounded text-[#D4D4D4]">{year}</span>
+            <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-700">{year}</span>
           </h3>
           <div className="flex items-center gap-3 text-sm">
-            <span className={status === "In Progress" ? "text-orange-500" : "text-[#858585]"}>{status}</span>
-            <span className="text-[#858585]">•</span>
-            <span className="text-[#858585]">{type}</span>
+            <span className={status === "In Progress" ? "text-orange-500" : "text-gray-500"}>{status}</span>
+            <span className="text-gray-500">•</span>
+            <span className="text-gray-500">{type}</span>
           </div>
         </div>
         {link && (
@@ -72,13 +71,13 @@ export default function CardSpotlight({
         )}
       </div>
 
-      <p className="text-gray-400 mb-4 leading-relaxed">{description}</p>
+      <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
 
       <div className="mb-4">
-        <div className="text-sm text-[#858585] mb-2">$ tech --list</div>
+        <div className="text-sm text-gray-500 mb-2">$ tech --list</div>
         <div className="flex flex-wrap gap-2">
           {["Next.js", "React", "TypeScript"].map((tech) => (
-            <span key={tech} className="text-xs bg-[#2D2D2D] text-[#D4D4D4] px-2 py-1 rounded">
+            <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
               {tech}
             </span>
           ))}
@@ -90,7 +89,7 @@ export default function CardSpotlight({
           <div className="text-sm text-gray-500 mb-2">$ contribution --details</div>
           <ul className="text-sm space-y-1">
             {myImplication.split(". ").map((item, index) => (
-              <li key={index} className="text-gray-400 flex items-start gap-2">
+              <li key={index} className="text-gray-400 flex items-end gap-2">
                 <span className="text-orange-500 mt-1">›</span>
                 {item}
               </li>

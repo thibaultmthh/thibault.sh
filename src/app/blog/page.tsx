@@ -5,6 +5,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blog - Thibault Mathian",
   description: "Articles about web development, programming, and technology",
+  alternates: {
+    types: {
+      "application/rss+xml": "https://thibault.sh/feed.xml",
+    },
+  },
 };
 
 export default function BlogPage() {

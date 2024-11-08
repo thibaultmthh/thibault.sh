@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Rss } from "lucide-react";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,6 +19,16 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
 
             <Link href="/blog" className="text-orange-600 hover:text-orange-700 transition-colors text-sm font-medium">
               Blog
+            </Link>
+
+            <div className="h-3.5 w-px bg-gray-200" />
+
+            <Link
+              href="/feed.xml"
+              className="flex items-center gap-1.5 text-orange-600 hover:text-orange-700 transition-colors text-sm"
+              title="RSS Feed"
+            >
+              <Rss className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -80,7 +80,6 @@ export default function RegExPlayground() {
     }
 
     try {
-      const regex = new RegExp(pattern, flags);
       const matches: Match[] = [];
       const segments: HighlightSegment[] = [];
       let lastIndex = 0;

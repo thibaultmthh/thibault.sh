@@ -191,6 +191,31 @@ export const tools = {
           keywords: "rss viewer, rss parser, feed viewer, rss feed, xml parser, online tool",
         },
       },
+      {
+        id: "git-command",
+        name: "Git Command Generator",
+        description: "Visual builder for complex git commands",
+        path: "/tools/dev/git-command",
+        seo: {
+          title: "Git Command Generator - Visual Git Command Builder",
+          description:
+            "Build complex git commands visually with this interactive tool. Perfect for developers learning git or needing help with advanced git operations.",
+          keywords: "git command generator, git commands, git help, visual git builder, git tutorial",
+        },
+      },
+      {
+        id: "regex-playground",
+        name: "RegEx Playground",
+        description: "Test and debug regular expressions",
+        path: "/tools/dev/regex-playground",
+        seo: {
+          title: "RegEx Playground - Test and Debug Regular Expressions Online",
+          description:
+            "Test and debug regular expressions with real-time matching, explanation, and common patterns. Perfect for developers working with text patterns and validation.",
+          keywords:
+            "regex playground, regular expressions, regex tester, regex debugger, pattern matching, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

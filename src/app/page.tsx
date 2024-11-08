@@ -193,7 +193,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mt-16 sm:mt-20 text-center text-gray-500">
+        <footer className="mt-16 text-center text-gray-500">
           <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
             <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" />
             <SocialLink icon={<LinkedInLogoIcon />} href="https://www.linkedin.com/in/thibault-mathian/" />

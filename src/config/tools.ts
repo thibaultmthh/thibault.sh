@@ -179,6 +179,18 @@ export const tools = {
           keywords: "og preview, open graph, meta tags, social media preview, seo tools, facebook preview",
         },
       },
+      {
+        id: "rss-viewer",
+        name: "RSS Feed Viewer",
+        description: "Parse and preview RSS feeds",
+        path: "/tools/dev/rss-viewer",
+        seo: {
+          title: "RSS Feed Viewer - Parse and Preview RSS Feeds Online",
+          description:
+            "Parse and preview RSS feeds online with this free tool. View feed content, validate RSS structure, and extract feed information.",
+          keywords: "rss viewer, rss parser, feed viewer, rss feed, xml parser, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

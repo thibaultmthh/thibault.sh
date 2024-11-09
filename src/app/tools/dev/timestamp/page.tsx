@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Copy, RefreshCcw } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -25,7 +24,6 @@ export default function TimestampConverter() {
   const [timestamp, setTimestamp] = useState<{ milliseconds?: number; seconds?: number; error?: string } | string>("");
   const [date, setDate] = useState<DateResult>({});
   const [unit, setUnit] = useState("seconds");
-  const [timezone, setTimezone] = useState("UTC");
   const [currentTime, setCurrentTime] = useState<CurrentTime>({ unix: 0, iso: "", readable: "" });
   const [dateInput, setDateInput] = useState("");
 

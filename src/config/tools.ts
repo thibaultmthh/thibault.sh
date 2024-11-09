@@ -240,6 +240,18 @@ export const tools = {
           keywords: "slug generator, url slugs, seo friendly urls, permalink generator, url converter",
         },
       },
+      {
+        id: "timestamp",
+        name: "Timestamp Converter",
+        description: "Convert between timestamps and human dates",
+        path: "/tools/dev/timestamp",
+        seo: {
+          title: "Timestamp Converter - Unix Timestamp to Date Converter",
+          description:
+            "Convert between Unix timestamps and human-readable dates. Support for milliseconds, seconds, and ISO 8601 formats. Perfect for developers working with time data.",
+          keywords: "timestamp converter, unix timestamp, epoch converter, datetime converter, iso 8601, utc converter",
+        },
+      },
     ],
   },
   "Design Tools": {

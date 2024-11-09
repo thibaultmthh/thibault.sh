@@ -228,6 +228,18 @@ export const tools = {
           keywords: "security headers, security analyzer, hsts, csp, x-frame-options, web security, security testing",
         },
       },
+      {
+        id: "slug-generator",
+        name: "Slug Generator",
+        description: "Convert text to URL-friendly slugs",
+        path: "/tools/dev/slug-generator",
+        seo: {
+          title: "Slug Generator - Create URL-Friendly Slugs Online",
+          description:
+            "Convert text to clean, URL-friendly slugs. Generate SEO-optimized slugs for your web content with support for multiple languages and custom separators.",
+          keywords: "slug generator, url slugs, seo friendly urls, permalink generator, url converter",
+        },
+      },
     ],
   },
   "Design Tools": {

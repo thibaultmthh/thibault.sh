@@ -366,6 +366,18 @@ export const tools = {
           keywords: "password generator, secure passwords, unique passwords, online tool, content creation",
         },
       },
+      {
+        id: "emoji-picker",
+        name: "Emoji Picker",
+        description: "Search and copy emojis easily",
+        path: "/tools/utilities/emoji-picker",
+        seo: {
+          title: "Emoji Picker - Search and Copy Emojis Online",
+          description:
+            "Search through emojis by category or keyword. Copy emojis with a single click for use anywhere.",
+          keywords: "emoji picker, emoji search, copy emojis, emoji categories, emoji tool",
+        },
+      },
     ],
   },
 };

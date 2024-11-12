@@ -5,11 +5,11 @@ interface ScrollPosition {
   y: number;
 }
 
-export function useContainerScroll(ref: RefObject<HTMLElement> | null): ScrollPosition {
+export function useContainerScroll(ref: RefObject<HTMLElement | null>): ScrollPosition {
   const [scrollPosition, setScrollPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
 
   useEffect(() => {
-    const element = ref?.current;
+    const element = ref.current;
     if (!element) return;
 
     const handleScroll = () => {

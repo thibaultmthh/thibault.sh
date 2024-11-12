@@ -108,7 +108,7 @@ function BatteryStatus() {
           <div>
             <h3 className="text-sm font-medium mb-2">Browser Compatibility</h3>
             <div className="space-y-4">
-              <Alert variant="warning" className="mb-4">
+              <Alert variant="default" className="mb-4">
                 <p>
                   The Battery Status API has limited browser support and requires a secure context (HTTPS). It is
                   primarily supported in Chrome-based browsers.

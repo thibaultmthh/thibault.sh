@@ -19,6 +19,7 @@ export function HooksBreadcrumb() {
   const categoryKey = segments[1];
   const hookId = segments[2];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const category = Object.entries(hooks).find(([_, value]) => value.path === categoryKey);
   const hook = category?.[1].items.find((item) => item.path.endsWith(hookId));
 

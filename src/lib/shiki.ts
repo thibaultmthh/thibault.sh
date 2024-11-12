@@ -1,6 +1,5 @@
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { Fragment } from "react";
-// @ts-expect-error -- untyped
 import { jsx, jsxs } from "react/jsx-runtime";
 import { codeToHast } from "shiki/bundle/web";
 

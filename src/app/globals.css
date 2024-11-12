@@ -83,6 +83,10 @@
   }
 }
 
+.shiki {
+  @apply p-2;
+}
+
 @layer components {
   /* Blog post styling */
   .prose {

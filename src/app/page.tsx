@@ -67,6 +67,11 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Read my latest articles</span>
               </Button>
+              <Button href="/react-hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
+                open --react hooks
+                <br />
+                <span className="text-[#858585]">Check out my react hooks collection</span>
+              </Button>
             </div>
           </div>
         </section>

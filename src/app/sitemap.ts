@@ -1,3 +1,4 @@
+import { hooks } from "@/config/hooks";
 import { tools } from "@/config/tools";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
@@ -35,6 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+    });
+  });
+
+  // add all hooks pages
+  Object.values(hooks).forEach((category) => {
+    // Add hooks category pages
+    category.items.forEach((hook) => {
+      routes.push({
+        url: `${baseUrl}/react-hooks/${hook.id}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
     });
   });
 

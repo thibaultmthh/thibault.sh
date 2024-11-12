@@ -51,6 +51,61 @@ export const hooks = {
           keywords: "react hooks, useMediaQuery, responsive design, media queries, react ui",
         },
       },
+      {
+        id: "use-click-outside",
+        name: "useClickOutside",
+        description:
+          "A React hook that detects clicks outside of a specified element. Perfect for implementing dismissible UI components like modals, dropdowns, and popups. Supports both mouse and touch events with TypeScript type safety.",
+        shortDescription: "Detect clicks outside of a specified element for dismissible UI components.",
+        path: "/react-hooks/use-click-outside",
+        seo: {
+          title: "useClickOutside Hook - React Click Outside Detection",
+          description: "A React hook for detecting clicks outside of elements. Ideal for modals and dropdowns.",
+          keywords: "react hooks, useClickOutside, click outside, modal, dropdown, react ui",
+        },
+      },
+      {
+        id: "use-hover",
+        name: "useHover",
+        description:
+          "A React hook that tracks hover state of DOM elements with TypeScript support. Provides a simple interface for handling hover interactions and implementing hover effects. Includes ref-based tracking and optimized re-renders.",
+        shortDescription: "Track hover state of DOM elements with TypeScript support.",
+        path: "/react-hooks/use-hover",
+        seo: {
+          title: "useHover Hook - React Hover State Management",
+          description:
+            "A React hook for managing hover states with TypeScript support. Perfect for interactive UI elements.",
+          keywords: "react hooks, useHover, hover state, mouse events, react ui, typescript",
+        },
+      },
+      {
+        id: "use-key-press",
+        name: "useKeyPress",
+        description:
+          "A React hook that tracks keyboard key states. Provides real-time feedback for key press events, perfect for implementing keyboard shortcuts, game controls, or accessibility features. Supports any keyboard key with TypeScript type safety.",
+        shortDescription: "Track keyboard key states with real-time feedback.",
+        path: "/react-hooks/use-key-press",
+        seo: {
+          title: "useKeyPress Hook - React Keyboard Event Handler",
+          description:
+            "A React hook for handling keyboard events and tracking key states. Perfect for shortcuts and games.",
+          keywords: "react hooks, useKeyPress, keyboard events, key press, react ui, typescript",
+        },
+      },
+      {
+        id: "use-key-combo",
+        name: "useKeyCombo",
+        description:
+          "A React hook for handling keyboard shortcuts and key combinations with a simple callback-based API. Perfect for implementing application-wide shortcuts, command palettes, and keyboard navigation.",
+        shortDescription: "Handle keyboard combinations and shortcuts with ease.",
+        path: "/react-hooks/use-key-combo",
+        seo: {
+          title: "useKeyCombo Hook - React Keyboard Shortcuts Handler",
+          description:
+            "A React hook for handling keyboard shortcuts and combinations. Perfect for application shortcuts.",
+          keywords: "react hooks, useKeyCombo, keyboard shortcuts, key combinations, react ui, typescript",
+        },
+      },
     ],
   },
   // Add more categories as needed

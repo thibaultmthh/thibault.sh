@@ -7,28 +7,25 @@ import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
 import getHookById from "@/lib/get-hook-by-id";
 
-export default async function UseKeyPressContent() {
-  const hook = getHookById("use-key-press");
-  const implementationCode = readHookFiles("useKeyPress.ts");
-  const usageCode = `import { useKeyPress } from '@/components/hooks/useKeyPress';
+export default async function UseContainerScrollContent() {
+  const hook = await getHookById("use-container-scroll");
+  const implementationCode = readHookFiles("useContainerScroll.ts");
+  const usageCode = `import { useRef } from 'react';
+import { useContainerScroll } from '@/components/hooks/useContainerScroll';
 
-function ShortcutExample() {
-  const isCtrlPressed = useKeyPress('Control');
-  const isSPressed = useKeyPress('s');
-  
-  // Save shortcut (Ctrl + S)
-  useEffect(() => {
-    if (isCtrlPressed && isSPressed) {
-      // Prevent default browser save
-      event.preventDefault();
-      console.log('Save shortcut triggered!');
-    }
-  }, [isCtrlPressed, isSPressed]);
+function ScrollableContainer() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { x, y } = useContainerScroll(containerRef);
 
   return (
     <div>
-      <div>Control pressed: {isCtrlPressed ? '✅' : '❌'}</div>
-      <div>S pressed: {isSPressed ? '✅' : '❌'}</div>
+      <div>Scroll X: {x}px, Y: {y}px</div>
+      <div 
+        ref={containerRef} 
+        className="w-full h-[400px] overflow-auto"
+      >
+        {/* Scrollable content */}
+      </div>
     </div>
   );
 }`;
@@ -70,11 +67,11 @@ function ShortcutExample() {
           <div>
             <h3 className="text-sm font-medium mb-2">Key Features</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm">
-              <li>Real-time keyboard event tracking</li>
-              <li>Support for all keyboard keys including modifiers (Shift, Ctrl, Alt, etc.)</li>
-              <li>TypeScript support with proper event typing</li>
-              <li>Automatic cleanup of event listeners</li>
-              <li>Memory efficient with single event listener pattern</li>
+              <li>Real-time scroll position tracking for any container element</li>
+              <li>Tracks both horizontal (x) and vertical (y) scroll positions</li>
+              <li>TypeScript support with proper typing</li>
+              <li>Automatic cleanup of scroll listeners</li>
+              <li>Memory efficient with passive event listeners</li>
               <li>SSR compatible</li>
             </ul>
           </div>
@@ -82,11 +79,11 @@ function ShortcutExample() {
           <div>
             <h3 className="text-sm font-medium mb-2">Common Use Cases</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm">
-              <li>Keyboard shortcuts and hotkeys</li>
-              <li>Gaming controls</li>
-              <li>Accessibility features</li>
-              <li>Modal or dialog escape key handling</li>
-              <li>Form submission shortcuts</li>
+              <li>Custom scrollbars</li>
+              <li>Scroll-based animations within containers</li>
+              <li>Infinite scrolling in specific elements</li>
+              <li>Scroll progress indicators</li>
+              <li>Scroll-based content loading</li>
             </ul>
           </div>
 
@@ -94,15 +91,18 @@ function ShortcutExample() {
             <h3 className="text-sm font-medium mb-2">API Reference</h3>
             <div className="space-y-4 text-sm text-muted-foreground">
               <div>
-                <h4 className="font-mono text-primary">useKeyPress(targetKey: string): boolean</h4>
-                <p className="mt-1 ml-4">Returns whether the specified key is currently pressed.</p>
+                <h4 className="font-mono text-primary">
+                  useContainerScroll(ref: RefObject&lt;HTMLElement&gt;): ScrollPosition
+                </h4>
+                <p className="mt-1 ml-4">Returns the current scroll position of the container element.</p>
                 <div className="mt-2 ml-4">
                   <p className="font-medium text-primary">Parameters:</p>
                   <ul className="list-disc list-inside ml-4 mt-1">
-                    <li>
-                      targetKey: The key to monitor (e.g., &quot;a&quot;, &quot;Enter&quot;, &quot;Escape&quot;,
-                      &quot;Control&quot;)
-                    </li>
+                    <li>ref: React ref object pointing to the container element</li>
+                  </ul>
+                  <p className="font-medium text-primary mt-2">Returns:</p>
+                  <ul className="list-disc list-inside ml-4 mt-1">
+                    <li>ScrollPosition: Object containing x and y coordinates</li>
                   </ul>
                 </div>
               </div>
@@ -112,17 +112,9 @@ function ShortcutExample() {
           <div>
             <h3 className="text-sm font-medium mb-2">Browser Compatibility</h3>
             <p className="text-sm text-muted-foreground">
-              The hook uses the standard KeyboardEvent API, which is supported in all modern browsers. Key values follow
-              the KeyboardEvent.key standard. For special keys, refer to the
-              <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values"
-                className="text-primary hover:underline ml-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                MDN Key Values
-              </a>{" "}
-              documentation.
+              The hook uses standard scroll event listeners and element properties (scrollLeft, scrollTop) which are
+              supported in all modern browsers. For optimal performance, the hook uses passive event listeners where
+              available.
             </p>
           </div>
         </div>

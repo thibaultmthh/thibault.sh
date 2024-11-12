@@ -2,33 +2,28 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
+
 import { highlight } from "@/lib/shiki";
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
 import getHookById from "@/lib/get-hook-by-id";
 
-export default async function UseKeyPressContent() {
-  const hook = getHookById("use-key-press");
-  const implementationCode = readHookFiles("useKeyPress.ts");
-  const usageCode = `import { useKeyPress } from '@/components/hooks/useKeyPress';
+export default async function UseWindowSizeContent() {
+  const hook = getHookById("use-window-size");
+  const implementationCode = readHookFiles("useWindowSize.ts");
+  const usageCode = `import { useWindowSize } from '@/components/hooks/useWindowSize';
 
-function ShortcutExample() {
-  const isCtrlPressed = useKeyPress('Control');
-  const isSPressed = useKeyPress('s');
+function ResponsiveComponent() {
+  const { width, height } = useWindowSize();
   
-  // Save shortcut (Ctrl + S)
-  useEffect(() => {
-    if (isCtrlPressed && isSPressed) {
-      // Prevent default browser save
-      event.preventDefault();
-      console.log('Save shortcut triggered!');
-    }
-  }, [isCtrlPressed, isSPressed]);
-
   return (
     <div>
-      <div>Control pressed: {isCtrlPressed ? '✅' : '❌'}</div>
-      <div>S pressed: {isSPressed ? '✅' : '❌'}</div>
+      <p>Current window dimensions:</p>
+      <p>Width: {width}px</p>
+      <p>Height: {height}px</p>
+      {width < 768 && (
+        <p>Mobile view detected!</p>
+      )}
     </div>
   );
 }`;
@@ -70,23 +65,22 @@ function ShortcutExample() {
           <div>
             <h3 className="text-sm font-medium mb-2">Key Features</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm">
-              <li>Real-time keyboard event tracking</li>
-              <li>Support for all keyboard keys including modifiers (Shift, Ctrl, Alt, etc.)</li>
-              <li>TypeScript support with proper event typing</li>
-              <li>Automatic cleanup of event listeners</li>
-              <li>Memory efficient with single event listener pattern</li>
+              <li>Real-time window dimension tracking</li>
+              <li>TypeScript support with proper typing</li>
               <li>SSR compatible</li>
+              <li>Efficient resize event handling</li>
+              <li>Automatic cleanup of event listeners</li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-sm font-medium mb-2">Common Use Cases</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm">
-              <li>Keyboard shortcuts and hotkeys</li>
-              <li>Gaming controls</li>
-              <li>Accessibility features</li>
-              <li>Modal or dialog escape key handling</li>
-              <li>Form submission shortcuts</li>
+              <li>Responsive layouts</li>
+              <li>Conditional rendering based on window size</li>
+              <li>Dynamic styling calculations</li>
+              <li>Mobile/desktop detection</li>
+              <li>Canvas and visualization sizing</li>
             </ul>
           </div>
 
@@ -94,15 +88,13 @@ function ShortcutExample() {
             <h3 className="text-sm font-medium mb-2">API Reference</h3>
             <div className="space-y-4 text-sm text-muted-foreground">
               <div>
-                <h4 className="font-mono text-primary">useKeyPress(targetKey: string): boolean</h4>
-                <p className="mt-1 ml-4">Returns whether the specified key is currently pressed.</p>
+                <h4 className="font-mono text-primary">useWindowSize(): WindowSize</h4>
+                <p className="mt-1 ml-4">Returns an object containing the current window dimensions.</p>
                 <div className="mt-2 ml-4">
-                  <p className="font-medium text-primary">Parameters:</p>
+                  <p className="font-medium text-primary">Return Value:</p>
                   <ul className="list-disc list-inside ml-4 mt-1">
-                    <li>
-                      targetKey: The key to monitor (e.g., &quot;a&quot;, &quot;Enter&quot;, &quot;Escape&quot;,
-                      &quot;Control&quot;)
-                    </li>
+                    <li>width: number - Current window width in pixels</li>
+                    <li>height: number - Current window height in pixels</li>
                   </ul>
                 </div>
               </div>
@@ -112,17 +104,9 @@ function ShortcutExample() {
           <div>
             <h3 className="text-sm font-medium mb-2">Browser Compatibility</h3>
             <p className="text-sm text-muted-foreground">
-              The hook uses the standard KeyboardEvent API, which is supported in all modern browsers. Key values follow
-              the KeyboardEvent.key standard. For special keys, refer to the
-              <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values"
-                className="text-primary hover:underline ml-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                MDN Key Values
-              </a>{" "}
-              documentation.
+              The hook uses standard window resize events and innerWidth/innerHeight properties, which are supported in
+              all modern browsers. For older browsers, consider using a polyfill for window.innerWidth and
+              window.innerHeight.
             </p>
           </div>
         </div>

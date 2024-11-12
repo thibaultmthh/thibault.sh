@@ -2,12 +2,14 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
-import { hooks } from "@/config/hooks";
+
 import { highlight } from "@/lib/shiki";
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
+import getHookById from "@/lib/get-hook-by-id";
 
 export default async function UseKeyComboContent() {
+  const hook = getHookById("use-key-combo");
   const implementationCode = readHookFiles("useKeyCombo.ts");
   const usageCode = `import { useKeyCombo } from '@/components/hooks/useKeyCombo';
 
@@ -31,11 +33,8 @@ function ShortcutsExample() {
   return (
     <div className="max-w-4xl space-y-6">
       <div>
-        <h1 className="text-3xl font-bold mb-2">useKeyCombo</h1>
-        <p className="text-muted-foreground">
-          A React hook for handling keyboard shortcuts and key combinations with a simple callback-based API.
-          Perfect for implementing application-wide shortcuts, command palettes, and keyboard navigation.
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{hook?.name}</h1>
+        <p className="text-muted-foreground">{hook?.description}</p>
       </div>
 
       <Card className="p-6">
@@ -89,8 +88,11 @@ function ShortcutsExample() {
             <h3 className="text-sm font-medium mb-2">API Reference</h3>
             <div className="space-y-4 text-sm text-muted-foreground">
               <div>
-                <h4 className="font-mono text-primary">useKeyCombo(combo: string[], callback: () => void): void</h4>
-                <p className="mt-1 ml-4">Sets up a keyboard combination listener that triggers the callback when all specified keys are pressed.</p>
+                <h4 className="font-mono text-primary">useKeyCombo(combo: string[], callback: () =&gt; void): void</h4>
+                <p className="mt-1 ml-4">
+                  Sets up a keyboard combination listener that triggers the callback when all specified keys are
+                  pressed.
+                </p>
                 <div className="mt-2 ml-4">
                   <p className="font-medium text-primary">Parameters:</p>
                   <ul className="list-disc list-inside ml-4 mt-1">
@@ -122,4 +124,4 @@ function ShortcutsExample() {
       </Card>
     </div>
   );
-} 
+}

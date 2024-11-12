@@ -2,13 +2,13 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
-import { hooks } from "@/config/hooks";
 import { highlight } from "@/lib/shiki";
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
+import getHookById from "@/lib/get-hook-by-id";
 
 export default async function UseMediaQueryContent() {
-  const hook = hooks["UI & Layout"].items.find((item) => item.id === "use-media-query");
+  const hook = getHookById("use-media-query");
   const implementationCode = readHookFiles("useMediaQuery.ts");
   const usageCode = `// Basic usage
 const isMobile = useMediaQuery('(max-width: 768px)');
@@ -27,10 +27,7 @@ const isDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     <div className="max-w-4xl space-y-6">
       <div>
         <h1 className="text-3xl font-bold mb-2">{hook?.name}</h1>
-        <p className="text-muted-foreground">
-          A React hook for efficiently handling responsive design with media queries. Provides real-time updates when
-          viewport changes.
-        </p>
+        <p className="text-muted-foreground">{hook?.description}</p>
       </div>
 
       <Card className="p-6">

@@ -2,15 +2,15 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
-import { hooks } from "@/config/hooks";
 import { highlight } from "@/lib/shiki";
 
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
+import getHookById from "@/lib/get-hook-by-id";
 
 // New server component to handle async operations
 export default async function UseLocalStorageContent() {
-  const hook = hooks["State Management"].items.find((item) => item.id === "use-local-storage");
+  const hook = getHookById("use-local-storage");
   const implementationCode = readHookFiles("useLocalStrorage.ts");
   const usageCode = `const [value, setValue] = useLocalStorage("storage-key", initialValue);
 

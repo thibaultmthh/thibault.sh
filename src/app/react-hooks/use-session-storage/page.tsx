@@ -2,14 +2,14 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
-import { hooks } from "@/config/hooks";
 import { highlight } from "@/lib/shiki";
 
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
+import getHookById from "@/lib/get-hook-by-id";
 
 export default async function UseSessionStorageContent() {
-  const hook = hooks["State Management"].items.find((item) => item.id === "use-session-storage");
+  const hook = getHookById("use-session-storage");
   const implementationCode = readHookFiles("useSessionStorage.ts");
   const usageCode = `const [value, setValue] = useSessionStorage("storage-key", initialValue);
 

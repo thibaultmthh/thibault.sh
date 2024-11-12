@@ -9,7 +9,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { ChevronDown, Store, Layout, Timer, Eye, Mouse, Database, Network, Lock } from "lucide-react";
+import { ChevronDown, Store, Layout, Timer, Eye, Mouse, Database, Network, Lock, Cpu } from "lucide-react";
 import Link from "next/link";
 
 // Icon mapping
@@ -22,6 +22,7 @@ const IconMap = {
   database: Database,
   network: Network,
   lock: Lock,
+  cpu: Cpu,
 } as const;
 
 type IconName = keyof typeof IconMap;

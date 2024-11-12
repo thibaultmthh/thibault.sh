@@ -2,13 +2,13 @@
 
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
-import { hooks } from "@/config/hooks";
 import { highlight } from "@/lib/shiki";
 import { readHookFiles } from "@/lib/readHookFiles";
 import { Demo } from "./page.demo";
+import getHookById from "@/lib/get-hook-by-id";
 
 export default async function UseClickOutsideContent() {
-  const hook = hooks["UI & Layout"].items.find((item) => item.id === "use-click-outside");
+  const hook = getHookById("use-click-outside");
   const implementationCode = readHookFiles("useClickOutside.ts");
   const usageCode = `import { useRef } from 'react';
 import { useClickOutside } from '@/components/hooks/useClickOutside';

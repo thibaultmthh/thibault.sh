@@ -65,3 +65,4 @@ This was my first hackathon experience, and despite the food poisoning, I absolu
 - [Tontine showcase](https://ethglobal.com/showcase/tontine-money-8z97d)
 - [Ethglobal bangkok](https://ethglobal.com/events/bangkok)
 - [Celo tweet about Tontine](https://x.com/CeloDevs/status/1858187097410314248)
+- [Github repo](https://github.com/thibaultmthh/minilend)

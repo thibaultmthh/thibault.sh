@@ -5,7 +5,10 @@ import { join } from "path";
 const postsDirectory = join(process.cwd(), "src", "_blog-posts");
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  return fs
+    .readdirSync(postsDirectory)
+    .filter((file) => file.endsWith(".md"))
+    .filter((file) => !file.endsWith(".draft.md"));
 }
 
 export type Post = {

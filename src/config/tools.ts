@@ -306,6 +306,18 @@ export const tools = {
           keywords: "favicon generator, multi-platform favicons, favicons, online tool, design",
         },
       },
+      {
+        id: "gradient-generator",
+        name: "Gradient Generator",
+        description: "Create beautiful CSS gradients",
+        path: "/tools/design/gradient-generator",
+        seo: {
+          title: "CSS Gradient Generator - Create Beautiful Gradients Online",
+          description:
+            "Create and customize beautiful CSS gradients with this free online tool. Generate linear and radial gradients for your web projects.",
+          keywords: "css gradient generator, gradient maker, linear gradient, radial gradient, web design tools",
+        },
+      },
     ],
   },
   "Web3 Tools": {

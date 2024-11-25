@@ -462,7 +462,6 @@ export default function JWTViewer() {
             </div>
           )}
         </Card>
-
         {/* Info Card */}
         <Card className="p-6 mt-6">
           <h2 className="font-semibold mb-3">About JWT Tokens</h2>
@@ -473,6 +472,23 @@ export default function JWTViewer() {
             <li>Common claims include: exp (expiration), iat (issued at), sub (subject)</li>
             <li>The signature is used to verify the token&apos;s authenticity</li>
           </ul>
+        </Card>
+        {/* About this Tool Card */}
+        <Card className="p-6 mt-6">
+          <h2 className="font-semibold mb-3">About this Tool</h2>
+          <div className="space-y-4 text-sm text-muted-foreground">
+            <p>
+              This JWT Token Viewer is a client-side tool that helps developers inspect and verify JWT tokens. All
+              processing happens in your browser - no tokens are sent to any server.
+            </p>
+            <ul className="list-disc pl-4 space-y-2">
+              <li>Decode and inspect JWT tokens</li>
+              <li>Verify signatures using HMAC algorithms (HS256, HS384, HS512)</li>
+              <li>Check token expiration status</li>
+              <li>View decoded header and payload data</li>
+              <li>Copy individual components for further analysis</li>
+            </ul>
+          </div>
         </Card>
       </div>
     </div>

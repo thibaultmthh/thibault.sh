@@ -64,7 +64,11 @@ export default function CardSpotlight({
         </div>
         {link && (
           <div className="flex gap-3">
-            <a href={link} className="text-gray-400 hover:text-orange-500 transition-colors">
+            <a
+              href={link}
+              className="text-gray-400 hover:text-orange-500 transition-colors"
+              aria-label={`More info on ${title}`}
+            >
               <ExternalLinkIcon className="w-5 h-5" />
             </a>
           </div>

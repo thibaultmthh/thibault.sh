@@ -38,18 +38,27 @@ export default function Home() {
               currently freelancing from France.
             </p>
             <div className="flex gap-3">
-              <SocialLink icon={<GitHubLogoIcon className="size-5" />} href="https://github.com/thibaultmthh" />
+              <SocialLink
+                icon={<GitHubLogoIcon className="size-5" />}
+                href="https://github.com/thibaultmthh"
+                label="My github link"
+              />
               <SocialLink
                 icon={<LinkedInLogoIcon className="size-5" />}
                 href="https://www.linkedin.com/in/thibault-mathian/"
+                label="My Linkedin link"
               />
-              <SocialLink icon={<TwitterLogoIcon className="size-5" />} href="https://twitter.com/thibault_mthh" />
+              <SocialLink
+                icon={<TwitterLogoIcon className="size-5" />}
+                href="https://twitter.com/thibault_mthh"
+                label="My Twitter (X) link"
+              />
             </div>
           </div>
         </header>
 
         <section className="mb-12">
-          <div className="text-sm text-gray-500 mb-4">→ navigation --list</div>
+          <h2 className="text-sm text-gray-500 mb-4">→ navigation --list</h2>
           <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <div className="flex flex-col gap-4">
               <Button href="mailto:dev@thibault.sh" icon={<EnvelopeClosedIcon />}>
@@ -77,7 +86,7 @@ export default function Home() {
         </section>
 
         <section>
-          <div className="text-sm text-gray-500 mb-4">→ projects --list</div>
+          <h2 className="text-sm text-gray-500 mb-4">→ projects --list</h2>
           <div className="space-y-8">
             <CardSpotlight
               title="Elevora"
@@ -200,9 +209,17 @@ export default function Home() {
 
         <footer className="mt-16 text-center text-gray-500">
           <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" />
-            <SocialLink icon={<LinkedInLogoIcon />} href="https://www.linkedin.com/in/thibault-mathian/" />
-            <SocialLink icon={<TwitterLogoIcon />} href="https://twitter.com/thibault_mthh" />
+            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" label="My github link" />
+            <SocialLink
+              icon={<LinkedInLogoIcon />}
+              href="https://www.linkedin.com/in/thibault-mathian/"
+              label="My Linkedin link"
+            />
+            <SocialLink
+              icon={<TwitterLogoIcon />}
+              href="https://twitter.com/thibault_mthh"
+              label="My Twitter (X) link"
+            />
           </div>
           <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
         </footer>
@@ -219,10 +236,11 @@ export default function Home() {
 interface SocialLinkProps {
   icon: React.ReactNode;
   href: string;
+  label: string;
 }
 
-const SocialLink: React.FC<SocialLinkProps> = ({ icon, href }) => (
-  <a href={href} className="text-orange-500 hover:text-orange-600 transition-colors">
+const SocialLink: React.FC<SocialLinkProps> = ({ icon, href, label }) => (
+  <a href={href} aria-label={label} className="text-orange-500 hover:text-orange-600 transition-colors">
     {icon}
   </a>
 );

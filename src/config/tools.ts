@@ -1,4 +1,4 @@
-import { FileText, Code, Calculator, Palette, Wallet } from "lucide-react";
+import { FileText, Code, Calculator, Palette, Wallet, Network } from "lucide-react";
 
 export const tools = {
   "Text Tools": {
@@ -421,6 +421,60 @@ export const tools = {
       },
     ],
   },
+  "DNS Tools": {
+    icon: Network,
+    path: "dns",
+    items: [
+      {
+        id: "dns-lookup",
+        name: "DNS Lookup",
+        description: "Perform DNS lookups and view records",
+        path: "/tools/dns/dns-lookup",
+        seo: {
+          title: "DNS Lookup Tool - Query DNS Records Online",
+          description:
+            "Free online DNS lookup tool. Query A, AAAA, MX, TXT, NS, and other DNS records. Perfect for network administrators and developers.",
+          keywords: "dns lookup, dns query, mx records, dns tools, a records, nameserver lookup",
+        },
+      },
+      {
+        id: "whois",
+        name: "WHOIS Lookup",
+        description: "Look up domain registration information",
+        path: "/tools/dns/whois",
+        seo: {
+          title: "WHOIS Lookup - Domain Registration Information",
+          description:
+            "Free WHOIS lookup tool. Find domain registration details, nameservers, and registration dates for any domain name.",
+          keywords: "whois lookup, domain info, domain registration, whois search, domain details",
+        },
+      },
+      {
+        id: "ptr-lookup",
+        name: "Reverse DNS Lookup",
+        description: "Convert IP addresses to hostnames",
+        path: "/tools/dns/ptr-lookup",
+        seo: {
+          title: "Reverse DNS Lookup - IP to Hostname Converter",
+          description:
+            "Convert IP addresses to hostnames with this reverse DNS lookup tool. Find the domain names associated with IP addresses.",
+          keywords: "reverse dns, ptr lookup, ip to hostname, reverse ip lookup, dns tools",
+        },
+      },
+      {
+        id: "propagation-checker",
+        name: "DNS Propagation Checker",
+        description: "Check DNS propagation across global servers",
+        path: "/tools/dns/propagation-checker",
+        seo: {
+          title: "DNS Propagation Checker - Global DNS Propagation Tool",
+          description:
+            "Check DNS propagation status across multiple global locations. Monitor DNS changes and verify DNS updates.",
+          keywords: "dns propagation, dns checker, global dns, propagation status, dns monitoring",
+        },
+      },
+    ],
+  },
   Utilities: {
     icon: Calculator,
     path: "utilities",
@@ -483,6 +537,30 @@ export const tools = {
           description:
             "Check the dimensions and file size of your images online. Perfect for designers and content creators.",
           keywords: "image dimension checker, image size, image dimensions, online tool",
+        },
+      },
+      {
+        id: "dice-generator",
+        name: "Dice Generator",
+        description: "Roll virtual dice with different sides",
+        path: "/tools/utilities/dice-generator",
+        seo: {
+          title: "Dice Generator - Roll Virtual Dice Online",
+          description:
+            "Roll virtual dice online with customizable sides and multiple dice. Perfect for games, random number generation, and decision making.",
+          keywords: "dice generator, virtual dice, dice roller, random number generator, online dice",
+        },
+      },
+      {
+        id: "screen-checker",
+        name: "Screen Resolution Checker",
+        description: "Check screen resolution and display properties",
+        path: "/tools/utilities/screen-checker",
+        seo: {
+          title: "Screen Resolution Checker - Display Information Tool",
+          description:
+            "Check your screen resolution, viewport size, and display properties. Perfect for developers and designers testing responsive layouts.",
+          keywords: "screen resolution checker, display properties, viewport size, screen dimensions, dpi checker",
         },
       },
     ],

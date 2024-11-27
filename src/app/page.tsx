@@ -191,6 +191,7 @@ export default function Home() {
               description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
               type="personal"
               projectType="app"
+              link="https://thibault.sh/blog/parakeet"
               techs={["Next.js", "React", "TypeScript", "Node.js", "Electron", "Puppeteer"]}
             />
             <CardSpotlight

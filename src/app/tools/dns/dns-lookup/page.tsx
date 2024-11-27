@@ -99,7 +99,7 @@ export default function DNSLookup() {
     navigator.clipboard.writeText(text);
   };
 
-  const getRecordIcon = (recordType: string) => {
+  const getRecordIcon = () => {
     return <Server className="h-4 w-4 text-muted-foreground" />;
   };
 
@@ -144,7 +144,7 @@ export default function DNSLookup() {
               return (
                 <div key={recordType}>
                   <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
-                    {getRecordIcon(recordType)}
+                    {getRecordIcon()}
                     {recordType} Records
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">

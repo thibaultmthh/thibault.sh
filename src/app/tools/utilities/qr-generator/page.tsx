@@ -15,7 +15,7 @@ export default function QRGenerator() {
   const [size, setSize] = useState(256);
   const [fgColor, setFgColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
-  const [level, setLevel] = useState("L");
+  const [level, setLevel] = useState<"L" | "M" | "Q" | "H">("L");
   const qrRef = useRef<HTMLDivElement>(null);
 
   const downloadQRCode = () => {
@@ -84,7 +84,7 @@ export default function QRGenerator() {
 
             <div className="space-y-2">
               <Label>Error Correction Level</Label>
-              <Select value={level} onValueChange={setLevel}>
+              <Select value={level} onValueChange={(value: "L" | "M" | "Q" | "H") => setLevel(value)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

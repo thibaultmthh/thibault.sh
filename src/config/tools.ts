@@ -473,6 +473,18 @@ export const tools = {
           keywords: "qr code generator, qr codes, qr creator, custom qr codes, online tool",
         },
       },
+      {
+        id: "image-dimension-checker",
+        name: "Image Dimension Checker",
+        description: "Check image dimensions and file size",
+        path: "/tools/utilities/image-dimension-checker",
+        seo: {
+          title: "Image Dimension Checker - Check Image Dimensions and File Size",
+          description:
+            "Check the dimensions and file size of your images online. Perfect for designers and content creators.",
+          keywords: "image dimension checker, image size, image dimensions, online tool",
+        },
+      },
     ],
   },
 };

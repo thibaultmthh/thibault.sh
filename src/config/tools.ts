@@ -264,6 +264,29 @@ export const tools = {
           keywords: "image to base64, base64 encoder, image converter, data uri, image embedding",
         },
       },
+      {
+        id: "json-query",
+        name: "JSON Query",
+        description: "Query JSON data using JsonPath",
+        path: "/tools/dev/json-query",
+        seo: {
+          title: "JSON Query Tool - Query JSON Data with JsonPath",
+          description: "Query JSON data using JsonPath expressions. Extract specific data from JSON documents easily.",
+          keywords: "json query, jsonpath, query json, json data extraction, online tool",
+        },
+      },
+      {
+        id: "uuid-generator",
+        name: "UUID Generator",
+        description: "Generate and validate UUIDs",
+        path: "/tools/dev/uuid-generator",
+        seo: {
+          title: "UUID Generator - Generate and Validate UUIDs Online",
+          description:
+            "Generate random UUIDs (v4) and validate existing UUIDs. Learn about UUID formats and use cases in software development.",
+          keywords: "uuid generator, guid generator, uuid validator, uuid v4, unique identifiers, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

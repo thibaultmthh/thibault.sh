@@ -38,6 +38,7 @@
     "gray-matter": "^4.0.3",
     "hash-wasm": "^4.11.0",
     "hast-util-to-jsx-runtime": "^2.3.2",
+    "jsonpath": "^1.1.1",
     "jsonwebtoken-esm": "^2.0.1",
     "jszip": "^3.10.1",
     "lucide-react": "^0.454.0",

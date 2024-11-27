@@ -65,6 +65,31 @@ export const tools = {
           keywords: "list randomizer, list shuffler, random selection, remove duplicates, online tool",
         },
       },
+      {
+        id: "lorem-ipsum",
+        name: "Lorem Ipsum Generator",
+        description: "Generate placeholder text for designs",
+        path: "/tools/text/lorem-ipsum",
+        seo: {
+          title: "Lorem Ipsum Generator - Generate Placeholder Text Online",
+          description:
+            "Generate Lorem Ipsum placeholder text for your designs. Customize length and format of the generated text. Perfect for designers and developers.",
+          keywords: "lorem ipsum generator, placeholder text, dummy text, latin text, design placeholder",
+        },
+      },
+      {
+        id: "string-manipulation",
+        name: "String Manipulation",
+        description: "Transform and manipulate strings with various operations",
+        path: "/tools/text/string-manipulation",
+        seo: {
+          title: "String Manipulation Tool - Transform Text Online",
+          description:
+            "Transform and manipulate strings with various operations like reverse, camelCase, snake_case, and more. Perfect for developers and content creators.",
+          keywords:
+            "string manipulation, text transform, camelCase, snake_case, kebab-case, reverse string, online tool",
+        },
+      },
     ],
   },
   "Developer Tools": {
@@ -333,6 +358,18 @@ export const tools = {
           description:
             "View, edit, and analyze CSV files online. Parse CSV data with custom delimiters and export to different formats.",
           keywords: "csv viewer, csv editor, csv parser, csv to json, data viewer, online tool",
+        },
+      },
+      {
+        id: "code-minifier",
+        name: "Code Minifier",
+        description: "Minify JavaScript, CSS, and HTML code",
+        path: "/tools/dev/code-minifier",
+        seo: {
+          title: "Code Minifier - Minify JavaScript, CSS, and HTML Online",
+          description:
+            "Free online tool to minify JavaScript, CSS, and HTML code. Reduce file size and improve loading speed.",
+          keywords: "code minifier, javascript minifier, css minifier, html minifier, code optimization",
         },
       },
     ],

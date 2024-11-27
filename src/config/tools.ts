@@ -449,30 +449,30 @@ export const tools = {
           keywords: "whois lookup, domain info, domain registration, whois search, domain details",
         },
       },
-      {
-        id: "ptr-lookup",
-        name: "Reverse DNS Lookup",
-        description: "Convert IP addresses to hostnames",
-        path: "/tools/dns/ptr-lookup",
-        seo: {
-          title: "Reverse DNS Lookup - IP to Hostname Converter",
-          description:
-            "Convert IP addresses to hostnames with this reverse DNS lookup tool. Find the domain names associated with IP addresses.",
-          keywords: "reverse dns, ptr lookup, ip to hostname, reverse ip lookup, dns tools",
-        },
-      },
-      {
-        id: "propagation-checker",
-        name: "DNS Propagation Checker",
-        description: "Check DNS propagation across global servers",
-        path: "/tools/dns/propagation-checker",
-        seo: {
-          title: "DNS Propagation Checker - Global DNS Propagation Tool",
-          description:
-            "Check DNS propagation status across multiple global locations. Monitor DNS changes and verify DNS updates.",
-          keywords: "dns propagation, dns checker, global dns, propagation status, dns monitoring",
-        },
-      },
+      // {
+      //   id: "ptr-lookup",
+      //   name: "Reverse DNS Lookup",
+      //   description: "Convert IP addresses to hostnames",
+      //   path: "/tools/dns/ptr-lookup",
+      //   seo: {
+      //     title: "Reverse DNS Lookup - IP to Hostname Converter",
+      //     description:
+      //       "Convert IP addresses to hostnames with this reverse DNS lookup tool. Find the domain names associated with IP addresses.",
+      //     keywords: "reverse dns, ptr lookup, ip to hostname, reverse ip lookup, dns tools",
+      //   },
+      // },
+      // {
+      //   id: "propagation-checker",
+      //   name: "DNS Propagation Checker",
+      //   description: "Check DNS propagation across global servers",
+      //   path: "/tools/dns/propagation-checker",
+      //   seo: {
+      //     title: "DNS Propagation Checker - Global DNS Propagation Tool",
+      //     description:
+      //       "Check DNS propagation status across multiple global locations. Monitor DNS changes and verify DNS updates.",
+      //     keywords: "dns propagation, dns checker, global dns, propagation status, dns monitoring",
+      //   },
+      // },
     ],
   },
   Utilities: {

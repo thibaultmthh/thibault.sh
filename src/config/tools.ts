@@ -311,6 +311,18 @@ export const tools = {
           keywords: "html encoder, html entities, html decoder, special characters, html converter",
         },
       },
+      {
+        id: "json-minifier",
+        name: "JSON Minifier",
+        description: "Minify JSON data",
+        path: "/tools/dev/json-minifier",
+        seo: {
+          title: "JSON Minifier - Minify JSON Data Online",
+          description:
+            "Minify JSON data online with this free tool. Remove unnecessary whitespace and make your JSON compact. Perfect for developers.",
+          keywords: "json minifier, minify json, compact json, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

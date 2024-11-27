@@ -299,6 +299,18 @@ export const tools = {
           keywords: "uuid generator, guid generator, uuid validator, uuid v4, unique identifiers, online tool",
         },
       },
+      {
+        id: "html-encoder",
+        name: "HTML Encoder",
+        description: "Encode and decode HTML entities",
+        path: "/tools/dev/html-encoder",
+        seo: {
+          title: "HTML Entity Encoder/Decoder - Convert Special Characters Online",
+          description:
+            "Convert text to HTML entities and decode HTML entities back to text. Handle special characters and symbols in HTML content safely.",
+          keywords: "html encoder, html entities, html decoder, special characters, html converter",
+        },
+      },
     ],
   },
   "Design Tools": {

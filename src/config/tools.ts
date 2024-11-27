@@ -252,6 +252,18 @@ export const tools = {
           keywords: "timestamp converter, unix timestamp, epoch converter, datetime converter, iso 8601, utc converter",
         },
       },
+      {
+        id: "image-to-base64",
+        name: "Image to Base64",
+        description: "Convert images to base64 strings",
+        path: "/tools/dev/image-to-base64",
+        seo: {
+          title: "Image to Base64 Converter - Convert Images Online",
+          description:
+            "Convert images to base64 encoded strings online. Support for multiple image formats including PNG, JPEG, and SVG. Perfect for embedding images in CSS or HTML.",
+          keywords: "image to base64, base64 encoder, image converter, data uri, image embedding",
+        },
+      },
     ],
   },
   "Design Tools": {

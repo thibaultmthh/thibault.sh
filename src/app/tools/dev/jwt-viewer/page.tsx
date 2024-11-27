@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
-import { Copy, Clock, AlertCircle, AlertTriangle, CheckCircle, Key } from "lucide-react";
+import { Copy, Clock, AlertCircle, AlertTriangle, CheckCircle, Key, Share2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
 interface JWTHeader {
@@ -26,6 +26,11 @@ interface DecodedJWT {
   header: JWTHeader;
   payload: JWTPayload;
   signature: string;
+}
+
+interface ValidationWarning {
+  severity: "low" | "medium" | "high";
+  message: string;
 }
 
 const verifySignature = async (token: string, secret: string): Promise<boolean> => {
@@ -96,6 +101,39 @@ const JWT_EXAMPLES = [
   },
 ];
 
+const getTokenWarnings = (decoded: DecodedJWT): ValidationWarning[] => {
+  const warnings: ValidationWarning[] = [];
+
+  // Check algorithm
+  if (decoded.header.alg === "none") {
+    warnings.push({
+      severity: "high",
+      message: 'Token uses "none" algorithm which is insecure',
+    });
+  }
+
+  // Check essential claims
+  if (!decoded.payload.sub) {
+    warnings.push({
+      severity: "medium",
+      message: 'Missing "sub" claim',
+    });
+  }
+  if (!decoded.payload.iat) {
+    warnings.push({
+      severity: "low",
+      message: 'Missing "iat" claim',
+    });
+  }
+
+  return warnings;
+};
+
+const formatTimestamp = (timestamp: number): string => {
+  const date = new Date(timestamp * 1000);
+  return `${date.toLocaleString()} (${date.toISOString()})`;
+};
+
 export default function JWTViewer() {
   const [token, setToken] = useState("");
   const [decoded, setDecoded] = useState<DecodedJWT | null>(null);
@@ -109,6 +147,9 @@ export default function JWTViewer() {
   // Add a state to track if we're using a custom token
   const [isCustomToken, setIsCustomToken] = useState(false);
 
+  // Add new state variables
+  const [warnings, setWarnings] = useState<ValidationWarning[]>([]);
+
   const decodeToken = (token: string): DecodedJWT | null => {
     try {
       const parts = token.split(".");
@@ -119,11 +160,11 @@ export default function JWTViewer() {
       const header = JSON.parse(atob(parts[0]));
       const payload = JSON.parse(atob(parts[1]));
 
-      return {
-        header,
-        payload,
-        signature: parts[2],
-      };
+      // Generate warnings
+      const decoded = { header, payload, signature: parts[2] };
+      setWarnings(getTokenWarnings(decoded));
+
+      return decoded;
     } catch {
       setError("Invalid JWT token");
       return null;
@@ -247,6 +288,25 @@ export default function JWTViewer() {
       setVerificationStatus({ isValid: null });
     }
   }, [token, secret]);
+
+  // Add share functionality
+  const shareToken = () => {
+    if (token) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("token", token);
+      navigator.clipboard.writeText(url.toString());
+      // You might want to add a toast notification here
+    }
+  };
+
+  // Add URL parameter handling
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+    if (urlToken) {
+      handleTokenChange(urlToken);
+    }
+  }, []);
 
   return (
     <div>
@@ -421,6 +481,16 @@ export default function JWTViewer() {
                   <pre className="bg-muted p-4 rounded-lg overflow-auto max-h-[400px]">
                     <code>{JSON.stringify(decoded.payload, null, 2)}</code>
                   </pre>
+                  {decoded.payload.exp && (
+                    <div className="text-sm text-muted-foreground mt-2">
+                      <p>Expires: {formatTimestamp(decoded.payload.exp)}</p>
+                    </div>
+                  )}
+                  {decoded.payload.iat && (
+                    <div className="text-sm text-muted-foreground">
+                      <p>Issued At: {formatTimestamp(decoded.payload.iat)}</p>
+                    </div>
+                  )}
                 </TabsContent>
 
                 <TabsContent value="header" className="space-y-4">
@@ -462,6 +532,53 @@ export default function JWTViewer() {
             </div>
           )}
         </Card>
+        {warnings.length > 0 && (
+          <Card className="p-4 mb-6 mt-6">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-yellow-500" />
+                <h3 className="font-medium">Security Analysis</h3>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {warnings.length} {warnings.length === 1 ? "warning" : "warnings"} found
+              </div>
+            </div>
+            <div className="space-y-2">
+              {warnings.map((warning, index) => (
+                <div
+                  key={index}
+                  className={`flex items-start gap-3 p-3 rounded-lg border ${
+                    warning.severity === "high"
+                      ? "bg-destructive/10 border-destructive/20 text-destructive"
+                      : warning.severity === "medium"
+                        ? "bg-yellow-500/10 border-yellow-500/20 text-yellow-700 dark:text-yellow-400"
+                        : "bg-blue-500/10 border-blue-500/20 text-blue-700 dark:text-blue-400"
+                  }`}
+                >
+                  <div className="mt-0.5">
+                    {warning.severity === "high" ? (
+                      <AlertCircle className="h-4 w-4" />
+                    ) : warning.severity === "medium" ? (
+                      <AlertTriangle className="h-4 w-4" />
+                    ) : (
+                      <AlertCircle className="h-4 w-4" />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-medium mb-0.5">
+                      {warning.severity === "high"
+                        ? "Critical Security Issue"
+                        : warning.severity === "medium"
+                          ? "Security Warning"
+                          : "Security Notice"}
+                    </div>
+                    <p className="text-sm">{warning.message}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
         {/* Info Card */}
         <Card className="p-6 mt-6">
           <h2 className="font-semibold mb-3">About JWT Tokens</h2>
@@ -490,6 +607,15 @@ export default function JWTViewer() {
             </ul>
           </div>
         </Card>
+        {/* Add Warnings Display - Enhanced Version */}
+
+        {/* Add Share Button */}
+        {decoded && (
+          <Button variant="outline" size="sm" onClick={shareToken} className="mb-4">
+            <Share2 className="h-4 w-4 mr-2" />
+            Share Token
+          </Button>
+        )}
       </div>
     </div>
   );

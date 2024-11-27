@@ -96,6 +96,7 @@ export default function Home() {
               description="Elevora is a platform that allows businesses to create giveaways or waitlists where users can increase their rank or chance by inviting friends and completing tasks"
               type="personal"
               projectType="app"
+              techs={["Next.js", "React", "TypeScript", "NestJS", "Node.js"]}
             />
             <CardSpotlight
               title="Kboom"
@@ -105,6 +106,7 @@ export default function Home() {
               description="Kboom is a platform that helps esports clubs generate engagement and loyalty with their fans."
               type="client"
               projectType="app"
+              techs={["Next.js", "React", "Django", "NestJS"]}
               myImplication="Developed frontend with React/Next.js and contributed to Django backend."
             />
             <CardSpotlight
@@ -116,6 +118,7 @@ export default function Home() {
               type="client"
               projectType="app"
               myImplication="Built React frontend with Web3 integration, contributed to NestJS backend."
+              techs={["Next.js", "React", "TypeScript", "web3", "GraphQL"]}
             />
             <CardSpotlight
               title="SOS-passeport"
@@ -126,6 +129,7 @@ export default function Home() {
               description="Sos-passeport is a website that references all mairies and their availabilities for passport creation appointments"
               type="personal"
               projectType="website"
+              techs={["Next.js", "React", "TypeScript", "Node.js"]}
             />
             <CardSpotlight
               title="Swift tech"
@@ -136,6 +140,7 @@ export default function Home() {
               type="personal"
               projectType="app"
               moreInfo={<SwiftTech />}
+              techs={["Next.js", "React", "TypeScript", "Node.js"]}
             />
             <CardSpotlight
               title="Peoplesphere"
@@ -146,6 +151,7 @@ export default function Home() {
               type="client"
               projectType="app"
               myImplication="Developed MVP frontend with React, Redux, and Redux Saga. Conducted code reviews and unit testing."
+              techs={["Next.js", "React", "TypeScript", "Node.js", "Redux"]}
             />
             <CardSpotlight
               title="Choicyful"
@@ -157,6 +163,7 @@ export default function Home() {
               projectType="app"
               moreInfo={<Choicyful />}
               myImplication="Built full Shopify app with React frontend, Express backend, and Liquid theme extension."
+              techs={["Next.js", "Shopify", "Liquid"]}
             />
             <CardSpotlight
               title="Minting Bot"
@@ -166,6 +173,7 @@ export default function Home() {
               description="An Ethereum-based minting bot, designed for NFT releases with optimized gas management."
               type="personal"
               projectType="app"
+              techs={["Node.js", "Ethereum", "Web3", "ethers"]}
             />
             <CardSpotlight
               title="Portfolio V1"
@@ -183,11 +191,11 @@ export default function Home() {
               description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
               type="personal"
               projectType="app"
-              // moreInfo={<Parakeet />}
+              techs={["Next.js", "React", "TypeScript", "Node.js", "Electron", "Puppeteer"]}
             />
             <CardSpotlight
               title="Brolt"
-              year="2020"
+              year="2019"
               status="Discontinued"
               description="Brolt is a bot developed for Instagram, designed to participate in giveaways using multiple accounts."
               type="personal"
@@ -203,6 +211,7 @@ export default function Home() {
               type="client"
               projectType="app"
               myImplication="Created MVP with Python/Flask, built Electron desktop app, and implemented Shopify licensing."
+              techs={["Python", "Flask", "Electron", "Shopify"]}
             />
           </div>
         </section>

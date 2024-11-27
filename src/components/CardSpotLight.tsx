@@ -16,6 +16,7 @@ interface CardSpotlightProps {
   projectType: "website" | "app" | "other";
   myImplication?: string; // New optional prop
   moreInfo?: React.ReactNode;
+  techs?: string[];
 }
 
 const ProjectIcon: React.FC<{ projectType: CardSpotlightProps["projectType"] }> = ({ projectType }) => {
@@ -41,6 +42,7 @@ export default function CardSpotlight({
   projectType,
   myImplication,
   moreInfo,
+  techs,
 }: CardSpotlightProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -77,16 +79,18 @@ export default function CardSpotlight({
 
       <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
 
-      <div className="mb-4">
-        <div className="text-sm text-gray-500 mb-2">$ tech --list</div>
-        <div className="flex flex-wrap gap-2">
-          {["Next.js", "React", "TypeScript"].map((tech) => (
-            <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-              {tech}
-            </span>
-          ))}
+      {techs && (
+        <div className="mb-4">
+          <div className="text-sm text-gray-500 mb-2">$ tech --list</div>
+          <div className="flex flex-wrap gap-2">
+            {techs?.map((tech) => (
+              <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {type === "client" && myImplication && (
         <div className="mb-4">

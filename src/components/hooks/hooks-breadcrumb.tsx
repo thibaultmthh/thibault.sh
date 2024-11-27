@@ -16,12 +16,15 @@ export function HooksBreadcrumb() {
   const segments = pathname.split("/").filter(Boolean);
 
   // Find current category and hook
-  const categoryKey = segments[1];
-  const hookId = segments[2];
+  const hookId = segments[1];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const category = Object.entries(hooks).find(([_, value]) => value.path === categoryKey);
-  const hook = category?.[1].items.find((item) => item.path.endsWith(hookId));
+  const hook = hookId
+    ? Object.values(hooks)
+        .find((category) => category.items.some((item) => item.id === hookId))
+        ?.items.find((item) => item.id === hookId)
+    : null;
+
+  if (!hook) return null;
 
   return (
     <Breadcrumb>
@@ -29,15 +32,6 @@ export function HooksBreadcrumb() {
         <BreadcrumbItem>
           <BreadcrumbLink href="/react-hooks">Hooks</BreadcrumbLink>
         </BreadcrumbItem>
-
-        {category && (
-          <>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href={`/react-hooks/${categoryKey}`}>{category[0]}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </>
-        )}
 
         {hook && (
           <>

@@ -323,6 +323,18 @@ export const tools = {
           keywords: "json minifier, minify json, compact json, online tool",
         },
       },
+      {
+        id: "csv-viewer",
+        name: "CSV Viewer",
+        description: "View and edit CSV data with table preview",
+        path: "/tools/dev/csv-viewer",
+        seo: {
+          title: "CSV Viewer and Editor - Parse and Preview CSV Files Online",
+          description:
+            "View, edit, and analyze CSV files online. Parse CSV data with custom delimiters and export to different formats.",
+          keywords: "csv viewer, csv editor, csv parser, csv to json, data viewer, online tool",
+        },
+      },
     ],
   },
   "Design Tools": {

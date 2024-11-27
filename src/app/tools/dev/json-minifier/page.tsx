@@ -114,7 +114,7 @@ export default function JSONMinifier() {
       const minified = JSON.stringify(JSON.parse(inputText));
       setOutputText(minified);
       setError(null);
-    } catch (err) {
+    } catch {
       setError("Invalid JSON input. Please check your JSON syntax.");
     }
   };

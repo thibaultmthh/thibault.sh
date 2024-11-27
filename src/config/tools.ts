@@ -53,6 +53,18 @@ export const tools = {
           keywords: "case converter, text case, upper case, lower case, title case",
         },
       },
+      {
+        id: "list-randomizer",
+        name: "List Randomizer",
+        description: "Randomize and shuffle lists",
+        path: "/tools/text/list-randomizer",
+        seo: {
+          title: "List Randomizer - Shuffle and Randomize Lists Online",
+          description:
+            "Free online tool to randomize and shuffle lists. Remove duplicates, number lines, and select random items from your list.",
+          keywords: "list randomizer, list shuffler, random selection, remove duplicates, online tool",
+        },
+      },
     ],
   },
   "Developer Tools": {
@@ -447,6 +459,18 @@ export const tools = {
           description:
             "Search through emojis by category or keyword. Copy emojis with a single click for use anywhere.",
           keywords: "emoji picker, emoji search, copy emojis, emoji categories, emoji tool",
+        },
+      },
+      {
+        id: "qr-generator",
+        name: "QR Code Generator",
+        description: "Generate customizable QR codes",
+        path: "/tools/utilities/qr-generator",
+        seo: {
+          title: "QR Code Generator - Create Custom QR Codes Online",
+          description:
+            "Generate customizable QR codes for URLs, text, and more. Adjust size, colors, and error correction levels. Free online QR code generator.",
+          keywords: "qr code generator, qr codes, qr creator, custom qr codes, online tool",
         },
       },
     ],

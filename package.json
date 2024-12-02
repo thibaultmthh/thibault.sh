@@ -70,6 +70,7 @@
     "@shikijs/rehype": "^1.22.2",
     "@tailwindcss/typography": "^0.5.15",
     "@types/diff": "^6.0.0",
+    "@types/jsonpath": "^0.2.4",
     "@types/node": "^22.8.4",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",

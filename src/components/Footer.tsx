@@ -38,9 +38,9 @@ export default function Footer() {
         <Link href="/site-map" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
           Sitemap
         </Link>
-        <a href="mailto:dev@thibault.sh" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
+        <Link href="/contact" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
           Contact
-        </a>
+        </Link>
       </nav>
       <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
     </footer>

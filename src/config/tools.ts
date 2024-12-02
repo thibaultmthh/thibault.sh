@@ -4,6 +4,7 @@ export const tools = {
   "Text Tools": {
     icon: FileText,
     path: "text",
+    name: "Text Tools",
     items: [
       {
         id: "text-analysis",
@@ -95,6 +96,7 @@ export const tools = {
   "Developer Tools": {
     icon: Code,
     path: "dev",
+    name: "Developer Tools",
     items: [
       {
         id: "json-formatter",
@@ -377,6 +379,7 @@ export const tools = {
   "Design Tools": {
     icon: Palette,
     path: "design",
+    name: "Design Tools",
     items: [
       {
         id: "pattern-generator",
@@ -443,6 +446,7 @@ export const tools = {
   "Web3 Tools": {
     icon: Wallet,
     path: "web3",
+    name: "Web3 Tools",
     items: [
       {
         id: "ens-lookup",
@@ -497,6 +501,7 @@ export const tools = {
   "DNS Tools": {
     icon: Network,
     path: "dns",
+    name: "DNS Tools",
     items: [
       {
         id: "dns-lookup",
@@ -551,6 +556,7 @@ export const tools = {
   Utilities: {
     icon: Calculator,
     path: "utilities",
+    name: "Utilities",
     items: [
       {
         id: "unit-converter",

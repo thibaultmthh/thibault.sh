@@ -2,6 +2,7 @@ export const hooks = {
   "State Management": {
     icon: "store",
     path: "state",
+    name: "State Management",
     items: [
       {
         id: "use-local-storage",
@@ -37,6 +38,7 @@ export const hooks = {
   "UI & Layout": {
     icon: "layout",
     path: "ui",
+    name: "UI & Layout",
     items: [
       {
         id: "use-media-query",
@@ -194,6 +196,7 @@ export const hooks = {
   "Device & Hardware": {
     icon: "cpu",
     path: "device",
+    name: "Device & Hardware",
     items: [
       {
         id: "use-battery",

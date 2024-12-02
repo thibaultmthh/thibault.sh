@@ -2,6 +2,7 @@ import { hooks } from "@/config/hooks";
 import { tools } from "@/config/tools";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
+import { apps } from "@/config/apps";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URL for the website
@@ -14,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/site-map`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
   ];
 
@@ -60,6 +67,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(post.date),
       changeFrequency: "monthly",
       priority: 0.5,
+    });
+  });
+
+  // Add all app pages
+
+  apps.forEach((app) => {
+    routes.push({
+      url: `${baseUrl}${app.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     });
   });
 

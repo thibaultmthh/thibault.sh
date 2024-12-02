@@ -15,6 +15,17 @@ export const metadata: Metadata = {
   title: "Thibault Mathian - Freelance Fullstack Developer",
   description:
     "Passionate fullstack developer with expertise in React, Next.js, and Node.js. Currently freelancing from France. Check out my developer tools and react hooks collection.",
+  openGraph: {
+    type: "website",
+    title: "Thibault Mathian - Fullstack Developer",
+    description:
+      "Passionate fullstack developer with expertise in React, Next.js, and Node.js. Currently freelancing from France. Check out my developer tools and react hooks collection.",
+    images: ["/og-banner.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@thibault_mthh",
+  },
 };
 
 export default function Home() {

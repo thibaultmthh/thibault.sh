@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     title: "Thibault Mathian - Fullstack Developer",
     description:
       "Passionate fullstack developer with expertise in React, Next.js, and Node.js. Currently freelancing from France. Check out my developer tools and react hooks collection.",
-    images: ["/og-banner.png"],
   },
   twitter: {
     card: "summary_large_image",

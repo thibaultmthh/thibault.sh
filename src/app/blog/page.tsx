@@ -16,7 +16,7 @@ export default function BlogPage() {
   const posts = getPosts();
 
   return (
-    <div className="relative min-h-screen bg-white text-gray-800 font-mono">
+    <div className="relative bg-white text-gray-800 font-mono">
       <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
         <h1 className="text-4xl font-bold text-orange-600 mb-8">Blog Posts</h1>
         <div className="space-y-6">

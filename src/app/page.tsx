@@ -2,16 +2,14 @@
 
 import CardSpotlight from "@/components/CardSpotLight";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import Brolt from "./brolt/page";
-import Choicyful from "./choicyful/page";
-import SwiftTech from "./swifttech/page";
-import SosPassport from "./sos-passport/page";
 import Button from "@/components/Button";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { BoxIcon } from "lucide-react";
 import { Terminal } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { getPosts } from "@/lib/get-blog-by-slug";
+import Footer, { SocialLink } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Thibault Mathian - Freelance Fullstack Developer",
@@ -20,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const latestPosts = getPosts().slice(0, 3); // Get only the 3 most recent posts
+
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">
       <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
@@ -72,10 +72,10 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Check out my developer tools</span>
               </Button>
-              <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
-                open --blog
+              <Button href="/projects" icon={<BoxIcon className="size-4" />} variant="secondary">
+                open --projects
                 <br />
-                <span className="text-[#858585]">Read my latest articles</span>
+                <span className="text-[#858585]">View all my projects</span>
               </Button>
               <Button href="/react-hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --react hooks
@@ -86,8 +86,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-sm text-gray-500 mb-4">→ projects --list</h2>
+        <section className="mb-12">
+          <h2 className="text-sm text-gray-500 mb-4">→ featured-projects --list</h2>
           <div className="space-y-8">
             <CardSpotlight
               title="Elevora"
@@ -122,70 +122,6 @@ export default function Home() {
               techs={["Next.js", "React", "TypeScript", "web3", "GraphQL"]}
             />
             <CardSpotlight
-              title="SOS-passeport"
-              year="2023"
-              status="Discontinued"
-              // link="https://sos-passeport.fr"
-              moreInfo={<SosPassport />}
-              description="Sos-passeport is a website that references all mairies and their availabilities for passport creation appointments"
-              type="personal"
-              projectType="website"
-              techs={["Next.js", "React", "TypeScript", "Node.js"]}
-            />
-            <CardSpotlight
-              title="Swift tech"
-              year="2022"
-              status="Discontinued"
-              // link="/swift-tech"
-              description="Swifttech was a desktop app that enabled you to mint nfts faster than conventional methods."
-              type="personal"
-              projectType="app"
-              moreInfo={<SwiftTech />}
-              techs={["Next.js", "React", "TypeScript", "Node.js"]}
-            />
-            <CardSpotlight
-              title="Peoplesphere"
-              year="2022-2023"
-              status="Discontinued"
-              link="https://peoplespheres.com/fr/"
-              description="Peoplesphere is a startup that centralizes HR data in France."
-              type="client"
-              projectType="app"
-              myImplication="Developed MVP frontend with React, Redux, and Redux Saga. Conducted code reviews and unit testing."
-              techs={["Next.js", "React", "TypeScript", "Node.js", "Redux"]}
-            />
-            <CardSpotlight
-              title="Choicyful"
-              year="2023"
-              status="Discontinued"
-              // link="https://apps.shopify.com/choicyful-1"
-              description="A Shopify app enables merchants to customize product variant swatches."
-              type="client"
-              projectType="app"
-              moreInfo={<Choicyful />}
-              myImplication="Built full Shopify app with React frontend, Express backend, and Liquid theme extension."
-              techs={["Next.js", "Shopify", "Liquid"]}
-            />
-            <CardSpotlight
-              title="Minting Bot"
-              year="2022"
-              status="Discontinued"
-              link="https://github.com/thibaultmthh/parakeet-minter-cli"
-              description="An Ethereum-based minting bot, designed for NFT releases with optimized gas management."
-              type="personal"
-              projectType="app"
-              techs={["Node.js", "Ethereum", "Web3", "ethers"]}
-            />
-            <CardSpotlight
-              title="Portfolio V1"
-              year="2021-2022"
-              status="Finished"
-              link="https://v1.thibault.sh"
-              description="Portfolio inspired by Lee Robinson Portfolio"
-              type="personal"
-              projectType="website"
-            />
-            <CardSpotlight
               title="Parakeet"
               year="2020-2023"
               status="Finished"
@@ -195,62 +131,43 @@ export default function Home() {
               link="https://thibault.sh/blog/parakeet"
               techs={["Next.js", "React", "TypeScript", "Node.js", "Electron", "Puppeteer"]}
             />
-            <CardSpotlight
-              title="Brolt"
-              year="2019"
-              status="Discontinued"
-              description="Brolt is a bot developed for Instagram, designed to participate in giveaways using multiple accounts."
-              type="personal"
-              projectType="app"
-              moreInfo={<Brolt />}
-            />
-            <CardSpotlight
-              title="Seig Robotics"
-              year="2019"
-              status="Discontinued"
-              link="https://x.com/SeigRobotics"
-              description="Seig Robotics was a desktop app to manage multiple Twitter profiles and enter Twitter giveaways."
-              type="client"
-              projectType="app"
-              myImplication="Created MVP with Python/Flask, built Electron desktop app, and implemented Shopify licensing."
-              techs={["Python", "Flask", "Electron", "Shopify"]}
-            />
+          </div>
+          <div className="mt-6">
+            <Button href="/projects" variant="secondary">
+              View all projects →
+            </Button>
           </div>
         </section>
 
-        <footer className="mt-16 text-center text-gray-500">
-          <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" label="My github link" />
-            <SocialLink
-              icon={<LinkedInLogoIcon />}
-              href="https://www.linkedin.com/in/thibault-mathian/"
-              label="My Linkedin link"
-            />
-            <SocialLink
-              icon={<TwitterLogoIcon />}
-              href="https://twitter.com/thibault_mthh"
-              label="My Twitter (X) link"
-            />
+        <section className="mb-12">
+          <h2 className="text-sm text-gray-500 mb-4">→ latest-articles --list</h2>
+          <div className="space-y-4">
+            {latestPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-orange-500 transition-colors"
+              >
+                <h3 className="text-xl font-bold text-orange-600 mb-2">{post.title}</h3>
+                <div className="text-gray-500 text-xs mb-3">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </div>
+                <p className="text-gray-700 text-sm">{post.excerpt}</p>
+              </Link>
+            ))}
           </div>
-          <nav className="mb-4">
-            <Link href="/" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
-              Home
-            </Link>
-            <Link href="/blog" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
-              Blog
-            </Link>
-            <Link href="/tools" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
-              Tools
-            </Link>
-            <Link href="/site-map" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
-              Sitemap
-            </Link>
-            <a href="mailto:dev@thibault.sh" className="text-sm text-orange-500 hover:text-orange-600 mx-2">
-              Contact
-            </a>
-          </nav>
-          <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
-        </footer>
+          <div className="mt-6">
+            <Button href="/blog" variant="secondary">
+              Read all articles →
+            </Button>
+          </div>
+        </section>
+
+        <Footer />
 
         <div className="mt-12 flex items-center gap-2 text-gray-500">
           <span>→</span>
@@ -260,15 +177,3 @@ export default function Home() {
     </div>
   );
 }
-
-interface SocialLinkProps {
-  icon: React.ReactNode;
-  href: string;
-  label: string;
-}
-
-const SocialLink: React.FC<SocialLinkProps> = ({ icon, href, label }) => (
-  <a href={href} aria-label={label} className="text-orange-500 hover:text-orange-600 transition-colors">
-    {icon}
-  </a>
-);

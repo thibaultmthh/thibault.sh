@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Rss } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-white text-gray-800">
-      <nav className="bg-white border-b border-gray-200 mb-2">
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col">
+      <nav className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="flex items-center h-12 gap-4">
             <Link
@@ -33,7 +34,10 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
       </nav>
-      {children}
+      <main className="flex-1 overflow-auto">{children}</main>
+      <div className="mt-auto mb-6">
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -264,7 +264,7 @@ export default function Game2048() {
             <ul className="space-y-2">
               <li>• Keep your highest number tile in a corner</li>
               <li>• Build a chain of descending numbers</li>
-              <li>• Don't make hasty moves - plan ahead!</li>
+              <li>• Don&apos;t make hasty moves - plan ahead!</li>
               <li>• Try to maintain multiple merge options</li>
             </ul>
           </div>
@@ -336,7 +336,7 @@ export default function Game2048() {
               <p>• Every number in the game is a power of 2</p>
               <p>• The theoretical maximum score is 3,932,156</p>
               <p>• The largest possible tile is 131,072 (2¹⁷)</p>
-              <p>• The probability of getting a '4' tile is 10%</p>
+              <p>• The probability of getting a &apos;4&apos; tile is 10%</p>
             </div>
           </div>
 
@@ -370,7 +370,6 @@ export default function Game2048() {
             animate="enter"
             exit="exit"
             className="fixed inset-0 bg-black/50 flex items-center justify-center"
-            as="div"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}

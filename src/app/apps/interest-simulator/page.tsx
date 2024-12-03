@@ -37,28 +37,20 @@ export default function InterestSimulator() {
 
   const calculateGrowth = (): ChartData[] => {
     const data: ChartData[] = [];
-    let balance = initialAmount;
-    let totalContributions = initialAmount;
     const monthlyRate = annualInterestRate / 100 / 12;
 
     for (let year = 0; year <= years; year++) {
-      if (year === 0) {
-        // First year, just record initial values
-        data.push({
-          year,
-          balance: Math.round(balance),
-          contributions: Math.round(totalContributions),
-          interest: 0,
-        });
-        continue;
-      }
+      // Using the compound interest formula: Vf = Vi × (1 + ρ/n)^(n×t)
+      // For monthly contributions, we need to add the future value of an annuity formula
+      const periods = year * 12;
+      const initialGrowth = initialAmount * Math.pow(1 + monthlyRate, periods);
 
-      // Calculate compound interest with monthly contributions for the year
-      for (let month = 0; month < 12; month++) {
-        balance = balance * (1 + monthlyRate) + monthlyContribution;
-      }
+      // Calculate future value of monthly contributions
+      // PMT × (((1 + r)^n - 1) / r) where PMT is monthly payment, r is monthly rate, n is number of periods
+      const contributionsGrowth = monthlyContribution * ((Math.pow(1 + monthlyRate, periods) - 1) / monthlyRate);
 
-      totalContributions += monthlyContribution * 12;
+      const balance = initialGrowth + (periods > 0 ? contributionsGrowth : 0);
+      const totalContributions = initialAmount + monthlyContribution * periods;
 
       data.push({
         year,

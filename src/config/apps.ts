@@ -49,4 +49,10 @@ export const apps: AppItem[] = [
       "Create beautiful word clouds from any text. Customize colors, shapes, and layouts for unique visualizations.",
     path: "/apps/word-cloud-generator",
   },
+  {
+    id: "tempo-tap",
+    name: "Tempo Tap",
+    description: "Find the BPM (beats per minute) of any song by tapping along. Features a visual rhythm indicator.",
+    path: "/apps/tempo-tap",
+  },
 ];

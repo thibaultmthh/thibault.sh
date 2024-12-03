@@ -36,4 +36,10 @@ export const apps: AppItem[] = [
     description: "Spin the wheel to make random decisions. Perfect for choosing between multiple options.",
     path: "/apps/decision-wheel",
   },
+  {
+    id: "pixel-art-creator",
+    name: "Pixel Art Creator",
+    description: "Create pixel art with a simple grid-based drawing tool. Export your creations as PNG images.",
+    path: "/apps/pixel-art-creator",
+  },
 ];

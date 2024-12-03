@@ -130,22 +130,24 @@ export default function InterestSimulator() {
           </div>
         </Card>
 
-        <Card className="p-6">
-          <ChartContainer config={chartConfig} className="h-[400px]">
-            <AreaChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+        <Card className="p-4 md:p-6">
+          <ChartContainer config={chartConfig} className="h-[300px] md:h-[400px] w-[calc(100dvw-80px)] md:w-full">
+            <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
               <XAxis
                 dataKey="year"
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `Y${value}`}
-                className="text-sm"
+                className="text-xs md:text-sm"
+                interval="preserveStartEnd"
               />
               <YAxis
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                className="text-sm"
+                className="text-xs md:text-sm"
+                width={45}
               />
               <ChartTooltip content={<ChartTooltipContent labelKey="year" />} />
               <Area

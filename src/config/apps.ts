@@ -42,4 +42,11 @@ export const apps: AppItem[] = [
     description: "Create pixel art with a simple grid-based drawing tool. Export your creations as PNG images.",
     path: "/apps/pixel-art-creator",
   },
+  {
+    id: "word-cloud-generator",
+    name: "Word Cloud Generator",
+    description:
+      "Create beautiful word clouds from any text. Customize colors, shapes, and layouts for unique visualizations.",
+    path: "/apps/word-cloud-generator",
+  },
 ];

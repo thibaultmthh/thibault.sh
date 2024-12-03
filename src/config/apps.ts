@@ -30,4 +30,10 @@ export const apps: AppItem[] = [
     description: "Visualize compound interest and investment growth over time with interactive charts.",
     path: "/apps/interest-simulator",
   },
+  {
+    id: "decision-wheel",
+    name: "Decision Wheel",
+    description: "Spin the wheel to make random decisions. Perfect for choosing between multiple options.",
+    path: "/apps/decision-wheel",
+  },
 ];

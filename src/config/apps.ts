@@ -24,4 +24,10 @@ export const apps: AppItem[] = [
     description: "Test your memory by matching pairs of cards.",
     path: "/apps/memory-game",
   },
+  {
+    id: "interest-simulator",
+    name: "Interest Simulator",
+    description: "Visualize compound interest and investment growth over time with interactive charts.",
+    path: "/apps/interest-simulator",
+  },
 ];

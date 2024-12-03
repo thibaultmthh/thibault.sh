@@ -53,8 +53,6 @@ export default function InterestSimulator() {
         continue;
       }
 
-      const yearStartBalance = balance;
-      
       // Calculate compound interest with monthly contributions for the year
       for (let month = 0; month < 12; month++) {
         balance = balance * (1 + monthlyRate) + monthlyContribution;
@@ -157,9 +155,7 @@ export default function InterestSimulator() {
                 tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                 className="text-sm"
               />
-              <ChartTooltip
-                content={<ChartTooltipContent labelKey="year" />}
-              />
+              <ChartTooltip content={<ChartTooltipContent labelKey="year" />} />
               <Area
                 type="monotone"
                 dataKey="balance"
@@ -216,7 +212,7 @@ export default function InterestSimulator() {
               Retirement Saving
               <span className="block text-xs text-gray-600">$10k initial, $500/month, 7% return, 30 years</span>
             </button>
-            
+
             <button
               className="w-full p-2 text-sm rounded bg-gray-100 hover:bg-gray-200 text-left"
               onClick={() => {
@@ -229,7 +225,7 @@ export default function InterestSimulator() {
               Emergency Fund
               <span className="block text-xs text-gray-600">$1k initial, $200/month, 6% return, 10 years</span>
             </button>
-            
+
             <button
               className="w-full p-2 text-sm rounded bg-gray-100 hover:bg-gray-200 text-left"
               onClick={() => {
@@ -250,20 +246,18 @@ export default function InterestSimulator() {
         <Card className="p-6">
           <h3 className="text-lg font-bold mb-4">The Power of Time</h3>
           <p className="text-gray-600">
-            Time is one of the most powerful factors in investing. Due to compound interest, 
-            even small regular investments can grow significantly over long periods. For example, 
-            $100 monthly invested at 7% annual return can grow to over $120,000 in 30 years, 
-            despite only contributing $36,000 directly.
+            Time is one of the most powerful factors in investing. Due to compound interest, even small regular
+            investments can grow significantly over long periods. For example, $100 monthly invested at 7% annual return
+            can grow to over $120,000 in 30 years, despite only contributing $36,000 directly.
           </p>
         </Card>
 
         <Card className="p-6">
           <h3 className="text-lg font-bold mb-4">Understanding Returns</h3>
           <p className="text-gray-600">
-            The annual return rate significantly impacts long-term results. While stocks have historically 
-            averaged 7-10% annual returns (S&P 500), actual returns vary yearly. Conservative investments 
-            like bonds typically return 2-5%. Consider inflation (historically 2-3% annually) when planning 
-            your investment strategy.
+            The annual return rate significantly impacts long-term results. While stocks have historically averaged
+            7-10% annual returns (S&P 500), actual returns vary yearly. Conservative investments like bonds typically
+            return 2-5%. Consider inflation (historically 2-3% annually) when planning your investment strategy.
           </p>
         </Card>
       </div>

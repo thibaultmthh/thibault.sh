@@ -5,14 +5,10 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus, X, RotateCw } from "lucide-react";
-import { motion, animate, useMotionValue, spring } from "framer-motion";
+import { motion, animate, useMotionValue } from "framer-motion";
 
 export default function DecisionWheel() {
-  const [options, setOptions] = useState<string[]>([
-    "Option 1",
-    "Option 2",
-    "Option 3",
-  ]);
+  const [options, setOptions] = useState<string[]>(["Option 1", "Option 2", "Option 3"]);
   const [newOption, setNewOption] = useState("");
   const [isSpinning, setIsSpinning] = useState(false);
   const wheelRef = useRef<HTMLDivElement>(null);
@@ -68,24 +64,15 @@ export default function DecisionWheel() {
     <div className="min-h-screen p-4 max-w-6xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Decision Wheel</h1>
-        <p className="text-gray-600">
-          Add options and spin the wheel to make a random decision.
-        </p>
+        <p className="text-gray-600">Add options and spin the wheel to make a random decision.</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
         {/* Wheel Section */}
         <Card className="p-6 flex items-center justify-center">
           <div className="relative w-[300px] h-[300px]">
-            <motion.div
-              ref={wheelRef}
-              className="absolute w-full h-full"
-              style={{ rotate: wheelRotation }}
-            >
-              <svg
-                viewBox="0 0 100 100"
-                className="w-full h-full -rotate-90"
-              >
+            <motion.div ref={wheelRef} className="absolute w-full h-full" style={{ rotate: wheelRotation }}>
+              <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
                 {options.map((option, index) => {
                   const percent = 100 / options.length;
                   const startAngle = (index * 360) / options.length;
@@ -126,17 +113,12 @@ export default function DecisionWheel() {
                 })}
               </svg>
             </motion.div>
-            
+
             {/* Updated pointer with better styling */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
               <div className="w-6 h-6">
                 <svg viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 3L2 20h20L12 3z"
-                    fill="#1a1a1a"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
+                  <path d="M12 3L2 20h20L12 3z" fill="#1a1a1a" stroke="white" strokeWidth="2" />
                 </svg>
               </div>
             </div>
@@ -154,59 +136,35 @@ export default function DecisionWheel() {
                 onKeyDown={(e) => e.key === "Enter" && addOption()}
                 maxLength={20}
               />
-              <Button
-                onClick={addOption}
-                disabled={!newOption.trim() || options.length >= 12}
-                size="icon"
-              >
+              <Button onClick={addOption} disabled={!newOption.trim() || options.length >= 12} size="icon">
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
 
             <div className="space-y-2">
               {options.map((option, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-2 bg-gray-50 rounded"
-                >
+                <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <div className="flex items-center gap-2">
-                    <div 
+                    <div
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: getWheelColors(index, options.length) }}
                     />
                     <span>{option}</span>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeOption(index)}
-                  >
+                  <Button variant="ghost" size="icon" onClick={() => removeOption(index)}>
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
               ))}
             </div>
 
-            <Button
-              className="w-full"
-              size="lg"
-              onClick={spinWheel}
-              disabled={isSpinning || options.length < 2}
-            >
+            <Button className="w-full" size="lg" onClick={spinWheel} disabled={isSpinning || options.length < 2}>
               <RotateCw className="mr-2 h-4 w-4" />
               Spin the Wheel
             </Button>
 
-            {options.length < 2 && (
-              <p className="text-sm text-red-500">
-                Add at least 2 options to spin the wheel
-              </p>
-            )}
-            {options.length >= 12 && (
-              <p className="text-sm text-red-500">
-                Maximum 12 options allowed
-              </p>
-            )}
+            {options.length < 2 && <p className="text-sm text-red-500">Add at least 2 options to spin the wheel</p>}
+            {options.length >= 12 && <p className="text-sm text-red-500">Maximum 12 options allowed</p>}
           </div>
         </Card>
       </div>
@@ -239,8 +197,9 @@ export default function DecisionWheel() {
           <h2 className="text-2xl font-bold mb-4">Why Use a Decision Wheel?</h2>
           <div className="space-y-4 text-gray-600">
             <p>
-              A decision wheel, also known as a spinning wheel or wheel of fortune, is an engaging and fair way to make random selections or decisions. 
-              It eliminates bias and makes decision-making fun, whether you're choosing a restaurant for dinner, assigning tasks, or playing games.
+              A decision wheel, also known as a spinning wheel or wheel of fortune, is an engaging and fair way to make
+              random selections or decisions. It eliminates bias and makes decision-making fun, whether you&apos;re
+              choosing a restaurant for dinner, assigning tasks, or playing games.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -311,19 +270,22 @@ export default function DecisionWheel() {
             <div>
               <h3 className="text-lg font-semibold mb-2">Is the wheel truly random?</h3>
               <p className="text-gray-600">
-                Yes! Our decision wheel uses a cryptographically secure random number generator to ensure completely fair and unbiased results every time you spin.
+                Yes! Our decision wheel uses a cryptographically secure random number generator to ensure completely
+                fair and unbiased results every time you spin.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">How many options can I add?</h3>
               <p className="text-gray-600">
-                The wheel supports between 2 and 12 options for optimal visibility and functionality. This range ensures that all options are clearly visible and the wheel remains easy to read.
+                The wheel supports between 2 and 12 options for optimal visibility and functionality. This range ensures
+                that all options are clearly visible and the wheel remains easy to read.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">Can I save my wheel configurations?</h3>
               <p className="text-gray-600">
-                Currently, wheel configurations are session-based. We recommend taking a screenshot or noting down your options if you'd like to use the same configuration later.
+                Currently, wheel configurations are session-based. We recommend taking a screenshot or noting down your
+                options if you&apos;d like to use the same configuration later.
               </p>
             </div>
           </div>
@@ -333,15 +295,10 @@ export default function DecisionWheel() {
   );
 }
 
-function polarToCartesian(
-  centerX: number,
-  centerY: number,
-  radius: number,
-  angleInDegrees: number
-) {
+function polarToCartesian(centerX: number, centerY: number, radius: number, angleInDegrees: number) {
   const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
   return {
     x: centerX + radius * Math.cos(angleInRadians),
     y: centerY + radius * Math.sin(angleInRadians),
   };
-} 
+}

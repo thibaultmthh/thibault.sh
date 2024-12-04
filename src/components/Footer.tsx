@@ -15,7 +15,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ icon, href, label }) => 
 
 export default function Footer() {
   return (
-    <footer className="mt-16 text-center text-gray-500">
+    <footer className="mt-12 text-center text-gray-500">
       <div className="flex justify-center space-x-4 sm:space-x-6 mb-2 sm:mb-4">
         <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" label="My github link" />
         <SocialLink

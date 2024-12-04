@@ -15,11 +15,6 @@ type WordCloudOptions = {
   fontSizes: [number, number];
 };
 
-type Word = {
-  text: string;
-  value: number;
-};
-
 const EXAMPLE_TEXTS = {
   shakespeare: `To be, or not to be, that is the question:
 Whether 'tis nobler in the mind to suffer
@@ -84,11 +79,11 @@ export default function WordCloudGenerator() {
 
   const options: WordCloudOptions = {
     rotations: shape === "circle" ? 2 : 0,
-    rotationAngles: [0],
+    rotationAngles: [0, 360],
     fontSizes: [fontMin, fontMax],
   };
 
-  const getShapeDimensions = () => {
+  const getShapeDimensions = (): [number, number] => {
     switch (shape) {
       case "circle":
         return [600, 600];

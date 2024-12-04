@@ -92,6 +92,11 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Check out my react hooks collection</span>
               </Button>
+              <Button href="/apps" icon={<BoxIcon className="size-4" />} variant="secondary">
+                open --apps
+                <br />
+                <span className="text-[#858585]">Check out my web apps collection</span>
+              </Button>
             </div>
           </div>
         </section>

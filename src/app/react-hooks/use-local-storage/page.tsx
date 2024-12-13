@@ -12,13 +12,16 @@ import getHookById from "@/lib/get-hook-by-id";
 export default async function UseLocalStorageContent() {
   const hook = getHookById("use-local-storage");
   const implementationCode = readHookFiles("useLocalStrorage.ts");
-  const usageCode = `const [value, setValue] = useLocalStorage("storage-key", initialValue);
+  const usageCode = `const [value, setValue, reset] = useLocalStorage("storage-key", initialValue);
 
 // Use it like useState
 setValue("new value");
 
 // Or with a function
-setValue(prev => prev + 1);`;
+setValue(prev => prev + 1);
+
+// Reset to initial value and remove from localStorage
+reset();`;
 
   const initialImplementation = await highlight(implementationCode);
   const initialUsage = await highlight(usageCode);

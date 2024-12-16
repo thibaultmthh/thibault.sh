@@ -6,8 +6,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, BookOpen, Info, CheckCircle, AlertCircle } from "lucide-react";
 
-export default function HttpCodePage({ params }: { params: { code: string } }) {
-  const code = parseInt(params.code);
+export default async function HttpCodePage({ params }: { params: Promise<{ code: string }> }) {
+  const code = parseInt((await params).code);
   const httpCode = httpCodes.find((c) => c.code === code);
 
   if (!httpCode) {

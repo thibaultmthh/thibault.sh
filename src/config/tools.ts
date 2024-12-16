@@ -374,6 +374,18 @@ export const tools = {
           keywords: "code minifier, javascript minifier, css minifier, html minifier, code optimization",
         },
       },
+      {
+        id: "http-codes",
+        name: "HTTP Status Codes",
+        description: "Browse and search HTTP status codes",
+        path: "/tools/dev/http-codes",
+        seo: {
+          title: "HTTP Status Codes Reference - Complete List with Descriptions",
+          description:
+            "Complete list of HTTP status codes with detailed information, descriptions, and examples. Search and browse through all HTTP response codes.",
+          keywords: "http status codes, http codes, status codes, http reference, web development, http protocol",
+        },
+      },
     ],
   },
   "Design Tools": {

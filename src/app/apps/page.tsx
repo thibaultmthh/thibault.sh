@@ -2,6 +2,11 @@ import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Code } from "lucide-react";
 import { apps } from "@/config/apps";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Apps list - Thibault Mathian - Freelance Fullstack Developer",
+};
 
 export default function Apps() {
   return (

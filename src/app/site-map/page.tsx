@@ -6,6 +6,11 @@ import { getPosts } from "@/lib/get-blog-by-slug";
 import { Card } from "@/components/ui/card";
 import { BoxIcon, Terminal } from "lucide-react";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sitemap - Thibault Mathian - Freelance Fullstack Developer",
+};
 
 export default function SitemapPage() {
   return (

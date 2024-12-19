@@ -7,6 +7,11 @@ import { Card } from "@/components/ui/card";
 
 import { SocialLink } from "@/components/Footer";
 import Button from "@/components/Button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact - Thibault Mathian - Freelance Fullstack Developer",
+};
 
 export default function Contact() {
   return (

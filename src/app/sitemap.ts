@@ -71,6 +71,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
+  routes.push({
+    url: `${baseUrl}/react-hooks`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  });
+
   // Add all blog posts
   const posts = getPosts();
   posts.forEach((post) => {

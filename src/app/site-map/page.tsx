@@ -54,18 +54,17 @@ export default function SitemapPage() {
               <div className="p-2 rounded-md bg-blue-50">
                 <BoxIcon className="h-5 w-5 text-blue-500" />
               </div>
-              <h2 className="text-2xl font-semibold">React Hooks</h2>
+              <Link href="/react-hooks">
+                <h2 className="text-2xl font-semibold">React Hooks</h2>
+              </Link>
             </div>
             <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {Object.entries(hooks).map(([key, category]) => (
                 <li key={key}>
-                  <Link
-                    href={`/react-hooks/${key}`}
-                    className="block p-4 rounded-lg hover:bg-slate-50 border transition-all hover:border-blue-500/50"
-                  >
+                  <div className="block p-4 rounded-lg border">
                     {category.name}
                     <span className="text-sm text-muted-foreground block">{category.items.length} hooks</span>
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>

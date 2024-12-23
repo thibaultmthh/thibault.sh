@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useLayoutEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { highlight } from "@/lib/shiki";
 import { Button } from "./button";
 import { CopyIcon } from "lucide-react";
@@ -14,7 +14,7 @@ interface CodeBlockProps {
 export function CodeBlock({ code, language = "typescript", initial }: CodeBlockProps) {
   const [nodes, setNodes] = useState(initial);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     void highlight(code, language).then(setNodes);
   }, [code, language]);
 
@@ -34,7 +34,11 @@ export function CodeBlock({ code, language = "typescript", initial }: CodeBlockP
       >
         <CopyIcon className="text-white" />
       </Button>
-      {nodes ?? <p>Loading...</p>}
+      {nodes ?? (
+        <pre className="rounded-lg p-3">
+          <code>{code}</code>
+        </pre>
+      )}
     </div>
   );
 }

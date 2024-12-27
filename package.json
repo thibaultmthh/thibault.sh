@@ -50,7 +50,7 @@
     "lucide-react": "^0.454.0",
     "mathjs": "^13.2.0",
     "next": "15.0.2",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "qrcode.react": "^4.1.0",
     "react": "19.0.0",
     "react-beautiful-dnd": "^13.1.1",

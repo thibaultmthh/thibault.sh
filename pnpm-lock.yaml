@@ -132,8 +132,8 @@ importers:
         specifier: 15.0.2
         version: 15.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       prettier:
-        specifier: ^3.3.3
-        version: 3.4.1
+        specifier: ^3.4.2
+        version: 3.4.2
       qrcode.react:
         specifier: ^4.1.0
         version: 4.1.0(react@19.0.0)
@@ -2977,8 +2977,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.4.1:
-    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
+  prettier@3.4.2:
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -3626,8 +3626,8 @@ packages:
   victory-vendor@36.9.2:
     resolution: {integrity: sha512-PnpQQMuxlwYdocC8fIJqVXvkeViHYzotI+NJrCuav0ZYFoq912ZHBk3mCeuj+5/VpodOjPe1z0Fk2ihgzlXqjQ==}
 
-  vscode-textmate@https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3:
-    resolution: {tarball: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3}
+  vscode-textmate@git+https://git@github.com:octref/vscode-textmate.git#e65aabe2227febda7beaad31dd0fca1228c5ddf3:
+    resolution: {commit: e65aabe2227febda7beaad31dd0fca1228c5ddf3, repo: git@github.com:octref/vscode-textmate.git, type: git}
     version: 4.0.1
     peerDependencies:
       onigasm: ^2.1.0
@@ -5412,7 +5412,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -5434,7 +5434,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -6855,7 +6855,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.4.1: {}
+  prettier@3.4.2: {}
 
   process-nextick-args@2.0.1: {}
 
@@ -7275,7 +7275,7 @@ snapshots:
 
   shiki-languages@0.1.6(onigasm@2.2.5)(oniguruma@7.2.3):
     dependencies:
-      vscode-textmate: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
+      vscode-textmate: git+https://git@github.com:octref/vscode-textmate.git#e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
     transitivePeerDependencies:
       - onigasm
       - oniguruma
@@ -7283,7 +7283,7 @@ snapshots:
   shiki-themes@0.1.7(onigasm@2.2.5)(oniguruma@7.2.3):
     dependencies:
       json5: 2.2.3
-      vscode-textmate: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
+      vscode-textmate: git+https://git@github.com:octref/vscode-textmate.git#e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
     transitivePeerDependencies:
       - onigasm
       - oniguruma
@@ -7293,7 +7293,7 @@ snapshots:
       onigasm: 2.2.5
       shiki-languages: 0.1.6(onigasm@2.2.5)(oniguruma@7.2.3)
       shiki-themes: 0.1.7(onigasm@2.2.5)(oniguruma@7.2.3)
-      vscode-textmate: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
+      vscode-textmate: git+https://git@github.com:octref/vscode-textmate.git#e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3)
     transitivePeerDependencies:
       - oniguruma
 
@@ -7708,7 +7708,7 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  vscode-textmate@https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3):
+  vscode-textmate@git+https://git@github.com:octref/vscode-textmate.git#e65aabe2227febda7beaad31dd0fca1228c5ddf3(onigasm@2.2.5)(oniguruma@7.2.3):
     dependencies:
       onigasm: 2.2.5
       oniguruma: 7.2.3

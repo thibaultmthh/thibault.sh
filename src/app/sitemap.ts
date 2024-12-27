@@ -3,6 +3,7 @@ import { tools } from "@/config/tools";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
 import { apps } from "@/config/apps";
+import { PackageHooks } from "@/app/hooks/layout";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URL for the website
@@ -98,6 +99,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     });
+  });
+
+  // Add all hooks pages from PackageHooks
+  PackageHooks.forEach((category) => {
+    category.items.forEach((item) => {
+      routes.push({
+        url: `${baseUrl}${item.href}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
+    });
+  });
+
+  // Add main hooks page
+  routes.push({
+    url: `${baseUrl}/hooks`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
   });
 
   return routes;

@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 
-const sidebarLinks = [
+export const PackageHooks = [
   {
     category: "Get Started",
     items: [{ href: "/hooks", label: "Installation" }],
@@ -86,7 +86,7 @@ export default function HooksLayout({ children }: { children: React.ReactNode })
               </div>
             </SidebarHeader>
             <SidebarContent>
-              {sidebarLinks.map((category) => (
+              {PackageHooks.map((category) => (
                 <Collapsible key={category.category} defaultOpen className="group/collapsible">
                   <SidebarGroup>
                     <SidebarGroupLabel asChild>

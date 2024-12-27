@@ -6,6 +6,17 @@ import { useScrollPosition } from "@thibault.sh/hooks/useScrollPosition";
 export function ScrollPositionDemo() {
   const { x, y } = useScrollPosition();
 
+  const getScrollProgress = () => {
+    if (typeof window === "undefined") return 0;
+
+    const windowHeight = window?.innerHeight || 0;
+    const documentHeight = document?.documentElement?.scrollHeight || 0;
+
+    return Math.min((y / (documentHeight - windowHeight)) * 100, 100);
+  };
+
+  const scrollProgress = getScrollProgress();
+
   return (
     <Card className="p-6">
       <div className="space-y-6">
@@ -31,17 +42,11 @@ export function ScrollPositionDemo() {
                 <div
                   className="absolute top-0 left-0 h-full bg-orange-500 rounded transition-all"
                   style={{
-                    width: `${Math.min(
-                      (y / (document.documentElement.scrollHeight - window.innerHeight)) * 100,
-                      100
-                    )}%`,
+                    width: `${scrollProgress}%`,
                   }}
                 />
               </div>
-              <div className="text-sm text-muted-foreground">
-                {Math.min(Math.round((y / (document.documentElement.scrollHeight - window.innerHeight)) * 100), 100)}%
-                of page scrolled
-              </div>
+              <div className="text-sm text-muted-foreground">{Math.round(scrollProgress)}% of page scrolled</div>
             </div>
           </div>
 
@@ -54,7 +59,7 @@ export function ScrollPositionDemo() {
                 <div
                   className="absolute top-0 left-0 h-full bg-orange-500 transition-all"
                   style={{
-                    width: `${(x / (1000 - window.innerWidth)) * 100}%`,
+                    width: `${(x / (1000 - (typeof window !== "undefined" ? window.innerWidth : 0))) * 100}%`,
                   }}
                 />
               </div>
@@ -84,6 +89,20 @@ export const demoSource = `import { useScrollPosition } from "@thibault.sh/hooks
 function ScrollPositionDemo() {
   const { x, y } = useScrollPosition();
 
+  const getScrollProgress = () => {
+    if (typeof window === 'undefined') return 0;
+    
+    const windowHeight = window?.innerHeight || 0;
+    const documentHeight = document?.documentElement?.scrollHeight || 0;
+    
+    return Math.min(
+      (y / (documentHeight - windowHeight)) * 100,
+      100
+    );
+  };
+
+  const scrollProgress = getScrollProgress();
+
   return (
     <div className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
@@ -105,18 +124,12 @@ function ScrollPositionDemo() {
             <div
               className="absolute top-0 left-0 h-full bg-orange-500 rounded transition-all"
               style={{
-                width: \`\${Math.min(
-                  (y / (document.documentElement.scrollHeight - window.innerHeight)) * 100,
-                  100
-                )}%\`,
+                width: \`\${scrollProgress}%\`,
               }}
             />
           </div>
           <div className="text-sm text-muted-foreground">
-            {Math.min(
-              Math.round((y / (document.documentElement.scrollHeight - window.innerHeight)) * 100),
-              100
-            )}% of page scrolled
+            {Math.round(scrollProgress)}% of page scrolled
           </div>
         </div>
       </div>

@@ -76,7 +76,9 @@ function SearchExample() {
             ))}
           </ul>
         ) : debouncedSearch ? (
-          <div className="text-sm text-muted-foreground py-8 text-center">No results found for "{debouncedSearch}"</div>
+          <div className="text-sm text-muted-foreground py-8 text-center">
+            No results found for &quot;{debouncedSearch}&quot;
+          </div>
         ) : (
           <div className="text-sm text-muted-foreground py-8 text-center">Start typing to search</div>
         )}

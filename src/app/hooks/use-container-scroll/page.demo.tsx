@@ -57,7 +57,7 @@ export function ContainerScrollDemo() {
 
           {/* Scrollable container */}
           <div
-            ref={containerRef}
+            ref={containerRef as React.RefObject<HTMLDivElement>}
             className="relative h-[300px] overflow-auto border rounded p-4 transition-colors"
             style={{ backgroundColor: isScrolling ? "rgb(255, 247, 237)" : "transparent" }}
           >

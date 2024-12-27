@@ -19,7 +19,7 @@ const fetchUserProfile = async (userId: string) => {
   };
 };
 
-const saveUserSettings = async (settings: { theme: string; notifications: boolean }) => {
+const saveUserSettings = async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   if (Math.random() > 0.8) {
     throw new Error("Failed to save settings");

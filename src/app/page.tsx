@@ -87,7 +87,7 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">View all my projects</span>
               </Button>
-              <Button href="/react-hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
+              <Button href="/hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --react hooks
                 <br />
                 <span className="text-[#858585]">Check out my react hooks collection</span>

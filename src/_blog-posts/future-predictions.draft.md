@@ -1,6 +1,6 @@
 --- 
 title: The future as i see it
-excerpt: My vision for the future from my accelerationist and developer perspective ":" my predictions for technology, society, and human progress.
+excerpt: "Personal predictions about technology, society, and human progress over the next 15 years"
 date: 2025-01-01
 ---
 

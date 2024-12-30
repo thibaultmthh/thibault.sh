@@ -1,6 +1,7 @@
 import { getPosts } from "@/lib/get-blog-by-slug";
 import Link from "next/link";
 import { Metadata } from "next";
+import readingTime from 'reading-time';
 
 export const metadata: Metadata = {
   title: "Blog - Thibault Mathian",
@@ -27,12 +28,16 @@ export default function BlogPage() {
               className="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-orange-500 transition-colors"
             >
               <h2 className="text-xl font-bold text-orange-600 mb-2">{post.title}</h2>
-              <div className="text-gray-500 text-xs mb-3">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+              <div className="text-gray-500 text-xs mb-3 flex gap-2">
+                <span>
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+                <span>•</span>
+                <span>{readingTime(post.content).text}</span>
               </div>
               <p className="text-gray-700 text-sm">{post.excerpt}</p>
             </Link>

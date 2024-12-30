@@ -1,6 +1,7 @@
 import { getPostBySlug, getPosts } from "@/lib/get-blog-by-slug";
 import { markdownToHtml } from "@/lib/markdown-to-html";
 import { Metadata } from "next";
+import readingTime from 'reading-time';
 
 export default async function BlogPostPage({
   params,
@@ -10,6 +11,7 @@ export default async function BlogPostPage({
   }>;
 }) {
   const post = getPostBySlug((await params).slug);
+  const stats = readingTime(post.content);
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono  ">
@@ -17,12 +19,16 @@ export default async function BlogPostPage({
         <article className="bg-gray-50 p-8 rounded-lg border border-gray-200">
           <header className="mb-8">
             <h1 className="text-4xl font-bold text-orange-600 mb-4">{post.title}</h1>
-            <div className="text-gray-500 text-sm">
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+            <div className="text-gray-500 text-sm flex gap-2">
+              <span>
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+              <span>•</span>
+              <span>{stats.text}</span>
             </div>
           </header>
 

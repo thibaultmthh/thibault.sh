@@ -1,7 +1,7 @@
 --- 
 title: The future as i see it
 excerpt: "Personal predictions about technology, society, and human progress over the next 15 years"
-date: 2025-01-01
+date: 2025-01-02
 ---
 
 ## Why I'm Writing This
@@ -83,3 +83,7 @@ In 6 years:
 - If I don't die from an accident, I will live to at least 150 years old thanks to healthcare progress (I need to survive 30 years from now first though)
 
 If war doesn't get in the way, the future looks exciting. And I can't wait to live it!
+
+
+
+*Note: I might add more predictions during January 2025*

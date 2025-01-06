@@ -4,6 +4,7 @@ import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
 import { apps } from "@/config/apps";
 import { PackageHooks } from "@/app/hooks/layout";
+import { tutorials } from "@/config/tutorials";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URL for the website
@@ -35,7 +36,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/tutorials`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
   ];
+
+  // Add all tutorials
+  tutorials.forEach((tutorial) => {
+    routes.push({
+      url: `${baseUrl}/tutorials/${tutorial.id}`,
+      lastModified: new Date(tutorial.date),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  });
 
   // Add all tool pages
   Object.values(tools).forEach((category) => {
@@ -91,7 +108,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   // Add all app pages
-
   apps.forEach((app) => {
     routes.push({
       url: `${baseUrl}${app.path}`,

@@ -1,12 +1,14 @@
 import { hooks } from "@/config/hooks";
 import { tools } from "@/config/tools";
 import { apps } from "@/config/apps";
+import { tutorials } from "@/config/tutorials";
 import Link from "next/link";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import { Card } from "@/components/ui/card";
 import { BoxIcon, Terminal } from "lucide-react";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
+import { PackageHooks } from "@/app/hooks/layout";
 
 export const metadata: Metadata = {
   title: "Sitemap - Thibault Mathian - Freelance Fullstack Developer",
@@ -30,6 +32,27 @@ export default function SitemapPage() {
         </div>
 
         <div className="grid gap-6">
+          {/* Blog Section */}
+          <Card className="p-6 border shadow-sm">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-md bg-red-50">
+                <BoxIcon className="h-5 w-5 text-red-500" />
+              </div>
+              <h2 className="text-2xl font-semibold">Blog Posts</h2>
+            </div>
+            <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {getPosts().map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="block p-4 rounded-lg hover:bg-slate-50 border transition-all hover:border-red-500/50"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Card>
           {/* Tools Section */}
           <Card className="p-6 border shadow-sm">
             <div className="flex items-center gap-3 mb-6">
@@ -54,6 +77,30 @@ export default function SitemapPage() {
           </Card>
 
           {/* Hooks Section */}
+          <Card className="p-6 border shadow-sm">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-md bg-blue-50">
+                <BoxIcon className="h-5 w-5 text-blue-500" />
+              </div>
+              <div>
+                <Link href="/hooks">
+                  <h2 className="text-2xl font-semibold">Package Hooks</h2>
+                </Link>
+              </div>
+            </div>
+            <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {PackageHooks.map((category) => (
+                <li key={category.category}>
+                  <div className="block p-4 rounded-lg border">
+                    {category.category}
+                    <span className="text-sm text-muted-foreground block">{category.items.length} hooks</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Card>
+
+          {/* React Hooks Section */}
           <Card className="p-6 border shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-blue-50">
@@ -97,60 +144,65 @@ export default function SitemapPage() {
             </ul>
           </Card>
 
-          {/* Blog Section */}
+          {/* Tutorials Section */}
           <Card className="p-6 border shadow-sm">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-md bg-red-50">
-                <BoxIcon className="h-5 w-5 text-red-500" />
+              <div className="p-2 rounded-md bg-purple-50">
+                <BoxIcon className="h-5 w-5 text-purple-500" />
               </div>
-              <h2 className="text-2xl font-semibold">Blog Posts</h2>
+              <h2 className="text-2xl font-semibold">Tutorials</h2>
             </div>
             <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {getPosts().map((post) => (
-                <li key={post.slug}>
+              {tutorials.map((tutorial) => (
+                <li key={tutorial.id}>
                   <Link
-                    href={`/blog/${post.slug}`}
-                    className="block p-4 rounded-lg hover:bg-slate-50 border transition-all hover:border-red-500/50"
+                    href={`/tutorials/${tutorial.id}`}
+                    className="block p-4 rounded-lg hover:bg-slate-50 border transition-all hover:border-purple-500/50"
                   >
-                    {post.title}
+                    <div>{tutorial.title}</div>
+                    <div className="text-sm text-muted-foreground mt-1">
+                      <span className="capitalize">{tutorial.category}</span>
+                      {" • "}
+                      <span className="capitalize">{tutorial.difficulty}</span>
+                    </div>
                   </Link>
                 </li>
               ))}
             </ul>
           </Card>
-        </div>
 
-        <div className="mt-12">
-          <div className="text-sm text-gray-500 mb-4">→ cd ..</div>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-orange-500/50 hover:bg-orange-50 transition-colors"
-          >
-            <Terminal className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Link>
-        </div>
-
-        <footer className="mt-16 text-center text-gray-500">
-          <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-            <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" label="My github link" />
-            <SocialLink
-              icon={<LinkedInLogoIcon />}
-              href="https://www.linkedin.com/in/thibault-mathian/"
-              label="My Linkedin link"
-            />
-            <SocialLink
-              icon={<TwitterLogoIcon />}
-              href="https://twitter.com/thibault_mthh"
-              label="My Twitter (X) link"
-            />
+          <div className="mt-12">
+            <div className="text-sm text-gray-500 mb-4">→ cd ..</div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-orange-500/50 hover:bg-orange-50 transition-colors"
+            >
+              <Terminal className="w-4 h-4" />
+              <span>Back to Home</span>
+            </Link>
           </div>
-          <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
-        </footer>
 
-        <div className="mt-12 flex items-center gap-2 text-gray-500">
-          <span>→</span>
-          <div className="w-3 h-6 bg-orange-500/50 animate-pulse" />
+          <footer className="mt-16 text-center text-gray-500">
+            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+              <SocialLink icon={<GitHubLogoIcon />} href="https://github.com/thibaultmthh" label="My github link" />
+              <SocialLink
+                icon={<LinkedInLogoIcon />}
+                href="https://www.linkedin.com/in/thibault-mathian/"
+                label="My Linkedin link"
+              />
+              <SocialLink
+                icon={<TwitterLogoIcon />}
+                href="https://twitter.com/thibault_mthh"
+                label="My Twitter (X) link"
+              />
+            </div>
+            <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
+          </footer>
+
+          <div className="mt-12 flex items-center gap-2 text-gray-500">
+            <span>→</span>
+            <div className="w-3 h-6 bg-orange-500/50 animate-pulse" />
+          </div>
         </div>
       </div>
     </div>

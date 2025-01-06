@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import Footer, { SocialLink } from "@/components/Footer";
+import { tutorials } from "@/config/tutorials";
 
 export const metadata: Metadata = {
   title: "Thibault Mathian - Freelance Fullstack Developer",
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const latestPosts = getPosts().slice(0, 3); // Get only the 3 most recent posts
+  const latestTutorials = tutorials.slice(0, 3); // Get only the 3 most recent tutorials
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">
@@ -82,10 +84,15 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Check out my developer tools</span>
               </Button>
-              <Button href="/projects" icon={<BoxIcon className="size-4" />} variant="secondary">
-                open --projects
+              <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
+                open --blog
                 <br />
-                <span className="text-[#858585]">View all my projects</span>
+                <span className="text-[#858585]">View all my blog posts</span>
+              </Button>
+              <Button href="/tutorials" icon={<BoxIcon className="size-4" />} variant="secondary">
+                open --tutorials
+                <br />
+                <span className="text-[#858585]">Check out my coding tutorials</span>
               </Button>
               <Button href="/hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --react hooks
@@ -178,6 +185,40 @@ export default function Home() {
           <div className="mt-6">
             <Button href="/blog" variant="secondary">
               Read all articles →
+            </Button>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-sm text-gray-500 mb-4">→ latest-tutorials --list</h2>
+          <div className="space-y-4">
+            {latestTutorials.map((tutorial) => (
+              <Link
+                key={tutorial.id}
+                href={`/tutorials/${tutorial.id}`}
+                className="block bg-gray-50 p-6 rounded-lg border border-gray-200 hover:border-orange-500 transition-colors"
+              >
+                <h3 className="text-xl font-bold text-orange-600 mb-2">{tutorial.title}</h3>
+                <div className="flex items-center gap-3 text-gray-500 text-xs mb-3">
+                  <time>
+                    {new Date(tutorial.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <span>•</span>
+                  <span className="capitalize">{tutorial.category}</span>
+                  <span>•</span>
+                  <span className="capitalize">{tutorial.difficulty}</span>
+                </div>
+                <p className="text-gray-700 text-sm">{tutorial.description}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Button href="/tutorials" variant="secondary">
+              View all tutorials →
             </Button>
           </div>
         </section>

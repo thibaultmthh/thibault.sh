@@ -3,8 +3,8 @@ import { tools } from "@/config/tools";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import { MetadataRoute } from "next";
 import { apps } from "@/config/apps";
-import { PackageHooks } from "@/app/hooks/layout";
 import { tutorials } from "@/config/tutorials";
+import { PackageHooks } from "./hooks/packagehooks";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URL for the website

@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { BoxIcon, Terminal } from "lucide-react";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
-import { PackageHooks } from "@/app/hooks/layout";
+import { PackageHooks } from "../hooks/packagehooks";
 
 export const metadata: Metadata = {
   title: "Sitemap - Thibault Mathian - Freelance Fullstack Developer",

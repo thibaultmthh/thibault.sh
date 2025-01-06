@@ -94,7 +94,7 @@ Bob Johnson,35,Chicago`);
 
           <div className="text-sm text-gray-500">
             <p>Parsed {parseResult.data.length} rows</p>
-            <p>Delimiter detected: "{parseResult.meta.delimiter}"</p>
+            <p>Delimiter detected: &quot;{parseResult.meta.delimiter}&quot;</p>
           </div>
         </div>
       )}

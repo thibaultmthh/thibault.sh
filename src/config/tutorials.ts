@@ -9,6 +9,33 @@ export type Tutorial = {
 
 export const tutorials: Tutorial[] = [
   {
+    id: "realtime-chat-websocket-react",
+    title: "Building a Real-time Chat App with WebSocket and React",
+    description:
+      "Learn how to create a real-time chat application using WebSocket, React, and TypeScript with proper state management and error handling",
+    date: "2024-02-01",
+    category: "react",
+    difficulty: "intermediate",
+  },
+  {
+    id: "express-typescript-rest-api",
+    title: "Building a REST API with Express and TypeScript",
+    description:
+      "Learn how to create a type-safe REST API using Express.js and TypeScript with proper error handling and validation",
+    date: "2024-01-31",
+    category: "nodejs",
+    difficulty: "intermediate",
+  },
+  {
+    id: "building-custom-react-hook",
+    title: "Building Your First Custom React Hook",
+    description:
+      "Learn how to create, test, and share your own custom React hooks with practical examples and best practices",
+    date: "2024-01-30",
+    category: "react",
+    difficulty: "intermediate",
+  },
+  {
     id: "nestjs-redis-caching",
     title: "Redis Caching in NestJS: A Practical Guide",
     description: "Learn how to implement efficient caching with Redis in your NestJS applications",

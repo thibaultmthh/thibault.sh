@@ -196,7 +196,7 @@ export default function SitemapPage() {
                 label="My Twitter (X) link"
               />
             </div>
-            <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian</p>
+            <p className="text-sm sm:text-base text-zinc-600">Made with ❤️ by Thibault Mathian </p>
           </footer>
 
           <div className="mt-12 flex items-center gap-2 text-gray-500">

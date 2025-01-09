@@ -17,6 +17,57 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { PackageHooks } from "./packagehooks";
+import { Metadata } from "next";
+import { headers } from "next/headers";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+
+  // Split path and filter out empty strings
+  const segments = pathname.split("/").filter(Boolean);
+
+  // Check if we're in a specific hook path (/hooks/hookId)
+  if (segments.length >= 2 && segments[0] === "hooks") {
+    const hookId = segments[1];
+    // Find the hook in PackageHooks
+    for (const category of PackageHooks) {
+      const hook = category.items.find(item => item.href === `/hooks/${hookId}`);
+      if (hook?.seo) {
+        return {
+          title: hook.seo.title,
+          description: hook.seo.description,
+          keywords: hook.seo.keywords,
+          openGraph: {
+            title: hook.seo.title,
+            description: hook.seo.description,
+            type: "website",
+            url: `https://thibault.sh/hooks/${hookId}`,
+          },
+          alternates: {
+            canonical: `https://thibault.sh/hooks/${hookId}`,
+          },
+        };
+      }
+    }
+  }
+
+  // Default metadata for /hooks page
+  return {
+    title: "@thibault.sh/hooks | React Hooks Package",
+    description: "A collection of performant React hooks for common use cases. Built with TypeScript for reliability and developer experience.",
+    keywords: "React hooks, TypeScript hooks, custom hooks, React development, web development",
+    openGraph: {
+      title: "@thibault.sh/hooks | React Hooks Package",
+      description: "A collection of performant React hooks for common use cases. Built with TypeScript for reliability and developer experience.",
+      type: "website",
+      url: "https://thibault.sh/hooks",
+    },
+    alternates: {
+      canonical: "https://thibault.sh/hooks",
+    },
+  };
+}
 
 export default function HooksLayout({ children }: { children: React.ReactNode }) {
   return (

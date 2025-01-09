@@ -9,6 +9,15 @@ export type Tutorial = {
 
 export const tutorials: Tutorial[] = [
   {
+    id: "graphql-api-typescript",
+    title: "Building a GraphQL API with Node.js and TypeScript",
+    description:
+      "Learn how to create a type-safe GraphQL API using Node.js, TypeScript, and Apollo Server with proper schema design and resolvers",
+    date: "2024-02-02",
+    category: "nodejs",
+    difficulty: "intermediate",
+  },
+  {
     id: "realtime-chat-websocket-react",
     title: "Building a Real-time Chat App with WebSocket and React",
     description:

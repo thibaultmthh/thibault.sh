@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, ExternalLink, Globe, RefreshCw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import triggerGAEvent from "@/lib/triggerGAEvent";
 
 interface FeedItem {
   title: string;
@@ -42,6 +43,7 @@ export default function RSSViewer() {
       setError("Please enter a URL");
       return;
     }
+    triggerGAEvent("rss_viewer", { url });
 
     setLoading(true);
     setError("");
@@ -79,7 +81,13 @@ export default function RSSViewer() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">RSS Feed Viewer</h1>
+      <div className="mb-6 space-y-2">
+        <h1 className="text-3xl font-bold">RSS Feed Viewer</h1>
+        <p className="text-muted-foreground">
+          A modern RSS feed reader that helps you parse and view RSS feeds in a clean, organized format. Perfect for
+          developers, content creators, and RSS enthusiasts.
+        </p>
+      </div>
 
       <Card className="p-6 mb-6">
         <div className="space-y-4">
@@ -197,16 +205,35 @@ export default function RSSViewer() {
         </div>
       </Card>
 
-      <Card className="p-6">
-        <h2 className="font-semibold mb-3">About RSS Feeds</h2>
-        <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>RSS (Really Simple Syndication) is a web feed format for publishing frequently updated content</li>
-          <li>Common uses include blog posts, news articles, and podcast episodes</li>
-          <li>RSS feeds are XML documents that follow a standardized format</li>
-          <li>Feed readers can automatically check for updates and notify users of new content</li>
-          <li>Most RSS feeds use either RSS 2.0 or Atom format</li>
-        </ul>
-      </Card>
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="p-6">
+          <h2 className="font-semibold mb-3">About RSS Feeds</h2>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>RSS (Really Simple Syndication) is a web feed format for publishing frequently updated content</li>
+            <li>Common uses include blog posts, news articles, and podcast episodes</li>
+            <li>RSS feeds are XML documents that follow a standardized format</li>
+            <li>Feed readers can automatically check for updates and notify users of new content</li>
+            <li>Most RSS feeds use either RSS 2.0 or Atom format</li>
+          </ul>
+        </Card>
+
+        <Card className="p-6">
+          <h2 className="font-semibold mb-3">Popular RSS Feed Types</h2>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>News websites and blogs</li>
+            <li>Podcast directories</li>
+            <li>YouTube channels</li>
+            <li>Social media feeds</li>
+            <li>Academic journals and publications</li>
+          </ul>
+          <div className="mt-4 text-sm text-muted-foreground">
+            <p>
+              RSS feeds provide a distraction-free way to follow your favorite content sources without algorithms or
+              advertisements. They&apos;re essential tools for content curation and monitoring.
+            </p>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }

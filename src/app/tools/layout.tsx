@@ -26,6 +26,7 @@ import { getToolMetadata } from "@/lib/get-tool-metadata";
 import Link from "next/link";
 import { CommandMenu } from "../../components/command-menu";
 import Footer from "@/components/Footer";
+import { NewsletterCTA } from "@/components/tools/newsletter-cta";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -130,13 +131,14 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
                 ))}
               </SidebarContent>
             </Sidebar>
-            <SidebarInset className="flex-1 flex flex-col">
+            <SidebarInset className="flex-1 flex flex-col pb-4">
               <div className="p-3 flex-1">
                 <div className="flex mb-4 items-center">
                   <SidebarTrigger className="mr-2 hover:text-orange-500 transition-colors" />
                   <ToolsBreadcrumb />
                 </div>
                 <div className="p-2 flex-1 overflow-auto">{children}</div>
+                <NewsletterCTA />
               </div>
               <Footer />
             </SidebarInset>

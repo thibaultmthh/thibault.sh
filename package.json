@@ -52,7 +52,7 @@
     "mathjs": "^13.2.0",
     "next": "15.0.2",
     "nodemailer": "^6.10.0",
-    "papaparse": "^5.4.1",
+    "papaparse": "^5.5.1",
     "prettier": "^3.4.2",
     "qrcode.react": "^4.1.0",
     "react": "19.0.0",

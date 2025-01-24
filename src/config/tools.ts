@@ -130,7 +130,7 @@ export const tools = {
         seo: {
           title: "Hash Generator - Generate Various Hash Values Online",
           description:
-            "Generate various hash values online with this free tool. Create secure hash values for your data. Perfect for developers and content creators.",
+            "Generate various hash values online with this free tool. Create secure hash values for your data. Perfect for developers.",
           keywords: "hash generator, hash values, secure hash, online tool, content creation",
         },
       },

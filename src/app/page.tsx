@@ -11,6 +11,7 @@ import Link from "next/link";
 import { getPosts } from "@/lib/get-blog-by-slug";
 import Footer, { SocialLink } from "@/components/Footer";
 import { tutorials } from "@/config/tutorials";
+import ASCIIBackground from "@/components/ASCIIBackground";
 
 export const metadata: Metadata = {
   title: "Thibault Mathian - Freelance Fullstack Developer",
@@ -34,7 +35,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">
-      <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
+      <ASCIIBackground />
+      <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12 z-10">
         <div className="flex items-center gap-2 mb-8 text-orange-500">
           <Terminal className="w-5 h-5" />
           <span className="text-sm">thibault.sh ~ main</span>
@@ -111,6 +113,16 @@ export default function Home() {
         <section className="mb-12">
           <h2 className="text-sm text-gray-500 mb-4">→ featured-projects --list</h2>
           <div className="space-y-8">
+            <CardSpotlight
+              title="Pokeforge"
+              year="2024"
+              status="Finished"
+              link="https://pokeforge.com"
+              description="Pokeforge transforms your favorite Pokémon TCG Pocket cards into beautiful wallpapers. "
+              type="personal"
+              projectType="app"
+              techs={["Next.js", "React", "TypeScript", "Tailwind CSS"]}
+            />
             <CardSpotlight
               title="Elevora"
               year="2024"

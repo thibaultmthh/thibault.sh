@@ -40,9 +40,9 @@ export default function CardSpotlight({
   description,
   type,
   projectType,
-  myImplication,
+  // myImplication,
   moreInfo,
-  techs,
+  // techs,
 }: CardSpotlightProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -79,7 +79,7 @@ export default function CardSpotlight({
 
       <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
 
-      {techs && (
+      {/* {techs && (
         <div className="mb-4">
           <div className="text-sm text-gray-500 mb-2">$ tech --list</div>
           <div className="flex flex-wrap gap-2">
@@ -90,9 +90,9 @@ export default function CardSpotlight({
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
-      {type === "client" && myImplication && (
+      {/* {type === "client" && myImplication && (
         <div className="mb-4">
           <div className="text-sm text-gray-500 mb-2">$ contribution --details</div>
           <ul className="text-sm space-y-1">
@@ -104,7 +104,7 @@ export default function CardSpotlight({
             ))}
           </ul>
         </div>
-      )}
+      )} */}
 
       <div className="flex justify-end space-x-2 items-center mt-auto">
         <motion.div whileHover={{ translateX: 10 }} transition={{ type: "spring", stiffness: 400, damping: 100 }}>

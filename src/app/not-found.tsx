@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import ASCIIBackground from "@/components/ASCIIBackground";
 
 export default function NotFound() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function NotFound() {
 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono">
+      <ASCIIBackground strong />
       <div className="relative max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex items-center gap-2 mb-8 text-orange-500">
           <Terminal className="w-5 h-5" />

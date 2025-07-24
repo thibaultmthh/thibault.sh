@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { useLocalStorageState } from "@thibault.sh/hooks/useLocalStorageState";
+import { createContext, useContext } from "react";
 
 type FavoritesContextType = {
   favorites: string[];
@@ -11,20 +12,12 @@ type FavoritesContextType = {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export function FavoritesProvider({ children }: { children: React.ReactNode }) {
-  const [favorites, setFavorites] = useState<string[]>([]);
-
-  useEffect(() => {
-    // Load favorites from localStorage on client-side only
-    const stored = localStorage.getItem("toolbox-favorites");
-    if (stored) {
-      setFavorites(JSON.parse(stored));
-    }
-  }, []);
+  const [favorites, setFavorites] = useLocalStorageState<string[]>("toolbox-favorites", []);
 
   const toggleFavorite = (toolId: string) => {
     setFavorites((prev) => {
       const newFavorites = prev.includes(toolId) ? prev.filter((id) => id !== toolId) : [...prev, toolId];
-      localStorage.setItem("toolbox-favorites", JSON.stringify(newFavorites));
+      setFavorites(newFavorites);
       return newFavorites;
     });
   };

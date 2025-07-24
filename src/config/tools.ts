@@ -386,6 +386,31 @@ export const tools = {
           keywords: "http status codes, http codes, status codes, http reference, web development, http protocol",
         },
       },
+      {
+        id: "sql-formatter",
+        name: "SQL Formatter",
+        description: "Format and beautify SQL queries",
+        path: "/tools/dev/sql-formatter",
+        seo: {
+          title: "SQL Formatter - Format and Beautify SQL Queries Online",
+          description:
+            "Format and beautify SQL queries online with this free tool. Make your SQL code readable and properly indented. Perfect for developers and database administrators.",
+          keywords: "sql formatter, sql beautifier, format sql, sql query formatter, database tools, sql indenter",
+        },
+      },
+      {
+        id: "yaml-json-converter",
+        name: "YAML ⇄ JSON Converter",
+        description: "Convert between YAML and JSON formats",
+        path: "/tools/dev/yaml-json-converter",
+        seo: {
+          title: "YAML to JSON Converter - Convert Between YAML and JSON Online",
+          description:
+            "Free online tool to convert between YAML and JSON formats. Perfect for configuration files, CI/CD pipelines, and data transformation. Supports validation and formatting.",
+          keywords:
+            "yaml to json, json to yaml, yaml converter, json converter, configuration files, docker compose, kubernetes",
+        },
+      },
     ],
   },
   "Design Tools": {
@@ -652,6 +677,31 @@ export const tools = {
           description:
             "Check your screen resolution, viewport size, and display properties. Perfect for developers and designers testing responsive layouts.",
           keywords: "screen resolution checker, display properties, viewport size, screen dimensions, dpi checker",
+        },
+      },
+      {
+        id: "timezone-converter",
+        name: "Timezone Converter",
+        description: "Compare time across multiple timezones and cities",
+        path: "/tools/utilities/timezone-converter",
+        seo: {
+          title: "Timezone Converter - Compare Time Across Multiple Timezones",
+          description:
+            "Visual timezone converter to compare current time across multiple cities and timezones worldwide. Perfect for scheduling meetings and coordinating across time zones.",
+          keywords: "timezone converter, world clock, time zones, utc converter, meeting scheduler, time comparison",
+        },
+      },
+      {
+        id: "data-size-converter",
+        name: "Data Size Converter",
+        description: "Convert between bytes, KB, MB, GB, TB and more",
+        path: "/tools/utilities/data-size-converter",
+        seo: {
+          title: "Data Size Converter - Convert Between Bytes, KB, MB, GB, TB",
+          description:
+            "Free online tool to convert between different data size units: bytes, kilobytes, megabytes, gigabytes, terabytes. Supports both binary and decimal calculations.",
+          keywords:
+            "data size converter, bytes converter, mb to gb, file size calculator, storage converter, binary decimal",
         },
       },
     ],

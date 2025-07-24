@@ -114,16 +114,6 @@ export default function Home() {
           <h2 className="text-sm text-gray-500 mb-4">→ featured-projects --list</h2>
           <div className="space-y-8">
             <CardSpotlight
-              title="Pokeforge"
-              year="2024"
-              status="Finished"
-              link="https://pokeforge.com"
-              description="Pokeforge transforms your favorite Pokémon TCG Pocket cards into beautiful wallpapers. "
-              type="personal"
-              projectType="app"
-              techs={["Next.js", "React", "TypeScript", "Tailwind CSS"]}
-            />
-            <CardSpotlight
               title="Elevora"
               year="2024"
               status="In Progress"
@@ -154,6 +144,16 @@ export default function Home() {
               projectType="app"
               myImplication="Built React frontend with Web3 integration, contributed to NestJS backend."
               techs={["Next.js", "React", "TypeScript", "web3", "GraphQL"]}
+            />
+            <CardSpotlight
+              title="Pokeforge"
+              year="2024"
+              status="Finished"
+              link="https://pokeforge.com"
+              description="Pokeforge transforms your favorite Pokémon TCG Pocket cards into beautiful wallpapers. "
+              type="personal"
+              projectType="app"
+              techs={["Next.js", "React", "TypeScript", "Tailwind CSS"]}
             />
             <CardSpotlight
               title="Parakeet"

@@ -20,7 +20,7 @@ const calculateNextDates = (cronExpression: string, count: number = 5): NextDate
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const interval = parser.parseExpression(cronExpression);
+    const interval = parser.parse(cronExpression);
 
     for (let i = 0; i < count; i++) {
       const next = interval.next().toDate();
@@ -74,7 +74,7 @@ export default function CronDebugger() {
   const validateAndParse = (expression: string) => {
     try {
       // Try to parse with cron-parser first to validate
-      parser.parseExpression(expression);
+      parser.parse(expression);
 
       // If valid, get human readable version using cronstrue
       const readable = cronstrue.toString(expression);

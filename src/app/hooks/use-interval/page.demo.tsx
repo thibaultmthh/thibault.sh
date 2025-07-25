@@ -31,10 +31,10 @@ function CounterExample() {
         <div className="text-4xl font-mono text-center mb-6 tabular-nums">{count}</div>
 
         <div className="flex gap-4 justify-center">
-          <Button variant={delay === null ? "default" : "outline-solid"} onClick={handlePause} disabled={delay === null}>
+          <Button variant={delay === null ? "default" : "outline"} onClick={handlePause} disabled={delay === null}>
             Pause
           </Button>
-          <Button variant={delay !== null ? "outline-solid" : "default"} onClick={handleResume} disabled={delay !== null}>
+          <Button variant={delay !== null ? "outline" : "default"} onClick={handleResume} disabled={delay !== null}>
             Resume
           </Button>
         </div>

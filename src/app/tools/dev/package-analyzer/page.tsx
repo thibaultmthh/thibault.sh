@@ -359,7 +359,7 @@ export default function PackageAnalyzer() {
         children: `Minor update: ${versionInfo.latest}`,
       },
       patch: {
-        variant: "outline-solid" as const,
+        variant: "outline" as const,
         children: `Patch: ${versionInfo.latest}`,
       },
       error: {
@@ -425,7 +425,7 @@ export default function PackageAnalyzer() {
     }: {
       type: VersionDiff["type"];
       count: number;
-      variant: "destructive" | "warning" | "outline-solid" | "secondary";
+      variant: "destructive" | "warning" | "outline" | "secondary";
     }) => (
       <Badge
         variant={variant}

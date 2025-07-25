@@ -16,7 +16,7 @@ function ScrollTracker() {
   const { x, y } = useScrollPosition();
   
   return (
-    <div className="fixed bottom-4 right-4 p-4 bg-white shadow rounded">
+    <div className="fixed bottom-4 right-4 p-4 bg-white shadow-sm rounded">
       <div>Scroll X: {Math.round(x)}px</div>
       <div>Scroll Y: {Math.round(y)}px</div>
     </div>

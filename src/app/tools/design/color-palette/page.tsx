@@ -142,7 +142,7 @@ export default function ColorPalette() {
               <h2 className="text-lg font-semibold mb-4">Extracted Colors</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {colors.map((color, index) => (
-                  <div key={index} className="rounded-lg overflow-hidden shadow-sm">
+                  <div key={index} className="rounded-lg overflow-hidden shadow-xs">
                     <div className="h-16 w-full" style={{ backgroundColor: color.hex }} />
                     <div className="p-3 bg-card border-t">
                       <div className="flex justify-between items-center mb-1">

@@ -136,7 +136,7 @@ background-size: ${spacing * 2}px ${spacing * 2}px;`;
       <h1 className="text-3xl font-bold mb-4">Pattern Generator</h1>
 
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr,1.5fr] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6">
           {/* Controls */}
           <Card className="p-6 space-y-6">
             <div className="space-y-2">

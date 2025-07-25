@@ -38,7 +38,7 @@ function AnimatedCard({ index }: { index: number }) {
   return (
     <div
       ref={cardRef}
-      className="p-6 rounded-lg border bg-gradient-to-br from-orange-50 to-orange-100"
+      className="p-6 rounded-lg border bg-linear-to-br from-orange-50 to-orange-100"
       style={{
         transform: `translateY(${isVisible ? 0 : 20}px)`,
         opacity: isVisible ? 1 : 0,

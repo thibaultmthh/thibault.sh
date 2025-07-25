@@ -75,8 +75,8 @@ function MouseExample() {
         {isHovering && (
           <>
             {/* Crosshair */}
-            <div className="absolute w-full h-[1px] bg-orange-500/20" style={{ top: position.y }} />
-            <div className="absolute w-[1px] h-full bg-orange-500/20" style={{ left: position.x }} />
+            <div className="absolute w-full h-px bg-orange-500/20" style={{ top: position.y }} />
+            <div className="absolute w-px h-full bg-orange-500/20" style={{ left: position.x }} />
             {/* Cursor dot */}
             <div
               className="absolute w-3 h-3 rounded-full bg-orange-500"

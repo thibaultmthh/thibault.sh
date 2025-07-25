@@ -101,7 +101,7 @@ export function CategoryPageClient({ categoryName, categoryPath }: CategoryPageC
                 <Link href={tool.path} className="block">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-lg font-medium pr-2">{tool.name}</h3>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </div>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{tool.description}</p>
                   <div className="flex items-center justify-between">

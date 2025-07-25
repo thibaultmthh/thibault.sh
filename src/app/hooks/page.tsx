@@ -33,7 +33,7 @@ export default function HooksDocumentation() {
             definitions.
           </p>
         </div>
-        <Card className="p-8 space-y-6 bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <Card className="p-8 space-y-6 bg-card/50 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
           <div>
             <h3 className="font-semibold text-base mb-3">1. Install the package</h3>
             <CodeBlock code="npm install @thibault.sh/hooks" language="bash" />
@@ -67,7 +67,7 @@ function App() {
             seamless integration with your existing React applications.
           </p>
         </div>
-        <Card className="p-8 bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <Card className="p-8 bg-card/50 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
           <ul className="grid md:grid-cols-2 gap-6">
             <li className="flex items-start gap-3">
               <span className="text-primary text-base">✓</span>

@@ -1,6 +1,157 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility prose {
+  /* Blog post styling */
+  @apply text-gray-700 text-base leading-relaxed font-[system-ui,-apple-system,sans-serif];
+
+  & h2 {
+    @apply text-2xl font-semibold text-orange-600 mt-6 mb-2 font-mono;
+  }
+
+  & h3 {
+    @apply text-lg font-semibold text-orange-500 mt-4 -mb-1 font-mono;
+  }
+
+  & p {
+    @apply mb-4 leading-relaxed max-w-[70ch];
+  }
+
+  & a {
+    @apply text-orange-600 hover:text-orange-700 transition-colors underline decoration-orange-200 hover:decoration-orange-400;
+  }
+
+  & ul {
+    @apply my-4 ml-6 space-y-2;
+  }
+
+  & ol {
+    @apply my-4 ml-6 space-y-2;
+  }
+
+  & li {
+    @apply mb-1 max-w-[70ch];
+  }
+
+  & blockquote {
+    @apply border-l-4 border-orange-500 pl-4 my-4 italic text-gray-600;
+  }
+
+  & pre {
+    @apply p-4 rounded-lg my-4 bg-gray-50 text-sm;
+  }
+
+  & code {
+    @apply px-1.5 py-0.5 rounded text-sm bg-gray-50 text-gray-800 font-mono;
+  }
+
+  & pre code {
+    @apply p-0 bg-transparent;
+  }
+
+  /* Improved spacing between elements */
+  & > * + * {
+    @apply mt-2;
+  }
+
+  /* Better list markers */
+  & ul {
+    @apply list-disc marker:text-orange-400;
+  }
+
+  & ol {
+    @apply list-decimal marker:text-orange-400;
+  }
+
+  /* Video and details element styling */
+  & details {
+    @apply my-4 rounded-lg border border-gray-200 bg-gray-50 overflow-hidden;
+  }
+
+  & details summary {
+    @apply p-2 cursor-pointer flex items-center gap-2 text-gray-700 hover:bg-gray-100 transition-colors;
+  }
+
+  & details summary svg {
+    @apply text-orange-600;
+  }
+
+  & details video {
+    @apply w-full max-h-[640px] bg-black;
+  }
+
+  & details[open] summary {
+    @apply border-b border-gray-200;
+  }
+}
 
 @layer base {
   :root {
@@ -97,89 +248,8 @@
   }
 }
 
-.shiki {
-  @apply p-3;
-}
-
-@layer components {
-  /* Blog post styling */
-  .prose {
-    @apply text-gray-700 text-base leading-relaxed font-[system-ui,-apple-system,sans-serif];
-  }
-
-  .prose h2 {
-    @apply text-2xl font-semibold text-orange-600 mt-6 mb-2 font-mono;
-  }
-
-  .prose h3 {
-    @apply text-lg font-semibold text-orange-500 mt-4 -mb-1 font-mono;
-  }
-
-  .prose p {
-    @apply mb-4 leading-relaxed max-w-[70ch];
-  }
-
-  .prose a {
-    @apply text-orange-600 hover:text-orange-700 transition-colors underline decoration-orange-200 hover:decoration-orange-400;
-  }
-
-  .prose ul,
-  .prose ol {
-    @apply my-4 ml-6 space-y-2;
-  }
-
-  .prose li {
-    @apply mb-1 max-w-[70ch];
-  }
-
-  .prose blockquote {
-    @apply border-l-4 border-orange-500 pl-4 my-4 italic text-gray-600;
-  }
-
-  .prose pre {
-    @apply p-4 rounded-lg my-4 bg-gray-50 text-sm;
-  }
-
-  .prose code {
-    @apply px-1.5 py-0.5 rounded text-sm bg-gray-50 text-gray-800 font-mono;
-  }
-
-  .prose pre code {
-    @apply p-0 bg-transparent;
-  }
-
-  /* Improved spacing between elements */
-  .prose > * + * {
-    @apply mt-2;
-  }
-
-  /* Better list markers */
-  .prose ul {
-    @apply list-disc marker:text-orange-400;
-  }
-
-  .prose ol {
-    @apply list-decimal marker:text-orange-400;
-  }
-
-  /* Video and details element styling */
-  .prose details {
-    @apply my-4 rounded-lg border border-gray-200 bg-gray-50 overflow-hidden;
-  }
-
-  .prose details summary {
-    @apply p-2 cursor-pointer flex items-center gap-2 text-gray-700 hover:bg-gray-100 transition-colors;
-  }
-
-  .prose details summary svg {
-    @apply text-orange-600;
-  }
-
-  .prose details video {
-    @apply w-full max-h-[640px] bg-black;
-  }
-
-  .prose details[open] summary {
-    @apply border-b border-gray-200;
+@layer utilities {
+  .shiki {
+    @apply p-3;
   }
 }

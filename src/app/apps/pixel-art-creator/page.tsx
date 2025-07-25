@@ -103,7 +103,7 @@ export default function PixelArtCreator() {
         <p className="text-gray-600">Create pixel art with a simple grid-based drawing tool.</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[1fr,2fr]">
+      <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
         <Card className="p-6 space-y-4">
           <div>
             <Label htmlFor="gridSize">Grid Size</Label>
@@ -129,7 +129,7 @@ export default function PixelArtCreator() {
 
           <div className="flex gap-2">
             <Button
-              variant={isErasing ? "destructive" : "outline"}
+              variant={isErasing ? "destructive" : "outline-solid"}
               onClick={() => setIsErasing(!isErasing)}
             >
               <Eraser className="w-4 h-4 mr-2" />

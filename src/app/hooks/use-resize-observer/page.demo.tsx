@@ -80,7 +80,7 @@ function ResponsiveGrid() {
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}
-            className="aspect-square rounded-lg bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center font-medium text-orange-600"
+            className="aspect-square rounded-lg bg-linear-to-br from-orange-100 to-orange-200 flex items-center justify-center font-medium text-orange-600"
           >
             {i + 1}
           </div>

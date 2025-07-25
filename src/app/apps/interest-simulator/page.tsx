@@ -77,7 +77,7 @@ export default function InterestSimulator() {
         <p className="text-gray-600">Visualize how your investments could grow over time with compound interest.</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[1fr,2fr]">
+      <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
         <Card className="p-6 space-y-4">
           <div>
             <Label htmlFor="initial">Initial Investment ($)</Label>

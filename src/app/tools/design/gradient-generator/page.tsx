@@ -142,7 +142,7 @@ export default function GradientGenerator() {
 
               <div className="space-y-4">
                 {colors.map((color, index) => (
-                  <div key={index} className="grid grid-cols-[1fr,2fr,auto] gap-4 items-center">
+                  <div key={index} className="grid grid-cols-[1fr_2fr_auto] gap-4 items-center">
                     <Input type="color" value={color.color} onChange={(e) => updateColor(index, e.target.value)} />
                     <Slider
                       value={[color.position]}

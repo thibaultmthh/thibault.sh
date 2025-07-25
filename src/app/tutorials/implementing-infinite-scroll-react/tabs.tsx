@@ -55,7 +55,7 @@ export default function InfiniteScrollDemo() {
       <h3 className="text-lg font-semibold mb-4">Interactive Demo</h3>
       <div className="space-y-4 max-h-[300px] overflow-y-auto">
         {items.map((item) => (
-          <div key={item.id} className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div key={item.id} className="p-4 bg-white rounded-lg shadow-xs hover:shadow-md transition-shadow">
             <h4 className="font-medium text-orange-600">{item.title}</h4>
             <p className="text-sm text-gray-600">{item.description}</p>
           </div>

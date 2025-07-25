@@ -53,7 +53,7 @@ export function ElementSizeDemo() {
         {/* Resizable container */}
         <div
           ref={elementRef}
-          className="resize-x overflow-hidden border rounded bg-gradient-to-br from-orange-50 to-orange-100 min-h-[400px]"
+          className="resize-x overflow-hidden border rounded bg-linear-to-br from-orange-50 to-orange-100 min-h-[400px]"
           style={{ maxWidth: "100%" }}
         >
           <div className="p-6 space-y-6">
@@ -100,15 +100,15 @@ export function ElementSizeDemo() {
 
             {/* Responsive metrics */}
             <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${gridColumns}, 1fr)` }}>
-              <div className="p-4 rounded bg-white/50 backdrop-blur-sm">
+              <div className="p-4 rounded bg-white/50 backdrop-blur-xs">
                 <div className="text-sm font-medium text-orange-600">Grid Columns</div>
                 <div className="text-2xl font-bold">{gridColumns}</div>
               </div>
-              <div className="p-4 rounded bg-white/50 backdrop-blur-sm">
+              <div className="p-4 rounded bg-white/50 backdrop-blur-xs">
                 <div className="text-sm font-medium text-orange-600">Scale</div>
                 <div className="text-2xl font-bold">{imageScale.toFixed(2)}</div>
               </div>
-              <div className="p-4 rounded bg-white/50 backdrop-blur-sm">
+              <div className="p-4 rounded bg-white/50 backdrop-blur-xs">
                 <div className="text-sm font-medium text-orange-600">Opacity</div>
                 <div className="text-2xl font-bold">{textOpacity.toFixed(2)}</div>
               </div>

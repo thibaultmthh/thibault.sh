@@ -167,7 +167,7 @@ export default function UnitConverter() {
             </Select>
           </div>
 
-          <div className="grid grid-cols-[1fr,auto,1fr] gap-4 items-start mb-6">
+          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-start mb-6">
             {/* From Unit */}
             <div className="space-y-4">
               <div>

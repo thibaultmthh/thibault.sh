@@ -129,7 +129,7 @@ export default function CronDebugger() {
           {humanReadable && (
             <Card className="p-4 mb-6 bg-muted">
               <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 mt-1 flex-shrink-0" />
+                <Info className="h-4 w-4 mt-1 shrink-0" />
                 <p className="text-sm">{humanReadable}</p>
               </div>
             </Card>

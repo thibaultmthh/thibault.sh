@@ -311,19 +311,19 @@ export default function Game2048() {
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-bold text-lg text-gray-800 mb-2">Milestones to Aim For</h3>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white p-3 rounded-md shadow-sm">
+              <div className="bg-white p-3 rounded-md shadow-xs">
                 <div className="font-bold text-orange-500">Beginner</div>
                 <p>Reach tile 256</p>
               </div>
-              <div className="bg-white p-3 rounded-md shadow-sm">
+              <div className="bg-white p-3 rounded-md shadow-xs">
                 <div className="font-bold text-orange-600">Intermediate</div>
                 <p>Reach tile 512</p>
               </div>
-              <div className="bg-white p-3 rounded-md shadow-sm">
+              <div className="bg-white p-3 rounded-md shadow-xs">
                 <div className="font-bold text-orange-700">Advanced</div>
                 <p>Reach tile 1024</p>
               </div>
-              <div className="bg-white p-3 rounded-md shadow-sm">
+              <div className="bg-white p-3 rounded-md shadow-xs">
                 <div className="font-bold text-orange-800">Expert</div>
                 <p>Reach tile 2048</p>
               </div>

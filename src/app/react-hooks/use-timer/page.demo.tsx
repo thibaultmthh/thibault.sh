@@ -37,7 +37,7 @@ export function Demo() {
     <div className="space-y-6">
       <div className="flex gap-4">
         <Button
-          variant={timerType === "stopwatch" ? "default" : "outline"}
+          variant={timerType === "stopwatch" ? "default" : "outline-solid"}
           onClick={() => {
             setTimerType("stopwatch");
             stopwatch.reset();
@@ -46,7 +46,7 @@ export function Demo() {
           Stopwatch (30s limit)
         </Button>
         <Button
-          variant={timerType === "countdown" ? "default" : "outline"}
+          variant={timerType === "countdown" ? "default" : "outline-solid"}
           onClick={() => {
             setTimerType("countdown");
             countdown.reset();

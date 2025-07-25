@@ -67,7 +67,7 @@ export default function DecisionWheel() {
         <p className="text-gray-600">Add options and spin the wheel to make a random decision.</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
+      <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
         {/* Wheel Section */}
         <Card className="p-6 flex items-center justify-center">
           <div className="relative w-[300px] h-[300px]">

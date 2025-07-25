@@ -36,7 +36,7 @@ export function NewsletterCTA() {
   return (
     <div className="mt-8 space-y-4">
       {/* Hire Me Section */}
-      <Card className="p-6 border-2 border-dashed border-orange-200 bg-gradient-to-r from-orange-50/50 to-amber-50/50 hover:border-orange-300 transition-colors">
+      <Card className="p-6 border-2 border-dashed border-orange-200 bg-linear-to-r from-orange-50/50 to-amber-50/50 hover:border-orange-300 transition-colors">
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-2">
             <Sparkles className="w-5 h-5 text-orange-500" />
@@ -88,7 +88,7 @@ export function NewsletterCTA() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-300 bg-white placeholder:text-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 focus:outline-none transition-colors"
+                className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-300 bg-white placeholder:text-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 focus:outline-hidden transition-colors"
                 required
                 disabled={status === "loading" || status === "success"}
               />

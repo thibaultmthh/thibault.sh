@@ -24,7 +24,7 @@ export function Demo() {
             type="text"
             value={value}
             onChange={handleInputChange}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           />
           <Button onClick={reset} variant="outline">
             Reset

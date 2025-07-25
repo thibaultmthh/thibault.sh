@@ -11,7 +11,7 @@ export default function AppsLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="relative min-h-screen bg-white text-gray-800 font-mono flex flex-col">
       {/* Minimal Header */}
-      <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur-sm supports-backdrop-filter:bg-white/60">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <Link href="/apps" className="flex items-center gap-2 text-sm hover:text-orange-500 transition-colors w-fit">
             {pathname !== "/apps" && <ArrowLeft className="w-4 h-4" />}

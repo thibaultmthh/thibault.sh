@@ -33,7 +33,7 @@ export default function SitemapPage() {
 
         <div className="grid gap-6">
           {/* Blog Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-red-50">
                 <BoxIcon className="h-5 w-5 text-red-500" />
@@ -54,7 +54,7 @@ export default function SitemapPage() {
             </ul>
           </Card>
           {/* Tools Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-orange-50">
                 <BoxIcon className="h-5 w-5 text-orange-500" />
@@ -77,7 +77,7 @@ export default function SitemapPage() {
           </Card>
 
           {/* Hooks Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-blue-50">
                 <BoxIcon className="h-5 w-5 text-blue-500" />
@@ -101,7 +101,7 @@ export default function SitemapPage() {
           </Card>
 
           {/* React Hooks Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-blue-50">
                 <BoxIcon className="h-5 w-5 text-blue-500" />
@@ -123,7 +123,7 @@ export default function SitemapPage() {
           </Card>
 
           {/* Apps Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-green-50">
                 <BoxIcon className="h-5 w-5 text-green-500" />
@@ -145,7 +145,7 @@ export default function SitemapPage() {
           </Card>
 
           {/* Tutorials Section */}
-          <Card className="p-6 border shadow-sm">
+          <Card className="p-6 border shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 rounded-md bg-purple-50">
                 <BoxIcon className="h-5 w-5 text-purple-500" />

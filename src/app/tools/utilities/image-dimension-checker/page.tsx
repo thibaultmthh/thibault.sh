@@ -184,7 +184,7 @@ export default function ImageDimensionChecker() {
         {/* Full-size Preview Modal */}
         {isPreviewExpanded && imageInfo && (
           <div
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-background/80 backdrop-blur-xs z-50 flex items-center justify-center p-4"
             onClick={() => setIsPreviewExpanded(false)}
           >
             <div className="relative w-full max-w-4xl max-h-[90vh] rounded-lg overflow-hidden">

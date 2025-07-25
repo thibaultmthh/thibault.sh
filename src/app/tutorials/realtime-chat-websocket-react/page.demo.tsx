@@ -184,7 +184,7 @@ export default function ChatDemo() {
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type a message..."
-              className="flex-1 resize-none rounded-lg border p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="flex-1 resize-none rounded-lg border p-2 focus:outline-hidden focus:ring-2 focus:ring-orange-500"
               rows={1}
               disabled={status !== "connected"}
             />

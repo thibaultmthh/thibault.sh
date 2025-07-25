@@ -120,7 +120,7 @@ export default function TierListMaker() {
           {tiers.map((tier, index) => (
             <div
               key={tier.label}
-              className="flex mb-3 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200/50"
+              className="flex mb-3 bg-white rounded-xl shadow-xs overflow-hidden border border-gray-200/50"
             >
               <div className={`w-20 flex items-center justify-center font-bold text-white ${tier.color} text-2xl`}>
                 {tier.label}
@@ -134,7 +134,7 @@ export default function TierListMaker() {
                 {tier.items.map((item) => (
                   <div
                     key={item.id}
-                    className="w-20 h-20 relative cursor-move rounded-lg overflow-hidden shadow-sm
+                    className="w-20 h-20 relative cursor-move rounded-lg overflow-hidden shadow-xs
                               transition-all hover:scale-105 hover:shadow-md active:scale-95"
                     draggable
                     onDragStart={(e) => handleDragStart(e, item)}
@@ -149,7 +149,7 @@ export default function TierListMaker() {
 
         {/* Right side - Upload and Image Pool */}
         <div className="w-full md:w-80 space-y-4">
-          <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200/50">
+          <div className="p-4 bg-white rounded-xl shadow-xs border border-gray-200/50">
             <label className="block mb-3 text-sm font-medium text-gray-700">Upload Images</label>
             <input
               type="file"
@@ -167,7 +167,7 @@ export default function TierListMaker() {
           </div>
 
           <div
-            className="p-4 bg-white rounded-xl shadow-sm border border-gray-200/50"
+            className="p-4 bg-white rounded-xl shadow-xs border border-gray-200/50"
             onDrop={handleDropToPool}
             onDragOver={handleDragOver}
           >
@@ -179,7 +179,7 @@ export default function TierListMaker() {
               {images.map((image) => (
                 <div
                   key={image.id}
-                  className="w-20 h-20 relative cursor-move rounded-lg overflow-hidden shadow-sm
+                  className="w-20 h-20 relative cursor-move rounded-lg overflow-hidden shadow-xs
                             transition-all hover:scale-105 hover:shadow-md active:scale-95"
                   draggable
                   onDragStart={(e) => handleDragStart(e, image)}

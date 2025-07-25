@@ -35,7 +35,7 @@ export default async function Hooks() {
           const IconComponent = IconMap[icon as IconName] || IconMap.lock;
 
           return (
-            <Card key={category} className="p-6 border shadow-sm">
+            <Card key={category} className="p-6 border shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-md bg-orange-50">
                   <IconComponent className="h-5 w-5 text-orange-500" />

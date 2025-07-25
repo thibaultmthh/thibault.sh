@@ -9,8 +9,8 @@ import { Download, Eraser, Square } from "lucide-react";
 
 export default function PixelArtCreator() {
   const [gridSize, setGridSize] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return Number(localStorage.getItem('pixelArt_gridSize')) || 32;
+    if (typeof window !== "undefined") {
+      return Number(localStorage.getItem("pixelArt_gridSize")) || 32;
     }
     return 32;
   });
@@ -21,19 +21,19 @@ export default function PixelArtCreator() {
   const saveToLocalStorage = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
-    localStorage.setItem('pixelArt_gridSize', gridSize.toString());
-    localStorage.setItem('pixelArt_canvas', canvas.toDataURL());
+
+    localStorage.setItem("pixelArt_gridSize", gridSize.toString());
+    localStorage.setItem("pixelArt_canvas", canvas.toDataURL());
   };
 
   const loadFromLocalStorage = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const savedCanvas = localStorage.getItem('pixelArt_canvas');
+    const savedCanvas = localStorage.getItem("pixelArt_canvas");
     if (savedCanvas) {
       const img = new Image();
       img.onload = () => {
@@ -60,9 +60,9 @@ export default function PixelArtCreator() {
     const pixelSize = Math.floor(canvas.width / gridSize);
     const pixelX = Math.floor(x / pixelSize) * pixelSize;
     const pixelY = Math.floor(y / pixelSize) * pixelSize;
-    
+
     ctx.clearRect(pixelX, pixelY, pixelSize, pixelSize);
-    
+
     ctx.fillStyle = isErasing ? "#ffffff" : color;
     ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize);
 
@@ -88,12 +88,12 @@ export default function PixelArtCreator() {
 
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     saveToLocalStorage();
   };
 
   useEffect(() => {
-    localStorage.setItem('pixelArt_gridSize', gridSize.toString());
+    localStorage.setItem("pixelArt_gridSize", gridSize.toString());
   }, [gridSize]);
 
   return (
@@ -119,19 +119,11 @@ export default function PixelArtCreator() {
 
           <div>
             <Label htmlFor="color">Color</Label>
-            <Input
-              id="color"
-              type="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
+            <Input id="color" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
           </div>
 
           <div className="flex gap-2">
-            <Button
-              variant={isErasing ? "destructive" : "outline-solid"}
-              onClick={() => setIsErasing(!isErasing)}
-            >
+            <Button variant={isErasing ? "destructive" : "outline"} onClick={() => setIsErasing(!isErasing)}>
               <Eraser className="w-4 h-4 mr-2" />
               {isErasing ? "Erasing" : "Draw"}
             </Button>
@@ -154,10 +146,7 @@ export default function PixelArtCreator() {
             className="border border-gray-200 cursor-crosshair"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
-              handlePixelClick(
-                e.clientX - rect.left,
-                e.clientY - rect.top
-              );
+              handlePixelClick(e.clientX - rect.left, e.clientY - rect.top);
             }}
           />
         </Card>
@@ -205,20 +194,20 @@ export default function PixelArtCreator() {
         <Card className="p-6">
           <h3 className="text-lg font-bold mb-4">What is Pixel Art?</h3>
           <p className="text-gray-600">
-            Pixel art is a digital art form where images are created and edited at the pixel level. 
-            This style emerged in the early days of computer graphics and gaming, becoming iconic through 
-            classic video games. Today, pixel art remains popular in indie games, digital art, and retro-style 
-            designs, valued for its minimalist aesthetic and nostalgic appeal.
+            Pixel art is a digital art form where images are created and edited at the pixel level. This style emerged
+            in the early days of computer graphics and gaming, becoming iconic through classic video games. Today, pixel
+            art remains popular in indie games, digital art, and retro-style designs, valued for its minimalist
+            aesthetic and nostalgic appeal.
           </p>
         </Card>
 
         <Card className="p-6">
           <h3 className="text-lg font-bold mb-4">Why Create Pixel Art?</h3>
           <p className="text-gray-600">
-            Creating pixel art helps develop attention to detail and precision in digital design. 
-            It&apos;s perfect for beginners learning digital art basics, as it requires minimal tools 
-            and focuses on fundamental concepts like composition and color theory. The constraints of 
-            working pixel-by-pixel often lead to creative and unique solutions.
+            Creating pixel art helps develop attention to detail and precision in digital design. It&apos;s perfect for
+            beginners learning digital art basics, as it requires minimal tools and focuses on fundamental concepts like
+            composition and color theory. The constraints of working pixel-by-pixel often lead to creative and unique
+            solutions.
           </p>
         </Card>
       </div>
@@ -254,4 +243,4 @@ export default function PixelArtCreator() {
       </div>
     </div>
   );
-} 
+}

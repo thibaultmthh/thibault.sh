@@ -14,7 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { ChevronDown, Star, Terminal, Home, Wrench, Badge as BadgeIcon } from "lucide-react";
+import { ChevronDown, Star, Terminal, Wrench } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ToolsBreadcrumb } from "@/components/tools/tools-breadcrumb";

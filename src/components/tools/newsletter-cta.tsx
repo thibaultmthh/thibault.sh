@@ -46,7 +46,7 @@ export function NewsletterCTA() {
 
           <p className="text-gray-600 max-w-2xl mx-auto">
             Fullstack developer specializing in <strong>React</strong>, <strong>Next.js</strong>, and{" "}
-            <strong>Node.js</strong>. Let's build something amazing together!
+            <strong>Node.js</strong>. Let&apos;s build something amazing together!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

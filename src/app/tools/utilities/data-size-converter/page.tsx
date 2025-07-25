@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Switch } from "@/components/ui/switch";
 import { useState, useEffect } from "react";
 import { Copy, ArrowLeftRight, HardDrive } from "lucide-react";
 
@@ -357,7 +356,7 @@ export default function DataSizeConverter() {
                     <li>• 1 KB = 1024 bytes</li>
                     <li>• 1 MB = 1024 KB = 1,048,576 bytes</li>
                     <li>• More accurate for computer memory calculations</li>
-                    <li>• Sometimes called "binary prefixes" (KiB, MiB, GiB)</li>
+                    <li>• Sometimes called &quot;binary prefixes&quot; (KiB, MiB, GiB)</li>
                   </ul>
                 </div>
                 <div>
@@ -367,7 +366,7 @@ export default function DataSizeConverter() {
                     <li>• 1 KB = 1000 bytes</li>
                     <li>• 1 MB = 1000 KB = 1,000,000 bytes</li>
                     <li>• SI standard (International System of Units)</li>
-                    <li>• Why a "1TB" drive shows as ~931GB in your OS</li>
+                    <li>• Why a &quot;1TB&quot; drive shows as ~931GB in your OS</li>
                   </ul>
                 </div>
               </div>
@@ -401,7 +400,7 @@ export default function DataSizeConverter() {
                 <li>• Storage manufacturers use decimal, so your 1TB drive appears as ~931GB</li>
                 <li>• RAM is always calculated in binary (1GB RAM = 1024³ bytes)</li>
                 <li>• Internet speeds are typically measured in decimal bits per second</li>
-                <li>• When in doubt, check if you're dealing with storage (decimal) or memory (binary)</li>
+                <li>• When in doubt, check if you&apos;re dealing with storage (decimal) or memory (binary)</li>
                 <li>• Use binary for precise file size calculations in programming</li>
               </ul>
             </TabsContent>

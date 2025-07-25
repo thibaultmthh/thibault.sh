@@ -586,11 +586,11 @@ engines:
 
             <TabsContent value="tips" className="mt-4">
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Use "Sort Keys" option to maintain consistent key ordering</li>
+                <li>• Use &quot;Sort Keys&quot; option to maintain consistent key ordering</li>
                 <li>• Block style YAML is more readable for configuration files</li>
                 <li>• Flow style YAML is more compact but less readable</li>
-                <li>• JSON doesn't support comments, they'll be lost in conversion</li>
-                <li>• YAML strings don't need quotes unless they contain special characters</li>
+                <li>• JSON doesn&apos;t support comments, they&apos;ll be lost in conversion</li>
+                <li>• YAML strings don&apos;t need quotes unless they contain special characters</li>
               </ul>
             </TabsContent>
           </Tabs>

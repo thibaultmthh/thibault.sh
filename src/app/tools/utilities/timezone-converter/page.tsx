@@ -260,7 +260,7 @@ export default function TimezoneConverter() {
 
         {/* Time Displays */}
         <div className="grid gap-4">
-          {timeDisplays.map((display, index) => (
+          {timeDisplays.map((display) => (
             <Card key={display.timezone.id} className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 flex-1">

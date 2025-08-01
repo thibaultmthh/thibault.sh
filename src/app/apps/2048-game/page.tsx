@@ -66,89 +66,92 @@ export default function Game2048() {
   };
 
   // Move tiles in a direction
-  const move = (direction: Direction) => {
-    if (gameOver || won) return;
+  const move = useCallback(
+    (direction: Direction) => {
+      if (gameOver || won) return;
 
-    const newGrid = JSON.parse(JSON.stringify(grid));
-    let moved = false;
-    let newScore = score;
+      const newGrid = JSON.parse(JSON.stringify(grid));
+      let moved = false;
+      let newScore = score;
 
-    const moveLeft = () => {
-      for (let i = 0; i < GRID_SIZE; i++) {
-        let col = 0;
-        for (let j = 1; j < GRID_SIZE; j++) {
-          if (newGrid[i][j] !== 0) {
-            if (newGrid[i][col] === 0) {
-              newGrid[i][col] = newGrid[i][j];
-              newGrid[i][j] = 0;
-              moved = true;
-            } else if (newGrid[i][col] === newGrid[i][j]) {
-              newGrid[i][col] *= 2;
-              newScore += newGrid[i][col];
-              newGrid[i][j] = 0;
-              col++;
-              moved = true;
-              if (newGrid[i][col - 1] === WINNING_SCORE) setWon(true);
-            } else {
-              col++;
-              if (col !== j) {
+      const moveLeft = () => {
+        for (let i = 0; i < GRID_SIZE; i++) {
+          let col = 0;
+          for (let j = 1; j < GRID_SIZE; j++) {
+            if (newGrid[i][j] !== 0) {
+              if (newGrid[i][col] === 0) {
                 newGrid[i][col] = newGrid[i][j];
                 newGrid[i][j] = 0;
                 moved = true;
+              } else if (newGrid[i][col] === newGrid[i][j]) {
+                newGrid[i][col] *= 2;
+                newScore += newGrid[i][col];
+                newGrid[i][j] = 0;
+                col++;
+                moved = true;
+                if (newGrid[i][col - 1] === WINNING_SCORE) setWon(true);
+              } else {
+                col++;
+                if (col !== j) {
+                  newGrid[i][col] = newGrid[i][j];
+                  newGrid[i][j] = 0;
+                  moved = true;
+                }
               }
             }
           }
         }
-      }
-    };
+      };
 
-    // Rotate grid to reuse moveLeft logic
-    const rotate = (times: number) => {
-      for (let t = 0; t < times; t++) {
-        const rotated = Array(GRID_SIZE)
-          .fill(0)
-          .map(() => Array(GRID_SIZE).fill(0));
-        for (let i = 0; i < GRID_SIZE; i++) {
-          for (let j = 0; j < GRID_SIZE; j++) {
-            rotated[j][GRID_SIZE - 1 - i] = newGrid[i][j];
+      // Rotate grid to reuse moveLeft logic
+      const rotate = (times: number) => {
+        for (let t = 0; t < times; t++) {
+          const rotated = Array(GRID_SIZE)
+            .fill(0)
+            .map(() => Array(GRID_SIZE).fill(0));
+          for (let i = 0; i < GRID_SIZE; i++) {
+            for (let j = 0; j < GRID_SIZE; j++) {
+              rotated[j][GRID_SIZE - 1 - i] = newGrid[i][j];
+            }
+          }
+          for (let i = 0; i < GRID_SIZE; i++) {
+            for (let j = 0; j < GRID_SIZE; j++) {
+              newGrid[i][j] = rotated[i][j];
+            }
           }
         }
-        for (let i = 0; i < GRID_SIZE; i++) {
-          for (let j = 0; j < GRID_SIZE; j++) {
-            newGrid[i][j] = rotated[i][j];
-          }
-        }
+      };
+
+      switch (direction) {
+        case "left":
+          moveLeft();
+          break;
+        case "right":
+          rotate(2);
+          moveLeft();
+          rotate(2);
+          break;
+        case "up":
+          rotate(3);
+          moveLeft();
+          rotate(1);
+          break;
+        case "down":
+          rotate(1);
+          moveLeft();
+          rotate(3);
+          break;
       }
-    };
 
-    switch (direction) {
-      case "left":
-        moveLeft();
-        break;
-      case "right":
-        rotate(2);
-        moveLeft();
-        rotate(2);
-        break;
-      case "up":
-        rotate(3);
-        moveLeft();
-        rotate(1);
-        break;
-      case "down":
-        rotate(1);
-        moveLeft();
-        rotate(3);
-        break;
-    }
-
-    if (moved) {
-      addNewTile(newGrid);
-      setGrid(newGrid);
-      setScore(newScore);
-      checkGameOver(newGrid);
-    }
-  };
+      if (moved) {
+        addNewTile(newGrid);
+        setGrid(newGrid);
+        setScore(newScore);
+        checkGameOver(newGrid);
+      }
+    },
+    [gameOver, grid, score, won]
+  );
 
   // Check if game is over
   const checkGameOver = (grid: Grid) => {
@@ -188,7 +191,7 @@ export default function Game2048() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [grid, gameOver, won, score]);
+  }, [grid, gameOver, won, score, move]);
 
   const getTileColor = (value: number) => {
     const colors: { [key: number]: string } = {

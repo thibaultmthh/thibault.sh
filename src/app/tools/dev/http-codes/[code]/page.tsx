@@ -19,9 +19,11 @@ import {
   ArrowRight,
   Star,
 } from "lucide-react";
+import { use } from "react";
 
-export default async function HttpCodePage({ params }: { params: Promise<{ code: string }> }) {
-  const code = parseInt((await params).code);
+export default function HttpCodePage({ params }: { params: Promise<{ code: string }> }) {
+  const { code: codeString } = use(params);
+  const code = parseInt(codeString);
   const httpCode = httpCodes.find((c) => c.code === code);
 
   if (!httpCode) {

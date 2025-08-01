@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { useState, useMemo, useRef } from "react";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Search, Heart, Smile, Car, Utensils, Globe, Coffee, Star, Hash, Copy } from "lucide-react";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import { useVirtualizer, Virtualizer } from "@tanstack/react-virtual";
 import Fuse from "fuse.js";
 import Link from "next/link";
 import { useLocalStorageState } from "@thibault.sh/hooks/useLocalStorageState";
@@ -384,7 +383,7 @@ function EmojiGrid({
   renderEmojiButton,
 }: {
   emojis: Emoji[];
-  rowVirtualizer: any;
+  rowVirtualizer: Virtualizer<HTMLDivElement, Element>;
   parentRef: React.RefObject<HTMLDivElement | null>;
   renderEmojiButton: (emoji: Emoji) => React.ReactNode;
 }) {
@@ -399,7 +398,7 @@ function EmojiGrid({
           position: "relative",
         }}
       >
-        {rowVirtualizer.getVirtualItems().map((virtualRow: any) => {
+        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const startIndex = virtualRow.index * GRID_COLS;
           const rowEmojis = emojis.slice(startIndex, startIndex + GRID_COLS);
 

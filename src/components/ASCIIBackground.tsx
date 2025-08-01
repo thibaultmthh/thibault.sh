@@ -139,7 +139,7 @@ const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(interval);
     };
-  }, [asciiGrid.length, generateGrid, lightChars, updateGridWithMouse]);
+  }, [asciiGrid.length, generateGrid, updateGridWithMouse]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

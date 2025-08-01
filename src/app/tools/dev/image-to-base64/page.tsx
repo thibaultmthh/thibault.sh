@@ -328,7 +328,9 @@ export default function ImageToBase64() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Data URL Usage</h3>
-              <code className="text-xs bg-muted p-2 rounded block">&lt;img src="data:image/png;base64,..." /&gt;</code>
+              <code className="text-xs bg-muted p-2 rounded block">
+                &lt;img src=&quot;data:image/png;base64,...&quot; /&gt;
+              </code>
             </div>
             <div className="space-y-2">
               <h3 className="text-sm font-medium">CSS Background</h3>
@@ -337,7 +339,9 @@ export default function ImageToBase64() {
 
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Email HTML</h3>
-              <code className="text-xs bg-muted p-2 rounded block">&lt;img src="data:..." alt="Logo" /&gt;</code>
+              <code className="text-xs bg-muted p-2 rounded block">
+                &lt;img src=&quot;data:...&quot; alt=&quot;Logo&quot; /&gt;
+              </code>
             </div>
           </div>
         </Card>

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Copy, Shuffle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -71,21 +71,24 @@ export default function ListRandomizer() {
   const [inputFormat, setInputFormat] = useState<FormatType>("newline");
   const [customSeparator, setCustomSeparator] = useState("");
 
-  const parseInput = (text: string): string[] => {
-    if (!text.trim()) return [];
+  const parseInput = useCallback(
+    (text: string): string[] => {
+      if (!text.trim()) return [];
 
-    let separator = formatOptions[inputFormat].separator;
-    if (inputFormat === "custom") {
-      // Escape special characters for regex
-      const escapedSeparator = customSeparator.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      separator = new RegExp(`\\s*${escapedSeparator}\\s*`);
-    }
+      let separator = formatOptions[inputFormat].separator;
+      if (inputFormat === "custom") {
+        // Escape special characters for regex
+        const escapedSeparator = customSeparator.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        separator = new RegExp(`\\s*${escapedSeparator}\\s*`);
+      }
 
-    return text
-      .trim()
-      .split(separator)
-      .filter((item) => item.trim() !== "");
-  };
+      return text
+        .trim()
+        .split(separator)
+        .filter((item) => item.trim() !== "");
+    },
+    [customSeparator, inputFormat]
+  );
 
   const formatOutput = (items: string[]): string => {
     let separator = formatOptions[inputFormat].outputSeparator;
@@ -100,20 +103,23 @@ export default function ListRandomizer() {
     return items.join(separator);
   };
 
-  const analyzeList = (text: string) => {
-    const items = parseInput(text);
-    const uniqueItems = new Set(items);
+  const analyzeList = useCallback(
+    (text: string) => {
+      const items = parseInput(text);
+      const uniqueItems = new Set(items);
 
-    setStats({
-      total: items.length,
-      unique: uniqueItems.size,
-      duplicates: items.length - uniqueItems.size,
-    });
-  };
+      setStats({
+        total: items.length,
+        unique: uniqueItems.size,
+        duplicates: items.length - uniqueItems.size,
+      });
+    },
+    [parseInput]
+  );
 
   useEffect(() => {
     analyzeList(inputText);
-  }, [inputText, inputFormat, customSeparator]);
+  }, [inputText, inputFormat, customSeparator, analyzeList]);
 
   const randomizeList = () => {
     let items = parseInput(inputText);

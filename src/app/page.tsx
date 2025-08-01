@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import CardSpotlight from "@/components/CardSpotLight";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Button from "@/components/Button";

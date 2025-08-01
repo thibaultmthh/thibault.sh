@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -94,20 +94,6 @@ export default function PackageAnalyzer() {
   const [isChecking, setIsChecking] = useState(false);
   const [filter, setFilter] = useState<VersionDiff["type"] | null>(null);
 
-  useEffect(() => {
-    const savedJson = localStorage.getItem("package-analyzer-json");
-    if (savedJson) {
-      setInput(savedJson);
-      // Optionally auto-analyze the saved JSON
-      try {
-        const pkg = JSON.parse(savedJson);
-        analyzePackageJson(pkg);
-      } catch {
-        // Silently fail if the saved JSON is invalid
-      }
-    }
-  }, []);
-
   // Update the fetchLatestVersion function to use cache
   const fetchLatestVersion = async (packageName: string): Promise<string> => {
     const cache = getVersionCache();
@@ -167,146 +153,152 @@ export default function PackageAnalyzer() {
   };
 
   // Update the checkOutdatedPackages function
-  const checkOutdatedPackages = async (analysis: PackageAnalysis) => {
-    setIsChecking(true);
+  const checkOutdatedPackages = useCallback(
+    async (analysis: PackageAnalysis) => {
+      setIsChecking(true);
 
-    const checkDependencies = async (deps: DependencyInfo[]) => {
-      return Promise.all(
-        deps.map(async (dep) => {
-          // Skip workspace packages
-          if (dep.version.startsWith("workspace:")) {
-            dep.versionInfo = {
-              current: dep.version,
-              latest: "workspace package",
-              diff: "latest",
-              loading: false,
-            };
+      const checkDependencies = async (deps: DependencyInfo[]) => {
+        return Promise.all(
+          deps.map(async (dep) => {
+            // Skip workspace packages
+            if (dep.version.startsWith("workspace:")) {
+              dep.versionInfo = {
+                current: dep.version,
+                latest: "workspace package",
+                diff: "latest",
+                loading: false,
+              };
+              setAnalysis({ ...analysis });
+              return dep;
+            }
+
+            try {
+              dep.versionInfo.loading = true;
+              setAnalysis({ ...analysis });
+
+              const latestVersion = await fetchLatestVersion(dep.name);
+              const diffType = getVersionDiff(dep.version, latestVersion);
+
+              dep.versionInfo = {
+                current: dep.version.replace(/[~^]/, ""),
+                latest: latestVersion,
+                diff: diffType,
+                loading: false,
+              };
+            } catch {
+              dep.versionInfo = {
+                ...dep.versionInfo,
+                error: "Failed to fetch",
+                diff: "error",
+                loading: false,
+              };
+            }
             setAnalysis({ ...analysis });
             return dep;
-          }
-
-          try {
-            dep.versionInfo.loading = true;
-            setAnalysis({ ...analysis });
-
-            const latestVersion = await fetchLatestVersion(dep.name);
-            const diffType = getVersionDiff(dep.version, latestVersion);
-
-            dep.versionInfo = {
-              current: dep.version.replace(/[~^]/, ""),
-              latest: latestVersion,
-              diff: diffType,
-              loading: false,
-            };
-          } catch {
-            dep.versionInfo = {
-              ...dep.versionInfo,
-              error: "Failed to fetch",
-              diff: "error",
-              loading: false,
-            };
-          }
-          setAnalysis({ ...analysis });
-          return dep;
-        })
-      );
-    };
-
-    try {
-      await Promise.all([
-        checkDependencies(analysis.dependencies.items),
-        checkDependencies(analysis.devDependencies.items),
-      ]);
-    } finally {
-      setIsChecking(false);
-    }
-  };
-
-  const analyzePackageJson = (providedPkg?: any) => {
-    try {
-      let pkg;
-      if (providedPkg) {
-        pkg = providedPkg;
-      } else {
-        const trimmedInput = input.trim();
-        if (!trimmedInput) {
-          setError("Please enter package.json content");
-          return;
-        }
-        pkg = JSON.parse(trimmedInput);
-      }
-
-      // Save the input string instead of the parsed object
-      if (!providedPkg) {
-        localStorage.setItem("package-analyzer-json", input);
-      }
-
-      console.log(pkg);
-
-      const issues: string[] = [];
-
-      // Basic validation
-      if (!pkg.name) issues.push("Missing package name");
-      if (!pkg.version) issues.push("Missing package version");
-      if (pkg.version && !semver.valid(pkg.version)) {
-        issues.push("Invalid package version format");
-      }
-
-      // Analyze dependencies
-      const dependencies = analyzeDependencies(pkg.dependencies);
-      const devDependencies = analyzeDependencies(pkg.devDependencies);
-
-      // Check for invalid versions
-      dependencies.forEach((dep) => {
-        if (!dep.isValid) issues.push(`Invalid version format for dependency: ${dep.name}`);
-      });
-      devDependencies.forEach((dep) => {
-        if (!dep.isValid) issues.push(`Invalid version format for devDependency: ${dep.name}`);
-      });
-
-      // Scripts analysis
-      const scripts = Object.entries(pkg.scripts || {}).map(([name, command]) => ({
-        name,
-        command: command as string,
-      }));
-
-      const analysis: PackageAnalysis = {
-        dependencies: {
-          count: dependencies.length,
-          items: dependencies,
-        },
-        devDependencies: {
-          count: devDependencies.length,
-          items: devDependencies,
-        },
-        scripts: {
-          count: scripts.length,
-          items: scripts,
-        },
-        metadata: {
-          name: pkg.name,
-          version: pkg.version,
-          description: pkg.description,
-          author: pkg.author,
-          license: pkg.license,
-          private: pkg.private,
-          type: pkg.type,
-        },
-        issues,
+          })
+        );
       };
 
-      setAnalysis(analysis);
-      setError(null);
+      try {
+        await Promise.all([
+          checkDependencies(analysis.dependencies.items),
+          checkDependencies(analysis.devDependencies.items),
+        ]);
+      } finally {
+        setIsChecking(false);
+      }
+    },
+    [setIsChecking]
+  );
 
-      // Automatically check for outdated packages after analysis
-      checkOutdatedPackages(analysis);
-    } catch (err) {
-      console.log(err);
+  const analyzePackageJson = useCallback(
+    (providedPkg?: any) => {
+      try {
+        let pkg;
+        if (providedPkg) {
+          pkg = providedPkg;
+        } else {
+          const trimmedInput = input.trim();
+          if (!trimmedInput) {
+            setError("Please enter package.json content");
+            return;
+          }
+          pkg = JSON.parse(trimmedInput);
+        }
 
-      setError("Invalid JSON format");
-      setAnalysis(null);
-    }
-  };
+        // Save the input string instead of the parsed object
+        if (!providedPkg) {
+          localStorage.setItem("package-analyzer-json", input);
+        }
+
+        console.log(pkg);
+
+        const issues: string[] = [];
+
+        // Basic validation
+        if (!pkg.name) issues.push("Missing package name");
+        if (!pkg.version) issues.push("Missing package version");
+        if (pkg.version && !semver.valid(pkg.version)) {
+          issues.push("Invalid package version format");
+        }
+
+        // Analyze dependencies
+        const dependencies = analyzeDependencies(pkg.dependencies);
+        const devDependencies = analyzeDependencies(pkg.devDependencies);
+
+        // Check for invalid versions
+        dependencies.forEach((dep) => {
+          if (!dep.isValid) issues.push(`Invalid version format for dependency: ${dep.name}`);
+        });
+        devDependencies.forEach((dep) => {
+          if (!dep.isValid) issues.push(`Invalid version format for devDependency: ${dep.name}`);
+        });
+
+        // Scripts analysis
+        const scripts = Object.entries(pkg.scripts || {}).map(([name, command]) => ({
+          name,
+          command: command as string,
+        }));
+
+        const analysis: PackageAnalysis = {
+          dependencies: {
+            count: dependencies.length,
+            items: dependencies,
+          },
+          devDependencies: {
+            count: devDependencies.length,
+            items: devDependencies,
+          },
+          scripts: {
+            count: scripts.length,
+            items: scripts,
+          },
+          metadata: {
+            name: pkg.name,
+            version: pkg.version,
+            description: pkg.description,
+            author: pkg.author,
+            license: pkg.license,
+            private: pkg.private,
+            type: pkg.type,
+          },
+          issues,
+        };
+
+        setAnalysis(analysis);
+        setError(null);
+
+        // Automatically check for outdated packages after analysis
+        checkOutdatedPackages(analysis);
+      } catch (err) {
+        console.log(err);
+
+        setError("Invalid JSON format");
+        setAnalysis(null);
+      }
+    },
+    [checkOutdatedPackages, input]
+  );
 
   const clearSavedData = () => {
     localStorage.removeItem("package-analyzer-json");
@@ -318,6 +310,20 @@ export default function PackageAnalyzer() {
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
   };
+
+  useEffect(() => {
+    const savedJson = localStorage.getItem("package-analyzer-json");
+    if (savedJson) {
+      setInput(savedJson);
+      // Optionally auto-analyze the saved JSON
+      try {
+        const pkg = JSON.parse(savedJson);
+        analyzePackageJson(pkg);
+      } catch {
+        // Silently fail if the saved JSON is invalid
+      }
+    }
+  }, [analyzePackageJson]);
 
   const EXAMPLE_PACKAGE = {
     name: "my-project",

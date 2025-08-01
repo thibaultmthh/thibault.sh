@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Check, Search, Heart, ArrowLeft, Copy, Hash } from "lucide-react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import Fuse from "fuse.js";

@@ -77,6 +77,7 @@ function parseConversionUrl(type: string, conversion: string): { from: string; t
   if (!unitTypes[type as keyof typeof unitTypes]) return null;
 
   const typeUnits = unitTypes[type as keyof typeof unitTypes].units;
+  // @ts-expect-error --ok
   if (!typeUnits[from] || !typeUnits[to]) return null;
 
   return { from, to };
@@ -95,8 +96,10 @@ export async function generateMetadata({ params }: ConversionPageProps): Promise
 
   const { from, to } = parsedConversion;
   const typeInfo = unitTypes[type as keyof typeof unitTypes];
-  const fromUnit = typeInfo.units[from];
-  const toUnit = typeInfo.units[to];
+
+  const units = typeInfo.units as Record<string, { name: string; rate: number }>;
+  const fromUnit = units[from];
+  const toUnit = units[to];
 
   const title = `Convert ${fromUnit.name} to ${toUnit.name} - ${typeInfo.name} Converter`;
   const description = `Convert ${fromUnit.name} to ${toUnit.name} with precision. Fast and accurate ${typeInfo.name.toLowerCase()} conversion tool with instant results.`;

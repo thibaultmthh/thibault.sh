@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect } from "react";
-import { Copy, ArrowLeftRight, HardDrive, ExternalLink, Settings2 } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Copy, HardDrive, ExternalLink, Settings2 } from "lucide-react";
 import Link from "next/link";
 
 type Unit = "bit" | "byte" | "kb" | "mb" | "gb" | "tb" | "pb" | "eb" | "zb" | "yb";
@@ -100,6 +100,38 @@ interface ConversionResult {
   formattedValue: string;
 }
 
+const formatNumber = (num: number): string => {
+  if (num === 0) return "0";
+
+  // For very small numbers
+  if (num < 0.001) {
+    return num.toExponential(3);
+  }
+
+  // For numbers less than 1
+  if (num < 1) {
+    return num.toFixed(6).replace(/\.?0+$/, "");
+  }
+
+  // For large numbers
+  if (num >= 1e15) {
+    return num.toExponential(3);
+  }
+
+  // For regular numbers
+  if (num >= 1000) {
+    return num.toLocaleString("en-US", { maximumFractionDigits: 3 });
+  }
+
+  return num.toFixed(3).replace(/\.?0+$/, "");
+};
+
+const getFormattedValue = (num: number, unit: Unit): string => {
+  const unitInfo = UNITS[unit];
+  const formatted = formatNumber(num);
+  return `${formatted} ${unitInfo.symbol}`;
+};
+
 export default function DataSizeConverter() {
   const [inputValue, setInputValue] = useState("1");
   const [inputUnit, setInputUnit] = useState<Unit>("gb");
@@ -108,39 +140,7 @@ export default function DataSizeConverter() {
   const [results, setResults] = useState<ConversionResult[]>([]);
   const [copied, setCopied] = useState<string | null>(null);
 
-  const formatNumber = (num: number): string => {
-    if (num === 0) return "0";
-
-    // For very small numbers
-    if (num < 0.001) {
-      return num.toExponential(3);
-    }
-
-    // For numbers less than 1
-    if (num < 1) {
-      return num.toFixed(6).replace(/\.?0+$/, "");
-    }
-
-    // For large numbers
-    if (num >= 1e15) {
-      return num.toExponential(3);
-    }
-
-    // For regular numbers
-    if (num >= 1000) {
-      return num.toLocaleString("en-US", { maximumFractionDigits: 3 });
-    }
-
-    return num.toFixed(3).replace(/\.?0+$/, "");
-  };
-
-  const getFormattedValue = (num: number, unit: Unit): string => {
-    const unitInfo = UNITS[unit];
-    const formatted = formatNumber(num);
-    return `${formatted} ${unitInfo.symbol}`;
-  };
-
-  const convertValue = () => {
+  const convertValue = useCallback(() => {
     const value = parseFloat(inputValue);
     if (isNaN(value) || value < 0) {
       setResults([]);
@@ -171,11 +171,11 @@ export default function DataSizeConverter() {
     });
 
     setResults(conversions);
-  };
+  }, [calculationType, inputUnit, inputValue, targetUnit]);
 
   useEffect(() => {
     convertValue();
-  }, [inputValue, inputUnit, targetUnit, calculationType]);
+  }, [inputValue, inputUnit, targetUnit, calculationType, convertValue]);
 
   const handleCopy = async (text: string, unit: Unit) => {
     try {

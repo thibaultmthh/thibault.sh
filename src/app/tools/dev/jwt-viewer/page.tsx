@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Copy, Clock, AlertCircle, AlertTriangle, CheckCircle, Key, Share2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -172,7 +172,7 @@ export default function JWTViewer() {
   };
 
   // Update handleTokenChange to track custom tokens
-  const handleTokenChange = (value: string) => {
+  const handleTokenChange = useCallback((value: string) => {
     setToken(value);
     setError("");
 
@@ -187,7 +187,7 @@ export default function JWTViewer() {
       setDecoded(null);
       setIsCustomToken(false);
     }
-  };
+  }, []);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -253,7 +253,7 @@ export default function JWTViewer() {
     return `${minutes}m ago`;
   };
 
-  const handleVerification = async () => {
+  const handleVerification = useCallback(async () => {
     if (!token || !secret || !decoded) {
       setVerificationStatus({ isValid: null });
       return;
@@ -278,7 +278,7 @@ export default function JWTViewer() {
         error: "Failed to verify signature",
       });
     }
-  };
+  }, [decoded, secret, token]);
 
   // Update verification when token or secret changes
   useEffect(() => {
@@ -287,7 +287,7 @@ export default function JWTViewer() {
     } else {
       setVerificationStatus({ isValid: null });
     }
-  }, [token, secret]);
+  }, [token, secret, handleVerification]);
 
   // Add share functionality
   const shareToken = () => {
@@ -306,7 +306,7 @@ export default function JWTViewer() {
     if (urlToken) {
       handleTokenChange(urlToken);
     }
-  }, []);
+  }, [handleTokenChange]);
 
   return (
     <div>

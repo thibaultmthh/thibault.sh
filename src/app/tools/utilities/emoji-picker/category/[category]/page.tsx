@@ -45,6 +45,7 @@ export default async function EmojiCategoryPage({ params }: CategoryPageProps) {
   const decodedCategory = decodeURIComponent(category);
   const emojis = await getEmojis();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const categoryEmojis = emojis.filter((emoji: any) => emoji.category === decodedCategory);
 
   if (categoryEmojis.length === 0) {

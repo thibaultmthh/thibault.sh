@@ -203,6 +203,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const emojis = await getEmojis();
 
     // Get unique categories for category pages
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const categories = [...new Set(emojis.map((emoji: any) => emoji.category))];
     categories.forEach((category) => {
       routes.push({

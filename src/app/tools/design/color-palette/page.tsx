@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import ColorThief from "colorthief";
 import { Copy, Upload, Loader2 } from "lucide-react";
 import { colord } from "colord";
@@ -27,43 +28,46 @@ export default function ColorPalette() {
     return colord({ r, g, b }).toHex();
   };
 
-  const extractColorsFromFile = async (file: File, size: number) => {
-    setIsLoading(true);
-    setColors([]);
+  const extractColorsFromFile = useCallback(
+    async (file: File, size: number) => {
+      setIsLoading(true);
+      setColors([]);
 
-    try {
-      // Create image preview
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImagePreview(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+      try {
+        // Create image preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreview(e.target?.result as string);
+        };
+        reader.readAsDataURL(file);
 
-      // Extract colors
-      const img = new Image();
-      img.onload = async () => {
-        const colorThief = new ColorThief();
-        const palette = colorThief.getPalette(img, size);
+        // Extract colors
+        const img = new Image();
+        img.onload = async () => {
+          const colorThief = new ColorThief();
+          const palette = colorThief.getPalette(img, size);
 
-        const extractedColors = palette.map((color: [number, number, number]) => {
-          const [r, g, b] = color;
-          const hex = rgbToHex(r, g, b);
-          return {
-            hex,
-            rgb: `rgb(${r}, ${g}, ${b})`,
-          };
-        });
+          const extractedColors = palette.map((color: [number, number, number]) => {
+            const [r, g, b] = color;
+            const hex = rgbToHex(r, g, b);
+            return {
+              hex,
+              rgb: `rgb(${r}, ${g}, ${b})`,
+            };
+          });
 
-        setColors(extractedColors);
+          setColors(extractedColors);
+          setIsLoading(false);
+        };
+        img.crossOrigin = "Anonymous";
+        img.src = URL.createObjectURL(file);
+      } catch (error) {
+        console.error("Error extracting colors:", error);
         setIsLoading(false);
-      };
-      img.crossOrigin = "Anonymous";
-      img.src = URL.createObjectURL(file);
-    } catch (error) {
-      console.error("Error extracting colors:", error);
-      setIsLoading(false);
-    }
-  };
+      }
+    },
+    [setIsLoading, setColors]
+  );
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -78,7 +82,7 @@ export default function ColorPalette() {
     if (currentImageFile) {
       extractColorsFromFile(currentImageFile, paletteSize);
     }
-  }, [paletteSize, currentImageFile]);
+  }, [paletteSize, currentImageFile, extractColorsFromFile]);
 
   const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();

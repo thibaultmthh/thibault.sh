@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle, Copy, RefreshCw, Check, Info, Hash, Clock, Globe } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -162,7 +161,7 @@ export default function UUIDGenerator() {
           message: "❌ Invalid UUID format - must be 8-4-4-4-12 hexadecimal pattern",
         });
       }
-    } catch (error) {
+    } catch {
       setValidationResult({
         isValid: false,
         message: "❌ Invalid UUID format - please check the input",

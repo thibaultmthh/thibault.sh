@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -72,7 +73,8 @@ const createIcoBlob = async (pngBlobs: { [key: number]: Blob }): Promise<Blob> =
   }
 
   // Combine all parts
-  const blob = new Blob([header, ...directory, ...imageData], { type: "image/x-icon" });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const blob = new Blob([header, ...(directory as any), ...imageData], { type: "image/x-icon" });
 
   return blob;
 };
@@ -381,8 +383,8 @@ export default function FaviconGenerator() {
               </ul>
               <div className="mt-4 p-3 bg-muted/30 rounded-lg">
                 <p className="text-sm">
-                  <strong>Pro tip:</strong> Copy the HTML code from favicon-code.html and paste it into your website's
-                  &lt;head&gt; section for complete favicon support across all platforms.
+                  <strong>Pro tip:</strong> Copy the HTML code from favicon-code.html and paste it into your
+                  website&apos;s &lt;head&gt; section for complete favicon support across all platforms.
                 </p>
               </div>
             </div>
@@ -394,8 +396,9 @@ export default function FaviconGenerator() {
           <h2 className="font-semibold mb-4">About Favicons</h2>
           <div className="space-y-4 text-sm text-muted-foreground">
             <p>
-              A favicon (short for "favorite icon") is a small icon associated with a website or web page. It appears in
-              browser tabs, bookmarks, browser history, and when users save your site to their device's home screen.
+              A favicon (short for &quot;favorite icon&quot;) is a small icon associated with a website or web page. It
+              appears in browser tabs, bookmarks, browser history, and when users save your site to their device&apos;s
+              home screen.
             </p>
 
             <div className="grid gap-6 md:grid-cols-3 mt-6">

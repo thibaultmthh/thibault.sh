@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -79,6 +79,36 @@ function parseRequirementLine(line: string): { name: string; version?: string } 
   return { name, version };
 }
 
+// Parse version constraints like >=1.0.0, ==1.0.0, ~=1.0.0
+const parseVersion = (version: string) => {
+  const versionRegex = /([<>=~!]+)?([\d.*]+)/;
+  const match = version.trim().match(versionRegex);
+  return match ? match[2] : version;
+};
+
+const analyzeDependencies = (requirements: string) => {
+  const lines = requirements.split("\n");
+  return lines
+    .map((line) => {
+      const { name, version } = parseRequirementLine(line);
+      if (!name) return null;
+
+      const cleanVersion = version ? parseVersion(version) : "*";
+      return {
+        name,
+        version: cleanVersion,
+        isValid: true,
+        versionInfo: {
+          current: cleanVersion,
+          latest: "",
+          diff: "latest" as VersionDiff["type"],
+          loading: false,
+        },
+      };
+    })
+    .filter((dep): dep is DependencyInfo => dep !== null);
+};
+
 // UI Components
 const renderVersionBadge = (versionInfo: PackageVersion) => {
   const badgeProps = {
@@ -156,16 +186,6 @@ export default function RequirementsAnalyzer() {
   const [isChecking, setIsChecking] = useState(false);
   const [filter, setFilter] = useState<VersionDiff["type"] | null>(null);
 
-  // Add useEffect to load saved content
-  useEffect(() => {
-    const savedContent = localStorage.getItem("requirements-analyzer-content");
-    if (savedContent) {
-      setInput(savedContent);
-      // Optionally auto-analyze the saved content
-      analyzeRequirements(savedContent);
-    }
-  }, []);
-
   const renderDependencySummary = (deps: DependencyInfo[]) => {
     const summary = deps.reduce(
       (acc, dep) => {
@@ -236,7 +256,7 @@ export default function RequirementsAnalyzer() {
     </div>
   );
 
-  const checkOutdatedPackages = async (analysis: RequirementsAnalysis) => {
+  const checkOutdatedPackages = useCallback(async (analysis: RequirementsAnalysis) => {
     setIsChecking(true);
 
     try {
@@ -269,20 +289,13 @@ export default function RequirementsAnalyzer() {
     } finally {
       setIsChecking(false);
     }
-  };
+  }, []);
 
   const clearSavedData = () => {
     localStorage.removeItem("requirements-analyzer-content");
     setInput("");
     setAnalysis(null);
     setError(null);
-  };
-
-  // Parse version constraints like >=1.0.0, ==1.0.0, ~=1.0.0
-  const parseVersion = (version: string) => {
-    const versionRegex = /([<>=~!]+)?([\d.*]+)/;
-    const match = version.trim().match(versionRegex);
-    return match ? match[2] : version;
   };
 
   const getVersionDiff = (current: string, latest: string): VersionDiff["type"] => {
@@ -314,62 +327,52 @@ export default function RequirementsAnalyzer() {
     return data.info.version;
   };
 
-  const analyzeDependencies = (requirements: string) => {
-    const lines = requirements.split("\n");
-    return lines
-      .map((line) => {
-        const { name, version } = parseRequirementLine(line);
-        if (!name) return null;
+  const analyzeRequirements = useCallback(
+    (providedReqs?: string) => {
+      try {
+        const reqs = providedReqs || input.trim();
+        if (!reqs) {
+          setError("Please enter requirements.txt content");
+          return;
+        }
 
-        const cleanVersion = version ? parseVersion(version) : "*";
-        return {
-          name,
-          version: cleanVersion,
-          isValid: true,
-          versionInfo: {
-            current: cleanVersion,
-            latest: "",
-            diff: "latest" as VersionDiff["type"],
-            loading: false,
+        // Save the input
+        localStorage.setItem("requirements-analyzer-content", reqs);
+
+        const issues: string[] = [];
+        const dependencies = analyzeDependencies(reqs);
+
+        const analysis: RequirementsAnalysis = {
+          dependencies: {
+            count: dependencies.length,
+            items: dependencies,
           },
+          issues,
         };
-      })
-      .filter((dep): dep is DependencyInfo => dep !== null);
-  };
 
-  const analyzeRequirements = (providedReqs?: string) => {
-    try {
-      const reqs = providedReqs || input.trim();
-      if (!reqs) {
-        setError("Please enter requirements.txt content");
-        return;
+        setAnalysis(analysis);
+        setError(null);
+
+        // Automatically check for outdated packages
+        checkOutdatedPackages(analysis);
+      } catch (err) {
+        console.error(err);
+        setError("Invalid requirements.txt format");
+        setAnalysis(null);
       }
+    },
+    [checkOutdatedPackages, input]
+  );
 
-      // Save the input
-      localStorage.setItem("requirements-analyzer-content", reqs);
-
-      const issues: string[] = [];
-      const dependencies = analyzeDependencies(reqs);
-
-      const analysis: RequirementsAnalysis = {
-        dependencies: {
-          count: dependencies.length,
-          items: dependencies,
-        },
-        issues,
-      };
-
-      setAnalysis(analysis);
-      setError(null);
-
-      // Automatically check for outdated packages
-      checkOutdatedPackages(analysis);
-    } catch (err) {
-      console.error(err);
-      setError("Invalid requirements.txt format");
-      setAnalysis(null);
+  // Add useEffect to load saved content
+  useEffect(() => {
+    const savedContent = localStorage.getItem("requirements-analyzer-content");
+    if (savedContent) {
+      setInput(savedContent);
+      // Optionally auto-analyze the saved content
+      analyzeRequirements(savedContent);
     }
-  };
+  }, [analyzeRequirements]);
 
   return (
     <div>

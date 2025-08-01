@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Copy, ArrowLeftRight, ArrowLeft, Settings2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
@@ -97,39 +97,39 @@ interface ConversionClientProps {
   to: Unit;
 }
 
+const formatNumber = (num: number): string => {
+  if (num === 0) return "0";
+
+  // For very small numbers
+  if (num < 0.001) {
+    return num.toExponential(3);
+  }
+
+  // For numbers less than 1
+  if (num < 1) {
+    return num.toFixed(6).replace(/\.?0+$/, "");
+  }
+
+  // For large numbers
+  if (num >= 1e15) {
+    return num.toExponential(3);
+  }
+
+  // For regular numbers
+  if (num >= 1000) {
+    return num.toLocaleString("en-US", { maximumFractionDigits: 3 });
+  }
+
+  return num.toFixed(3).replace(/\.?0+$/, "");
+};
+
 export default function ConversionClient({ from, to }: ConversionClientProps) {
   const [inputValue, setInputValue] = useState("1");
   const [calculationType, setCalculationType] = useState<CalculationType>("decimal");
   const [result, setResult] = useState<string>("");
   const [copied, setCopied] = useState(false);
 
-  const formatNumber = (num: number): string => {
-    if (num === 0) return "0";
-
-    // For very small numbers
-    if (num < 0.001) {
-      return num.toExponential(3);
-    }
-
-    // For numbers less than 1
-    if (num < 1) {
-      return num.toFixed(6).replace(/\.?0+$/, "");
-    }
-
-    // For large numbers
-    if (num >= 1e15) {
-      return num.toExponential(3);
-    }
-
-    // For regular numbers
-    if (num >= 1000) {
-      return num.toLocaleString("en-US", { maximumFractionDigits: 3 });
-    }
-
-    return num.toFixed(3).replace(/\.?0+$/, "");
-  };
-
-  const convertValue = () => {
+  const convertValue = useCallback(() => {
     const value = parseFloat(inputValue);
     if (isNaN(value) || value < 0) {
       setResult("");
@@ -150,11 +150,11 @@ export default function ConversionClient({ from, to }: ConversionClientProps) {
 
     const formatted = formatNumber(convertedValue);
     setResult(`${formatted} ${targetUnitInfo.symbol}`);
-  };
+  }, [calculationType, from, inputValue, to]);
 
   useEffect(() => {
     convertValue();
-  }, [inputValue, calculationType, from, to]);
+  }, [inputValue, calculationType, from, to, convertValue]);
 
   const handleCopy = async () => {
     try {

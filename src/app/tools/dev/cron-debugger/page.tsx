@@ -19,7 +19,6 @@ const calculateNextDates = (cronExpression: string, count: number = 5): NextDate
   const currentDate = new Date();
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const interval = parser.parse(cronExpression);
 
     for (let i = 0; i < count; i++) {

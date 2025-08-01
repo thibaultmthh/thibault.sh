@@ -137,5 +137,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   });
 
+  // Add data size converter specific conversion pages
+  const units = ["bit", "byte", "kb", "mb", "gb", "tb", "pb", "eb", "zb", "yb"];
+  units.forEach((fromUnit) => {
+    units.forEach((toUnit) => {
+      if (fromUnit !== toUnit) {
+        routes.push({
+          url: `${baseUrl}/tools/utilities/data-size-converter/${fromUnit}-to-${toUnit}`,
+          lastModified: new Date(),
+          changeFrequency: "monthly",
+          priority: 0.7,
+        });
+      }
+    });
+  });
+
   return routes;
 }

@@ -7,7 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
-import { Copy, ArrowLeftRight, HardDrive } from "lucide-react";
+import { Copy, ArrowLeftRight, HardDrive, ExternalLink, Settings2 } from "lucide-react";
+import Link from "next/link";
 
 type Unit = "bit" | "byte" | "kb" | "mb" | "gb" | "tb" | "pb" | "eb" | "zb" | "yb";
 type CalculationType = "binary" | "decimal";
@@ -102,7 +103,8 @@ interface ConversionResult {
 export default function DataSizeConverter() {
   const [inputValue, setInputValue] = useState("1");
   const [inputUnit, setInputUnit] = useState<Unit>("gb");
-  const [calculationType, setCalculationType] = useState<CalculationType>("binary");
+  const [targetUnit, setTargetUnit] = useState<Unit | "all">("all");
+  const [calculationType, setCalculationType] = useState<CalculationType>("decimal");
   const [results, setResults] = useState<ConversionResult[]>([]);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -151,7 +153,10 @@ export default function DataSizeConverter() {
     // Convert input to bytes first
     const valueInBytes = value * multiplier;
 
-    const conversions: ConversionResult[] = (Object.keys(UNITS) as Unit[]).map((unit) => {
+    // Determine which units to convert to
+    const unitsToConvert = targetUnit === "all" ? (Object.keys(UNITS) as Unit[]) : [targetUnit as Unit];
+
+    const conversions: ConversionResult[] = unitsToConvert.map((unit) => {
       const targetUnitInfo = UNITS[unit];
       const targetMultiplier =
         calculationType === "binary" ? targetUnitInfo.binaryMultiplier : targetUnitInfo.decimalMultiplier;
@@ -170,7 +175,7 @@ export default function DataSizeConverter() {
 
   useEffect(() => {
     convertValue();
-  }, [inputValue, inputUnit, calculationType]);
+  }, [inputValue, inputUnit, targetUnit, calculationType]);
 
   const handleCopy = async (text: string, unit: Unit) => {
     try {
@@ -253,20 +258,39 @@ export default function DataSizeConverter() {
               </Select>
             </div>
 
-            {/* Calculation Type */}
+            {/* Target Unit */}
             <div className="space-y-2">
-              <Label>Calculation Type</Label>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={swapCalculationType} className="flex-1">
-                  {calculationType === "binary" ? "Binary (1024)" : "Decimal (1000)"}
-                  <ArrowLeftRight className="h-4 w-4 ml-2" />
-                </Button>
-              </div>
+              <Label>To Unit</Label>
+              <Select value={targetUnit} onValueChange={(value: Unit | "all") => setTargetUnit(value)}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Show All Units</SelectItem>
+                  {(Object.keys(UNITS) as Unit[]).map((unit) => (
+                    <SelectItem key={unit} value={unit}>
+                      {UNITS[unit].name} ({UNITS[unit].symbol})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Advanced Settings */}
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex-1"></div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Calculation:</span>
+              <Button variant="ghost" size="sm" onClick={swapCalculationType} className="h-6 px-2 text-xs">
+                <Settings2 className="h-3 w-3 mr-1" />
+                {calculationType === "decimal" ? "1000-based" : "1024-based"}
+              </Button>
             </div>
           </div>
 
           {/* Quick Examples */}
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap mb-4">
             <Label className="self-center">Quick Examples:</Label>
             <Button variant="outline" size="sm" onClick={() => loadExample("file")}>
               Movie File (2.5 GB)
@@ -281,10 +305,25 @@ export default function DataSizeConverter() {
               Internet Speed (100 MB)
             </Button>
           </div>
+
+          {/* Dedicated Page Link */}
+          {targetUnit !== "all" && (
+            <div className="flex gap-2 items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="text-sm text-blue-800 flex-1">
+                Get a dedicated page for {UNITS[inputUnit].name} to {UNITS[targetUnit as Unit].name} conversion
+              </div>
+              <Link href={`/tools/utilities/data-size-converter/${inputUnit}-to-${targetUnit}`}>
+                <Button size="sm" variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-100">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Open Dedicated Page
+                </Button>
+              </Link>
+            </div>
+          )}
         </Card>
 
         {/* Results */}
-        <div className="grid gap-4">
+        <div className="grid gap-4 px-0.5">
           {results.map((result) => {
             const unitInfo = UNITS[result.unit];
             const isCurrentInput = result.unit === inputUnit;
@@ -304,8 +343,8 @@ export default function DataSizeConverter() {
                     <div className="text-right">
                       <div className="text-2xl font-mono font-bold">{result.formattedValue}</div>
                       {result.unit !== "bit" && result.unit !== "byte" && (
-                        <div className="text-sm text-muted-foreground">
-                          {calculationType === "binary" ? "1024-based" : "1000-based"}
+                        <div className="text-xs text-muted-foreground">
+                          {calculationType === "decimal" ? "1000-based" : "1024-based"}
                         </div>
                       )}
                     </div>
@@ -334,6 +373,35 @@ export default function DataSizeConverter() {
           </Card>
         )}
 
+        {/* Popular Conversions */}
+        <Card className="p-6 mt-6">
+          <h2 className="font-semibold mb-4 flex items-center gap-2">
+            <ExternalLink className="h-5 w-5" />
+            Popular Conversions
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-sm">
+            {[
+              { from: "gb", to: "mb", label: "GB to MB" },
+              { from: "mb", to: "kb", label: "MB to KB" },
+              { from: "tb", to: "gb", label: "TB to GB" },
+              { from: "gb", to: "tb", label: "GB to TB" },
+              { from: "mb", to: "gb", label: "MB to GB" },
+              { from: "kb", to: "mb", label: "KB to MB" },
+              { from: "gb", to: "byte", label: "GB to Bytes" },
+              { from: "mb", to: "byte", label: "MB to Bytes" },
+            ].map((conversion) => (
+              <Link
+                key={`${conversion.from}-to-${conversion.to}`}
+                href={`/tools/utilities/data-size-converter/${conversion.from}-to-${conversion.to}`}
+              >
+                <Button variant="ghost" size="sm" className="w-full justify-start text-left h-auto p-2">
+                  {conversion.label}
+                </Button>
+              </Link>
+            ))}
+          </div>
+        </Card>
+
         {/* Info Card */}
         <Card className="p-6 mt-6">
           <h2 className="font-semibold mb-3 flex items-center gap-2">
@@ -350,22 +418,22 @@ export default function DataSizeConverter() {
             <TabsContent value="binary-decimal" className="mt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <h4 className="font-medium mb-2">Binary (Base 1024)</h4>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• Used by operating systems and file managers</li>
-                    <li>• 1 KB = 1024 bytes</li>
-                    <li>• 1 MB = 1024 KB = 1,048,576 bytes</li>
-                    <li>• More accurate for computer memory calculations</li>
-                    <li>• Sometimes called &quot;binary prefixes&quot; (KiB, MiB, GiB)</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">Decimal (Base 1000)</h4>
+                  <h4 className="font-medium mb-2">Decimal (Base 1000) - Default</h4>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>• Used by storage manufacturers and network speeds</li>
                     <li>• 1 KB = 1000 bytes</li>
                     <li>• 1 MB = 1000 KB = 1,000,000 bytes</li>
                     <li>• SI standard (International System of Units)</li>
+                    <li>• Most intuitive for everyday use</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Binary (Base 1024) - Advanced</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• Used by operating systems and file managers</li>
+                    <li>• 1 KB = 1024 bytes</li>
+                    <li>• 1 MB = 1024 KB = 1,048,576 bytes</li>
+                    <li>• More accurate for computer memory calculations</li>
                     <li>• Why a &quot;1TB&quot; drive shows as ~931GB in your OS</li>
                   </ul>
                 </div>
@@ -397,11 +465,12 @@ export default function DataSizeConverter() {
 
             <TabsContent value="tips" className="mt-4">
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Storage manufacturers use decimal, so your 1TB drive appears as ~931GB</li>
-                <li>• RAM is always calculated in binary (1GB RAM = 1024³ bytes)</li>
+                <li>• This tool defaults to decimal (1000-based) which is most common</li>
+                <li>• Storage manufacturers use decimal, so your 1TB drive appears as ~931GB in binary</li>
                 <li>• Internet speeds are typically measured in decimal bits per second</li>
-                <li>• When in doubt, check if you&apos;re dealing with storage (decimal) or memory (binary)</li>
+                <li>• Switch to binary (1024-based) for RAM and system memory calculations</li>
                 <li>• Use binary for precise file size calculations in programming</li>
+                <li>• For everyday conversions, decimal is usually what you want</li>
               </ul>
             </TabsContent>
           </Tabs>

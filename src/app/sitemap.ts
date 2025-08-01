@@ -5,6 +5,7 @@ import { MetadataRoute } from "next";
 import { apps } from "@/config/apps";
 import { tutorials } from "@/config/tutorials";
 import { PackageHooks } from "./hooks/packagehooks";
+import { httpCodes } from "@/app/data/httpCodes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Base URL for the website
@@ -135,6 +136,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
+  });
+
+  // Add all HTTP status codes
+  httpCodes.forEach((httpCode) => {
+    routes.push({
+      url: `${baseUrl}/tools/dev/http-codes/${httpCode.code}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
   });
 
   // Add data size converter specific conversion pages

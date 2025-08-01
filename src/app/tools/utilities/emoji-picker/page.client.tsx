@@ -4,9 +4,13 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Check, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Check, Search, Heart, Smile, Car, Utensils, Globe, Coffee, Star, Hash, Copy } from "lucide-react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import Fuse from "fuse.js";
+import Link from "next/link";
 
 interface Emoji {
   emoji: string;

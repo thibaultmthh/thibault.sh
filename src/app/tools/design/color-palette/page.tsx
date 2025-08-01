@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ColorThief from "colorthief";
 import { Copy, Upload, Loader2 } from "lucide-react";
 import { colord } from "colord";
@@ -20,16 +20,14 @@ export default function ColorPalette() {
   const [paletteSize, setPaletteSize] = useState(6);
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string>("");
+  const [currentImageFile, setCurrentImageFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const rgbToHex = (r: number, g: number, b: number): string => {
     return colord({ r, g, b }).toHex();
   };
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
+  const extractColorsFromFile = async (file: File, size: number) => {
     setIsLoading(true);
     setColors([]);
 
@@ -45,7 +43,7 @@ export default function ColorPalette() {
       const img = new Image();
       img.onload = async () => {
         const colorThief = new ColorThief();
-        const palette = colorThief.getPalette(img, paletteSize);
+        const palette = colorThief.getPalette(img, size);
 
         const extractedColors = palette.map((color: [number, number, number]) => {
           const [r, g, b] = color;
@@ -67,16 +65,34 @@ export default function ColorPalette() {
     }
   };
 
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setCurrentImageFile(file);
+    await extractColorsFromFile(file, paletteSize);
+  };
+
+  // Re-extract colors when palette size changes
+  useEffect(() => {
+    if (currentImageFile) {
+      extractColorsFromFile(currentImageFile, paletteSize);
+    }
+  }, [paletteSize, currentImageFile]);
+
   const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith("image/")) {
+      setCurrentImageFile(file);
+      await extractColorsFromFile(file, paletteSize);
+
+      // Update the file input to match
       const input = fileInputRef.current;
       if (input) {
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(file);
         input.files = dataTransfer.files;
-        handleImageUpload({ target: { files: dataTransfer.files } } as React.ChangeEvent<HTMLInputElement>);
       }
     }
   };
@@ -91,7 +107,7 @@ export default function ColorPalette() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-4">Color Palette Generator</h1>
+      <h1 className="text-3xl font-bold mb-4">Color Palette from Image Generator</h1>
 
       <div>
         <Card className="p-6 py-4">
@@ -173,6 +189,25 @@ export default function ColorPalette() {
               </div>
             </div>
           ) : null}
+        </Card>
+
+        {/* About Section */}
+        <Card className="p-6 mt-6">
+          <h2 className="font-semibold mb-3">About Color Palette from Image Generator</h2>
+          <div className="space-y-2 text-sm text-muted-foreground">
+            <p>
+              Extract beautiful color palettes from any image with this powerful tool. Perfect for designers, artists,
+              and developers who need to create cohesive color schemes for their projects.
+            </p>
+            <ul className="space-y-1 mt-3">
+              <li>• Upload images via drag & drop or file selection</li>
+              <li>• Supports JPG, PNG, and WebP formats</li>
+              <li>• Dynamically adjust palette size from 2 to 12 colors</li>
+              <li>• Get both HEX and RGB color codes</li>
+              <li>• One-click copy for easy use in your designs</li>
+              <li>• All processing happens locally in your browser</li>
+            </ul>
+          </div>
         </Card>
       </div>
     </div>

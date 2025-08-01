@@ -432,11 +432,11 @@ export const tools = {
       },
       {
         id: "color-palette",
-        name: "Color Palette Generator",
+        name: "Color Palette from Image Generator",
         description: "Extract color palettes from images",
         path: "/tools/design/color-palette",
         seo: {
-          title: "Color Palette Generator - Extract Color Palettes from Images Online",
+          title: "Color Palette from Image Generator - Extract Color Palettes from Images Online",
           description:
             "Extract color palettes from images online with this free tool. Create beautiful color palettes for your designs. Perfect for designers and content creators.",
           keywords: "color palette generator, extract color palettes, color palettes, online tool, design",
@@ -598,13 +598,14 @@ export const tools = {
       {
         id: "unit-converter",
         name: "Unit Converter",
-        description: "Convert between different units",
+        description: "Convert between length, weight, temperature, area, and volume units",
         path: "/tools/utilities/unit-converter",
         seo: {
-          title: "Unit Converter - Convert Between Different Units Online",
+          title: "Unit Converter - Convert Length, Weight, Temperature, Area & Volume Units",
           description:
-            "Convert between different units online with this free tool. Convert units to fit your needs. Perfect for content creators and marketers.",
-          keywords: "unit converter, convert units, different units, online tool, content creation",
+            "Free online unit converter with instant results. Convert between metric and imperial units for length, weight, temperature, area, and volume. Supports dedicated conversion pages for SEO.",
+          keywords:
+            "unit converter, metric imperial conversion, length weight temperature converter, measurement conversion, online calculator",
         },
       },
       {

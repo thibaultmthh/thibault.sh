@@ -174,6 +174,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
+  // Add unit converter specific conversion pages
+  const unitConverterTypes = {
+    length: ["mm", "cm", "m", "km", "in", "ft", "yd", "mi"],
+    weight: ["mg", "g", "kg", "oz", "lb", "t"],
+    temperature: ["c", "f", "k"],
+    area: ["mm2", "cm2", "m2", "km2", "in2", "ft2", "ac"],
+    volume: ["ml", "l", "m3", "gal", "qt", "pt", "fl_oz"],
+  };
+
+  Object.entries(unitConverterTypes).forEach(([type, typeUnits]) => {
+    typeUnits.forEach((fromUnit) => {
+      typeUnits.forEach((toUnit) => {
+        if (fromUnit !== toUnit) {
+          routes.push({
+            url: `${baseUrl}/tools/utilities/unit-converter/${type}/${fromUnit}-to-${toUnit}`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.7,
+          });
+        }
+      });
+    });
+  });
+
   // Add emoji pages
   try {
     const emojis = await getEmojis();

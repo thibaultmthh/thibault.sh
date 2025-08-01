@@ -261,8 +261,12 @@ export default function FaviconGenerator() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">Favicon Generator</h1>
+      <p className="text-muted-foreground mb-6">
+        Create multi-platform favicons from your image. Generate all the necessary favicon formats and sizes for
+        websites, iOS apps, and Android apps with proper HTML code.
+      </p>
 
-      <div>
+      <div className="space-y-6">
         <Card className="p-6">
           {/* Image Upload */}
           <div
@@ -333,6 +337,122 @@ export default function FaviconGenerator() {
               </>
             )}
           </Button>
+        </Card>
+
+        {/* What Gets Generated */}
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold mb-4">What Gets Generated</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-3">
+              <h3 className="font-semibold text-lg">Image Files</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  • <strong>favicon.ico</strong> - Classic Windows favicon (16x16, 32x32, 48x48)
+                </li>
+                <li>
+                  • <strong>favicon-16x16.png</strong> - Standard browser tab icon
+                </li>
+                <li>
+                  • <strong>favicon-32x32.png</strong> - High-resolution browser tab icon
+                </li>
+                <li>
+                  • <strong>favicon-48x48.png</strong> - Windows taskbar icon
+                </li>
+                <li>
+                  • <strong>apple-touch-icon.png</strong> - iOS home screen icon (180x180)
+                </li>
+                <li>
+                  • <strong>android-chrome-192x192.png</strong> - Android app icon
+                </li>
+                <li>
+                  • <strong>android-chrome-512x512.png</strong> - Android high-res icon
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-semibold text-lg">Configuration Files</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  • <strong>site.webmanifest</strong> - Android web app manifest
+                </li>
+                <li>
+                  • <strong>favicon-code.html</strong> - Ready-to-use HTML code
+                </li>
+              </ul>
+              <div className="mt-4 p-3 bg-muted/30 rounded-lg">
+                <p className="text-sm">
+                  <strong>Pro tip:</strong> Copy the HTML code from favicon-code.html and paste it into your website's
+                  &lt;head&gt; section for complete favicon support across all platforms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        {/* About Favicons */}
+        <Card className="p-6">
+          <h2 className="font-semibold mb-4">About Favicons</h2>
+          <div className="space-y-4 text-sm text-muted-foreground">
+            <p>
+              A favicon (short for "favorite icon") is a small icon associated with a website or web page. It appears in
+              browser tabs, bookmarks, browser history, and when users save your site to their device's home screen.
+            </p>
+
+            <div className="grid gap-6 md:grid-cols-3 mt-6">
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground">Why Favicons Matter</h3>
+                <ul className="space-y-1">
+                  <li>• Improve brand recognition and professional appearance</li>
+                  <li>• Help users identify your site among multiple tabs</li>
+                  <li>• Essential for mobile app-like experiences (PWAs)</li>
+                  <li>• Required for proper SEO and web standards</li>
+                  <li>• Enhance user experience across all devices</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground">Platform Support</h3>
+                <ul className="space-y-1">
+                  <li>
+                    • <strong>Web browsers:</strong> Chrome, Firefox, Safari, Edge
+                  </li>
+                  <li>
+                    • <strong>iOS devices:</strong> Home screen icons, Safari tabs
+                  </li>
+                  <li>
+                    • <strong>Android devices:</strong> Chrome shortcuts, app icons
+                  </li>
+                  <li>
+                    • <strong>Windows:</strong> Taskbar, favorites, start menu
+                  </li>
+                  <li>
+                    • <strong>Social media:</strong> Link previews and sharing
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground">Best Practices</h3>
+                <ul className="space-y-1">
+                  <li>• Use square images (1:1 aspect ratio)</li>
+                  <li>• Minimum 512x512 pixels for best quality</li>
+                  <li>• Simple, recognizable design that scales well</li>
+                  <li>• High contrast for visibility at small sizes</li>
+                  <li>• Consistent with your brand colors and style</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
+              <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">Technical Note</h3>
+              <p className="text-blue-800 dark:text-blue-200 text-sm">
+                This tool generates favicons in multiple formats to ensure compatibility across all modern browsers and
+                devices. The ICO format contains multiple sizes in a single file for Windows compatibility, while PNG
+                files provide crisp rendering on high-DPI displays. The web manifest enables progressive web app
+                features on mobile devices.
+              </p>
+            </div>
+          </div>
         </Card>
       </div>
     </div>

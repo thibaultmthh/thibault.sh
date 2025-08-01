@@ -80,7 +80,7 @@ export default function RSSViewer() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="mx-auto">
       <div className="mb-6 space-y-2">
         <h1 className="text-3xl font-bold">RSS Feed Viewer</h1>
         <p className="text-muted-foreground">

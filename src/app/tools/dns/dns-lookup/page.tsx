@@ -104,7 +104,7 @@ export default function DNSLookup() {
   };
 
   return (
-    <div className="container max-w-4xl">
+    <div>
       <h1 className="text-3xl font-bold mb-4">DNS Lookup Tool</h1>
 
       <Card className="p-6 mb-6">

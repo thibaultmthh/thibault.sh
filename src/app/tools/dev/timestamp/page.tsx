@@ -92,7 +92,7 @@ export default function TimestampConverter() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Timestamp Converter</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Current Time Section */}
           <div className="mb-6 p-4 bg-muted rounded-lg">

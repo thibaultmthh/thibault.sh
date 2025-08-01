@@ -140,7 +140,7 @@ export default function UnitConverter() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Unit Converter</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Unit Type Selector */}
           <div className="mb-6">

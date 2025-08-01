@@ -44,7 +44,7 @@ export default function UUIDGenerator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">UUID Generator</h1>
 
       <Tabs defaultValue="generate" className="mb-6">

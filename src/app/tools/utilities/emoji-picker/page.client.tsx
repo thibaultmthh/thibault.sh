@@ -111,7 +111,7 @@ export function EmojiPicker({ initialEmojis }: EmojiPickerProps) {
   );
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div>
       <Card>
         <CardHeader>
           <CardTitle>Emoji Picker</CardTitle>

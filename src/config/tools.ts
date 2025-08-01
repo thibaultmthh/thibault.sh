@@ -443,10 +443,10 @@ export const tools = {
         },
       },
       {
-        id: "unit-converter",
+        id: "css-unit-converter",
         name: "CSS Unit Converter",
         description: "Convert between px, rem, and em",
-        path: "/tools/design/unit-converter",
+        path: "/tools/design/css-unit-converter",
         seo: {
           title: "CSS Unit Converter - Convert Between px, rem, and em Online",
           description:
@@ -668,10 +668,10 @@ export const tools = {
         },
       },
       {
-        id: "screen-checker",
+        id: "screen-size-checker",
         name: "Screen Resolution Checker",
         description: "Check screen resolution and display properties",
-        path: "/tools/utilities/screen-checker",
+        path: "/tools/utilities/screen-size-checker",
         seo: {
           title: "Screen Resolution Checker - Display Information Tool",
           description:

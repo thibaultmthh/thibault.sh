@@ -51,7 +51,7 @@ export default function QRGenerator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">QR Code Generator</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

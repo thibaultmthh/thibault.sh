@@ -262,7 +262,7 @@ export default function FaviconGenerator() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Favicon Generator</h1>
 
-      <div className="max-w-3xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Image Upload */}
           <div

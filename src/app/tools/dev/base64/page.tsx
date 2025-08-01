@@ -9,15 +9,16 @@ import { AlertCircle, Upload } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Base64Tool() {
-  const [inputText, setInputText] = useState("");
+  const [inputText, _setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileResult, setFileResult] = useState<string>("");
+  const [mode, setMode] = useState<"encode" | "decode">("encode");
 
-  const encode = () => {
+  const encode = (text: string) => {
     try {
-      const encoded = btoa(inputText);
+      const encoded = btoa(text);
       setOutputText(encoded);
       setError(null);
     } catch {
@@ -25,13 +26,22 @@ export default function Base64Tool() {
     }
   };
 
-  const decode = () => {
+  const decode = (text: string) => {
     try {
-      const decoded = atob(inputText);
+      const decoded = atob(text);
       setOutputText(decoded);
       setError(null);
     } catch {
       setError("Invalid Base64 string. Please check your input.");
+    }
+  };
+
+  const setInputText = (text: string) => {
+    _setInputText(text);
+    if (mode === "decode") {
+      decode(text);
+    } else {
+      encode(text);
     }
   };
 
@@ -91,9 +101,12 @@ export default function Base64Tool() {
         </TabsList>
 
         <TabsContent value="text">
+          <p className="font-semibold text-xl mb-1">Select mode : </p>
           <div className="flex gap-4 mb-4">
-            <Button onClick={encode}>Encode</Button>
-            <Button onClick={decode} variant="secondary">
+            <Button onClick={() => setMode("encode")} variant={mode === "encode" ? "default" : "secondary"} size={"lg"}>
+              Encode
+            </Button>
+            <Button onClick={() => setMode("decode")} variant={mode === "decode" ? "default" : "secondary"} size={"lg"}>
               Decode
             </Button>
           </div>

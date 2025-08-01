@@ -120,7 +120,7 @@ export default function LoremIpsumGenerator() {
     }
 
     if (startWithLorem && result.length > 5) {
-      result = "Lorem ipsum" + result.slice(result.indexOf(" ") + 1);
+      result = "Lorem ipsum " + result.slice(result.indexOf(" ") + 1);
     }
 
     setOutput(result);

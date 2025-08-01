@@ -89,7 +89,7 @@ export default function ImageToBase64() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Image to Base64 Converter</h1>
 
-      <div className="max-w-4xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* File Upload Area */}
           <div

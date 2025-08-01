@@ -26,7 +26,7 @@ export default function HttpCodesPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">HTTP Status Codes</h1>
       <p className="text-muted-foreground mb-6">
         Complete list of HTTP status codes with detailed information and examples.

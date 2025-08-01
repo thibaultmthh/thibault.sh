@@ -81,7 +81,7 @@ export default function SlugGenerator() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Slug Generator</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Input */}
           <div className="space-y-2 mb-6">

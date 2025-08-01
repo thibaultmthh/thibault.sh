@@ -18,7 +18,7 @@ export default async function HttpCodePage({ params }: { params: Promise<{ code:
   const category = categories[httpCode.category];
 
   return (
-    <div className="max-w-4xl mx-auto pb-16">
+    <div>
       {/* Navigation */}
       <Link
         href="/tools/dev/http-codes"

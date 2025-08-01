@@ -128,7 +128,7 @@ export default function PasswordGenerator() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Password Generator</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Password Display */}
           <div className="relative mb-6">

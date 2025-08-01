@@ -142,7 +142,7 @@ export default function RegExPlayground() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">RegEx Playground</h1>
 
       <div className="space-y-6">
@@ -151,7 +151,7 @@ export default function RegExPlayground() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="pattern">Regular Expression</Label>
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
                 <span className="text-muted-foreground">/</span>
                 <Input
                   id="pattern"
@@ -192,7 +192,7 @@ export default function RegExPlayground() {
                 <SelectContent>
                   {COMMON_PATTERNS.map((item) => (
                     <SelectItem key={item.name} value={item.pattern}>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col items-start">
                         <span>{item.name}</span>
                         <span className="text-sm text-muted-foreground">{item.description}</span>
                       </div>

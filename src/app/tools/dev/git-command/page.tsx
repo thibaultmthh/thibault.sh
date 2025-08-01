@@ -202,7 +202,7 @@ export default function GitCommandGenerator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Git Command Generator</h1>
 
       <Card className="p-6">

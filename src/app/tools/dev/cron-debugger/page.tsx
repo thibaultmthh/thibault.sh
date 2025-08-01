@@ -100,7 +100,7 @@ export default function CronDebugger() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Cron Expression Debugger</h1>
 
-      <div className="max-w-4xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Cron Expression Input */}
           <div className="space-y-2 mb-6">

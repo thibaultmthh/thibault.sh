@@ -59,7 +59,7 @@ export default function ScreenChecker() {
   }
 
   return (
-    <div className="container max-w-4xl">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Screen Resolution Checker</h1>
 
       <div className="grid gap-6">

@@ -97,7 +97,7 @@ export default function OGPreview() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-3xl font-bold mb-4">Open Graph Preview</h1>
 
       <Card className="p-6 mb-6">

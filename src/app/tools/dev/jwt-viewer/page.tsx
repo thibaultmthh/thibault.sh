@@ -312,7 +312,7 @@ export default function JWTViewer() {
     <div>
       <h1 className="text-3xl font-bold mb-4">JWT Token Viewer</h1>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="">
         <Card className="p-6">
           {/* JWT Token Input */}
           <div className="space-y-2 mb-6">

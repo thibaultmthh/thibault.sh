@@ -120,9 +120,9 @@ export default function UnitConverter() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-4">Unit Converter</h1>
+      <h1 className="text-3xl font-bold mb-4">CSS Unit Converter</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Base Font Size Control */}
           <div className="space-y-4 mb-8">

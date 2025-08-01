@@ -95,7 +95,7 @@ export default function ImageDimensionChecker() {
     <div>
       <h1 className="text-3xl font-bold mb-4">Image Dimension Checker</h1>
 
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="space-y-6">
         <Card className="p-6">
           {/* File Upload Area */}
           <div

@@ -74,7 +74,7 @@ export default function ENSLookup() {
     <div>
       <h1 className="text-3xl font-bold mb-4">ENS Lookup</h1>
 
-      <div className="max-w-2xl mx-auto">
+      <div>
         <Card className="p-6">
           {/* Mode Toggle */}
           <div className="mb-6">

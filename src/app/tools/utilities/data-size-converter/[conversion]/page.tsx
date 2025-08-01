@@ -86,9 +86,9 @@ const UNITS: Record<Unit, UnitInfo> = {
 };
 
 interface ConversionPageProps {
-  params: {
+  params: Promise<{
     conversion: string;
-  };
+  }>;
 }
 
 function parseConversionUrl(conversion: string): { from: Unit; to: Unit } | null {
@@ -106,7 +106,8 @@ function parseConversionUrl(conversion: string): { from: Unit; to: Unit } | null
 }
 
 export async function generateMetadata({ params }: ConversionPageProps): Promise<Metadata> {
-  const parsedConversion = parseConversionUrl(params.conversion);
+  const { conversion } = await params;
+  const parsedConversion = parseConversionUrl(conversion);
 
   if (!parsedConversion) {
     return {
@@ -149,8 +150,9 @@ export async function generateMetadata({ params }: ConversionPageProps): Promise
   };
 }
 
-export default function ConversionPage({ params }: ConversionPageProps) {
-  const parsedConversion = parseConversionUrl(params.conversion);
+export default async function ConversionPage({ params }: ConversionPageProps) {
+  const { conversion } = await params;
+  const parsedConversion = parseConversionUrl(conversion);
 
   if (!parsedConversion) {
     notFound();

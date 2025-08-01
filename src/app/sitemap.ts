@@ -7,7 +7,18 @@ import { tutorials } from "@/config/tutorials";
 import { PackageHooks } from "./hooks/packagehooks";
 import { httpCodes } from "@/app/data/httpCodes";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Function to get emojis for sitemap
+async function getEmojis() {
+  try {
+    const response = await fetch("https://raw.githubusercontent.com/github/gemoji/refs/heads/master/db/emoji.json");
+    return response.json();
+  } catch (error) {
+    console.error("Failed to fetch emojis for sitemap:", error);
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URL for the website
   const baseUrl = "https://thibault.sh";
 
@@ -162,6 +173,157 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     });
   });
+
+  // Add emoji pages
+  try {
+    const emojis = await getEmojis();
+
+    // Get unique categories for category pages
+    const categories = [...new Set(emojis.map((emoji: any) => emoji.category))];
+    categories.forEach((category) => {
+      routes.push({
+        url: `${baseUrl}/tools/utilities/emoji-picker/category/${encodeURIComponent(category as string)}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    });
+
+    // Add popular emojis (limit to avoid huge sitemap)
+    const popularEmojis = [
+      "😀",
+      "😃",
+      "😄",
+      "😁",
+      "😆",
+      "😅",
+      "😂",
+      "🤣",
+      "😊",
+      "😇",
+      "🙂",
+      "🙃",
+      "😉",
+      "😌",
+      "😍",
+      "🥰",
+      "😘",
+      "😗",
+      "😙",
+      "😚",
+      "😋",
+      "😛",
+      "😝",
+      "😜",
+      "🤪",
+      "🤨",
+      "🧐",
+      "🤓",
+      "😎",
+      "🤩",
+      "🥳",
+      "😏",
+      "😒",
+      "😞",
+      "😔",
+      "😟",
+      "😕",
+      "🙁",
+      "☹️",
+      "😣",
+      "😖",
+      "😫",
+      "😩",
+      "🥺",
+      "😢",
+      "😭",
+      "😤",
+      "😠",
+      "😡",
+      "🤬",
+      "🤯",
+      "😳",
+      "🥵",
+      "🥶",
+      "😱",
+      "😨",
+      "😰",
+      "😥",
+      "😓",
+      "🤗",
+      "🤔",
+      "🤭",
+      "🤫",
+      "🤥",
+      "😶",
+      "😐",
+      "😑",
+      "😬",
+      "🙄",
+      "😯",
+      "😦",
+      "😧",
+      "😮",
+      "😲",
+      "🥱",
+      "😴",
+      "🤤",
+      "😪",
+      "😵",
+      "🤐",
+      "🥴",
+      "🤢",
+      "🤮",
+      "🤧",
+      "😷",
+      "🤒",
+      "🤕",
+      "🤑",
+      "🤠",
+      "😈",
+      "👍",
+      "👎",
+      "👌",
+      "✌️",
+      "🤞",
+      "🤟",
+      "🤘",
+      "🤙",
+      "👈",
+      "👉",
+      "❤️",
+      "🧡",
+      "💛",
+      "💚",
+      "💙",
+      "💜",
+      "🖤",
+      "🤍",
+      "🤎",
+      "💔",
+      "🔥",
+      "💯",
+      "💥",
+      "💫",
+      "⭐",
+      "🌟",
+      "✨",
+      "💎",
+      "🎉",
+      "🎊",
+    ];
+
+    popularEmojis.forEach((emoji) => {
+      routes.push({
+        url: `${baseUrl}/tools/utilities/emoji-picker/${encodeURIComponent(emoji)}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    });
+  } catch (error) {
+    console.error("Failed to add emoji routes to sitemap:", error);
+  }
 
   return routes;
 }

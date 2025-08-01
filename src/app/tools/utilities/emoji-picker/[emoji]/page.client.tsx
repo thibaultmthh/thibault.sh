@@ -15,7 +15,6 @@ import {
   Globe,
   Calendar,
   Smartphone,
-  Code,
   ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
@@ -319,7 +318,7 @@ export default function EmojiDetailClient({ emojiData, relatedEmojis }: EmojiDet
                 <div className="text-sm text-muted-foreground mb-2">CSS Code</div>
                 <div className="flex items-center gap-2">
                   <code className="bg-muted px-2 py-1 rounded text-sm flex-1">
-                    content: "{getCssCode(emojiData.emoji)}";
+                    content: &quot;{getCssCode(emojiData.emoji)}&quot;;
                   </code>
                   <Button
                     size="sm"

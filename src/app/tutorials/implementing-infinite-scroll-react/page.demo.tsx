@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 // Mock data generator for the demo
 const generateItems = (start: number, end: number) => {
@@ -15,6 +15,16 @@ export default function InfiniteScrollDemo() {
   const [items, setItems] = useState(() => generateItems(0, 10));
   const [loading, setLoading] = useState(false);
   const loaderRef = useRef<HTMLDivElement>(null);
+
+  const loadMore = useCallback(() => {
+    setLoading(true);
+    // Simulate API call delay
+    setTimeout(() => {
+      const newItems = generateItems(items.length, items.length + 5);
+      setItems((prevItems) => [...prevItems, ...newItems]);
+      setLoading(false);
+    }, 1000);
+  }, [items.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,17 +42,7 @@ export default function InfiniteScrollDemo() {
     }
 
     return () => observer.disconnect();
-  }, [loading]);
-
-  const loadMore = () => {
-    setLoading(true);
-    // Simulate API call delay
-    setTimeout(() => {
-      const newItems = generateItems(items.length, items.length + 5);
-      setItems((prevItems) => [...prevItems, ...newItems]);
-      setLoading(false);
-    }, 1000);
-  };
+  }, [loadMore, loading]);
 
   return (
     <div className="border rounded-lg p-4 bg-gray-50">

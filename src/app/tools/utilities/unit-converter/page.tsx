@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect } from "react";
-import { ArrowRightLeft, Ruler, ExternalLink, Copy, ArrowLeftRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Ruler, ExternalLink, Copy, ArrowLeftRight } from "lucide-react";
 import Link from "next/link";
 
 type UnitType = {
@@ -113,7 +113,7 @@ export default function UnitConverter() {
     return num.toFixed(6).replace(/\.?0+$/, "");
   };
 
-  const convert = () => {
+  const convert = useCallback(() => {
     if (!fromUnit || !toUnit || !fromValue) {
       setResult("");
       return;
@@ -158,12 +158,12 @@ export default function UnitConverter() {
       const resultValue = (value * fromRate) / toRate;
       setResult(formatNumber(resultValue));
     }
-  };
+  }, [fromUnit, fromValue, selectedType, toUnit]);
 
   // Auto-convert when any input changes
   useEffect(() => {
     convert();
-  }, [fromValue, fromUnit, toUnit, selectedType]);
+  }, [fromValue, fromUnit, toUnit, selectedType, convert]);
 
   const swapUnits = () => {
     const tempFromUnit = fromUnit;

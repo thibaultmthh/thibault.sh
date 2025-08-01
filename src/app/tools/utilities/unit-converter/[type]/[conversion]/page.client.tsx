@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Copy, ArrowLeftRight, ArrowLeft, Ruler, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
@@ -56,7 +56,7 @@ export default function ConversionClient({ type, from, to, typeInfo }: Conversio
     return num.toFixed(6).replace(/\.?0+$/, "");
   };
 
-  const convertValue = () => {
+  const convertValue = useCallback(() => {
     const value = parseFloat(inputValue);
     if (isNaN(value) || value < 0) {
       setResult("");
@@ -96,11 +96,11 @@ export default function ConversionClient({ type, from, to, typeInfo }: Conversio
       const resultValue = (value * fromRate) / toRate;
       setResult(formatNumber(resultValue));
     }
-  };
+  }, [from, inputValue, to, type, typeInfo.units]);
 
   useEffect(() => {
     convertValue();
-  }, [inputValue, from, to]);
+  }, [inputValue, from, to, convertValue]);
 
   const handleCopy = async () => {
     try {

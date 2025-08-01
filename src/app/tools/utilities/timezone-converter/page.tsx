@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { X, Plus, Clock, Globe } from "lucide-react";
 
 interface Timezone {
@@ -149,7 +149,7 @@ export default function TimezoneConverter() {
     }
   };
 
-  const updateTimes = () => {
+  const updateTimes = useCallback(() => {
     let baseTime: Date | undefined;
 
     if (customTime) {
@@ -174,13 +174,13 @@ export default function TimezoneConverter() {
 
     const displays = selectedTimezones.map((tz) => formatTime(tz, baseTime));
     setTimeDisplays(displays);
-  };
+  }, [customTime, selectedTimezones]);
 
   useEffect(() => {
     updateTimes();
     const interval = setInterval(updateTimes, 1000);
     return () => clearInterval(interval);
-  }, [selectedTimezones, customTime]);
+  }, [selectedTimezones, customTime, updateTimes]);
 
   const addTimezone = () => {
     if (!selectedTimezoneToAdd) return;

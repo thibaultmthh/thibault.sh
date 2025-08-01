@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Copy, Monitor, Smartphone } from "lucide-react";
@@ -28,7 +28,7 @@ export default function ScreenChecker() {
     return `${width / divisor}:${height / divisor}`;
   };
 
-  const getScreenInfo = () => {
+  const getScreenInfo = useCallback(() => {
     const info: ScreenInfo = {
       screenWidth: window.screen.width,
       screenHeight: window.screen.height,
@@ -41,14 +41,14 @@ export default function ScreenChecker() {
       aspectRatio: calculateAspectRatio(window.screen.width, window.screen.height),
     };
     setScreenInfo(info);
-  };
+  }, [setScreenInfo]);
 
   useEffect(() => {
     setIsClient(true);
     getScreenInfo();
     window.addEventListener("resize", getScreenInfo);
     return () => window.removeEventListener("resize", getScreenInfo);
-  }, []);
+  }, [getScreenInfo]);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Loader2, Info, AlertTriangle, DollarSign } from "lucide-react";
 import { ethers } from "ethers";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -69,32 +69,35 @@ export default function GasCalculator() {
   const debouncedGasLimit = useDebounce(gasLimit, 500);
   const debouncedGasPrice = useDebounce(effectiveGasPrice, 500);
 
+  const calculateGas = useCallback(
+    (currentGasPrice: string) => {
+      try {
+        const gasPriceWei = ethers.parseUnits(currentGasPrice, "gwei");
+        const totalWei = gasPriceWei * BigInt(gasLimit);
+
+        const inEth = ethers.formatEther(totalWei);
+        const inUsd = ethPrice ? (parseFloat(inEth) * ethPrice).toFixed(2) : "0";
+        triggerGAEvent("gas_calculator");
+
+        setResults({
+          inWei: totalWei.toString(),
+          inGwei: ethers.formatUnits(totalWei, "gwei"),
+          inEth,
+          inUsd,
+        });
+      } catch (error) {
+        console.error("Error calculating gas:", error);
+      }
+    },
+    [ethPrice, gasLimit]
+  );
+
   // Calculate gas whenever debounced values change
   useEffect(() => {
     if (debouncedGasPrice && debouncedGasLimit) {
       calculateGas(debouncedGasPrice);
     }
-  }, [debouncedGasLimit, debouncedGasPrice, ethPrice]);
-
-  const calculateGas = (currentGasPrice: string) => {
-    try {
-      const gasPriceWei = ethers.parseUnits(currentGasPrice, "gwei");
-      const totalWei = gasPriceWei * BigInt(gasLimit);
-
-      const inEth = ethers.formatEther(totalWei);
-      const inUsd = ethPrice ? (parseFloat(inEth) * ethPrice).toFixed(2) : "0";
-      triggerGAEvent("gas_calculator");
-
-      setResults({
-        inWei: totalWei.toString(),
-        inGwei: ethers.formatUnits(totalWei, "gwei"),
-        inEth,
-        inUsd,
-      });
-    } catch (error) {
-      console.error("Error calculating gas:", error);
-    }
-  };
+  }, [debouncedGasLimit, debouncedGasPrice, ethPrice, calculateGas]);
 
   return (
     <div className="container max-w-6xl py-6 space-y-6">

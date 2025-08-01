@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+
+const lightChars = [".", "·", "`", "'", ",", ":", "_", "-"];
+const mediumChars = ["~", "^", "+", "*", "=", "|", "/", "\\"];
+const heavyChars = ["#", "@", "%", "&", "█", "▓", "■", "●"];
 
 const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
   const [asciiGrid, setAsciiGrid] = useState<string[][]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Simplified character sets
-  const lightChars = [".", "·", "`", "'", ",", ":", "_", "-"];
-  const mediumChars = ["~", "^", "+", "*", "=", "|", "/", "\\"];
-  const heavyChars = ["#", "@", "%", "&", "█", "▓", "■", "●"];
 
-  const generateGrid = () => {
+  const generateGrid = useCallback(() => {
     const cols = Math.floor(window.innerWidth / 8);
     const rows = Math.floor(window.innerHeight / 16);
     const grid: string[][] = [];
@@ -41,53 +42,56 @@ const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
     }
 
     setAsciiGrid(grid);
-  };
+  }, []);
 
-  const updateGridWithMouse = (mouseX: number, mouseY: number) => {
-    if (!asciiGrid.length) return;
+  const updateGridWithMouse = useCallback(
+    (mouseX: number, mouseY: number) => {
+      if (!asciiGrid.length) return;
 
-    const cols = asciiGrid[0]?.length || 0;
-    const rows = asciiGrid.length;
+      const cols = asciiGrid[0]?.length || 0;
+      const rows = asciiGrid.length;
 
-    // Convert mouse position to grid coordinates
-    const gridX = Math.floor((mouseX / window.innerWidth) * cols);
-    const gridY = Math.floor((mouseY / window.innerHeight) * rows);
+      // Convert mouse position to grid coordinates
+      const gridX = Math.floor((mouseX / window.innerWidth) * cols);
+      const gridY = Math.floor((mouseY / window.innerHeight) * rows);
 
-    setAsciiGrid((prevGrid) => {
-      const newGrid = [...prevGrid.map((row) => [...row])];
+      setAsciiGrid((prevGrid) => {
+        const newGrid = [...prevGrid.map((row) => [...row])];
 
-      // Simplified influence area
-      const radius = 3;
+        // Simplified influence area
+        const radius = 3;
 
-      for (let dy = -radius; dy <= radius; dy++) {
-        for (let dx = -radius; dx <= radius; dx++) {
-          const targetY = gridY + dy;
-          const targetX = gridX + dx;
+        for (let dy = -radius; dy <= radius; dy++) {
+          for (let dx = -radius; dx <= radius; dx++) {
+            const targetY = gridY + dy;
+            const targetX = gridX + dx;
 
-          if (targetY >= 0 && targetY < rows && targetX >= 0 && targetX < cols) {
-            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (targetY >= 0 && targetY < rows && targetX >= 0 && targetX < cols) {
+              const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance <= radius && Math.random() < 0.3) {
-              const intensity = 1 - distance / radius;
+              if (distance <= radius && Math.random() < 0.3) {
+                const intensity = 1 - distance / radius;
 
-              if (intensity > 0.7) {
-                // Core area - heavy chars
-                newGrid[targetY][targetX] = heavyChars[Math.floor(Math.random() * heavyChars.length)];
-              } else if (intensity > 0.4) {
-                // Medium area - medium chars
-                newGrid[targetY][targetX] = mediumChars[Math.floor(Math.random() * mediumChars.length)];
-              } else {
-                // Outer area - light chars
-                newGrid[targetY][targetX] = lightChars[Math.floor(Math.random() * lightChars.length)];
+                if (intensity > 0.7) {
+                  // Core area - heavy chars
+                  newGrid[targetY][targetX] = heavyChars[Math.floor(Math.random() * heavyChars.length)];
+                } else if (intensity > 0.4) {
+                  // Medium area - medium chars
+                  newGrid[targetY][targetX] = mediumChars[Math.floor(Math.random() * mediumChars.length)];
+                } else {
+                  // Outer area - light chars
+                  newGrid[targetY][targetX] = lightChars[Math.floor(Math.random() * lightChars.length)];
+                }
               }
             }
           }
         }
-      }
 
-      return newGrid;
-    });
-  };
+        return newGrid;
+      });
+    },
+    [asciiGrid]
+  );
 
   useEffect(() => {
     generateGrid();
@@ -135,7 +139,7 @@ const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(interval);
     };
-  }, [asciiGrid.length]);
+  }, [asciiGrid.length, generateGrid, lightChars, updateGridWithMouse]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

@@ -72,7 +72,7 @@ export default function ToolsLayout({ children }: { children: React.ReactNode })
       <FavoritesProvider>
         <SidebarProvider>
           <div className="flex flex-1">
-            <Sidebar variant="inset" className="border-r">
+            <Sidebar variant="inset">
               <SidebarHeader className="px-4 pt-4 pb-2">
                 {/* Main branding */}
                 <Link

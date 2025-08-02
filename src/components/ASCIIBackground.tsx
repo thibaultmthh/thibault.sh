@@ -44,54 +44,51 @@ const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
     setAsciiGrid(grid);
   }, []);
 
-  const updateGridWithMouse = useCallback(
-    (mouseX: number, mouseY: number) => {
-      if (!asciiGrid.length) return;
+  const updateGridWithMouse = useCallback((mouseX: number, mouseY: number) => {
+    setAsciiGrid((prevGrid) => {
+      if (!prevGrid.length) return prevGrid;
 
-      const cols = asciiGrid[0]?.length || 0;
-      const rows = asciiGrid.length;
+      const cols = prevGrid[0]?.length || 0;
+      const rows = prevGrid.length;
 
       // Convert mouse position to grid coordinates
       const gridX = Math.floor((mouseX / window.innerWidth) * cols);
       const gridY = Math.floor((mouseY / window.innerHeight) * rows);
 
-      setAsciiGrid((prevGrid) => {
-        const newGrid = [...prevGrid.map((row) => [...row])];
+      const newGrid = [...prevGrid.map((row) => [...row])];
 
-        // Simplified influence area
-        const radius = 3;
+      // Simplified influence area
+      const radius = 3;
 
-        for (let dy = -radius; dy <= radius; dy++) {
-          for (let dx = -radius; dx <= radius; dx++) {
-            const targetY = gridY + dy;
-            const targetX = gridX + dx;
+      for (let dy = -radius; dy <= radius; dy++) {
+        for (let dx = -radius; dx <= radius; dx++) {
+          const targetY = gridY + dy;
+          const targetX = gridX + dx;
 
-            if (targetY >= 0 && targetY < rows && targetX >= 0 && targetX < cols) {
-              const distance = Math.sqrt(dx * dx + dy * dy);
+          if (targetY >= 0 && targetY < rows && targetX >= 0 && targetX < cols) {
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-              if (distance <= radius && Math.random() < 0.3) {
-                const intensity = 1 - distance / radius;
+            if (distance <= radius && Math.random() < 0.3) {
+              const intensity = 1 - distance / radius;
 
-                if (intensity > 0.7) {
-                  // Core area - heavy chars
-                  newGrid[targetY][targetX] = heavyChars[Math.floor(Math.random() * heavyChars.length)];
-                } else if (intensity > 0.4) {
-                  // Medium area - medium chars
-                  newGrid[targetY][targetX] = mediumChars[Math.floor(Math.random() * mediumChars.length)];
-                } else {
-                  // Outer area - light chars
-                  newGrid[targetY][targetX] = lightChars[Math.floor(Math.random() * lightChars.length)];
-                }
+              if (intensity > 0.7) {
+                // Core area - heavy chars
+                newGrid[targetY][targetX] = heavyChars[Math.floor(Math.random() * heavyChars.length)];
+              } else if (intensity > 0.4) {
+                // Medium area - medium chars
+                newGrid[targetY][targetX] = mediumChars[Math.floor(Math.random() * mediumChars.length)];
+              } else {
+                // Outer area - light chars
+                newGrid[targetY][targetX] = lightChars[Math.floor(Math.random() * lightChars.length)];
               }
             }
           }
         }
+      }
 
-        return newGrid;
-      });
-    },
-    [asciiGrid]
-  );
+      return newGrid;
+    });
+  }, []);
 
   useEffect(() => {
     generateGrid();
@@ -139,7 +136,7 @@ const ASCIIBackground = ({ strong = false }: { strong?: boolean }) => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(interval);
     };
-  }, [asciiGrid.length, generateGrid, updateGridWithMouse]);
+  }, [generateGrid, updateGridWithMouse]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">

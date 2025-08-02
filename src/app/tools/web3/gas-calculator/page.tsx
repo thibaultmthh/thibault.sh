@@ -20,10 +20,40 @@ const COMMON_GAS_LIMITS = [
 ];
 
 const fetchGasPrice = async () => {
-  const provider = new ethers.JsonRpcProvider("https://eth.public-rpc.com");
-  const feeData = await provider.getFeeData();
-  if (!feeData.gasPrice) throw new Error("Failed to fetch gas price");
-  return ethers.formatUnits(feeData.gasPrice, "gwei");
+  // List of public RPC endpoints that don't require API keys
+  const rpcEndpoints = [
+    "https://cloudflare-eth.com",
+    "https://rpc.ankr.com/eth",
+    "https://ethereum.publicnode.com",
+    "https://eth.drpc.org",
+  ];
+
+  // Try each endpoint until one works
+  for (const endpoint of rpcEndpoints) {
+    try {
+      const provider = new ethers.JsonRpcProvider(endpoint);
+      const feeData = await provider.getFeeData();
+      if (feeData.gasPrice) {
+        return parseFloat(ethers.formatUnits(feeData.gasPrice, "gwei")).toFixed(5);
+      }
+    } catch (error) {
+      console.warn(`Failed to fetch gas price from ${endpoint}:`, error);
+      continue; // Try next endpoint
+    }
+  }
+
+  // If all RPC endpoints fail, try alternative gas price API
+  try {
+    const response = await fetch("https://api.etherscan.io/api?module=gastracker&action=gasoracle");
+    const data = await response.json();
+    if (data.status === "1" && data.result?.ProposeGasPrice) {
+      return parseFloat(data.result.ProposeGasPrice).toFixed(5);
+    }
+  } catch (error) {
+    console.warn("Failed to fetch gas price from Etherscan API:", error);
+  }
+
+  throw new Error("Failed to fetch gas price from all available sources");
 };
 
 const fetchEthPrice = async () => {
@@ -75,13 +105,13 @@ export default function GasCalculator() {
         const gasPriceWei = ethers.parseUnits(currentGasPrice, "gwei");
         const totalWei = gasPriceWei * BigInt(gasLimit);
 
-        const inEth = ethers.formatEther(totalWei);
+        const inEth = parseFloat(ethers.formatEther(totalWei)).toFixed(10);
         const inUsd = ethPrice ? (parseFloat(inEth) * ethPrice).toFixed(2) : "0";
         triggerGAEvent("gas_calculator");
 
         setResults({
           inWei: totalWei.toString(),
-          inGwei: ethers.formatUnits(totalWei, "gwei"),
+          inGwei: parseFloat(ethers.formatUnits(totalWei, "gwei")).toFixed(5),
           inEth,
           inUsd,
         });
@@ -100,13 +130,71 @@ export default function GasCalculator() {
   }, [debouncedGasLimit, debouncedGasPrice, ethPrice, calculateGas]);
 
   return (
-    <div className="container max-w-6xl py-6 space-y-6">
+    <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold mb-2">Ethereum Gas Calculator</h1>
         <p className="text-muted-foreground">
           Calculate transaction fees for Ethereum operations. Estimate costs in real-time using current network gas
           prices.
         </p>
+      </div>
+
+      {/* Current Market Data */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Current Gas Price</p>
+              <div className="flex items-center gap-2">
+                {isLoadingGasPrice ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <p className="text-2xl font-bold">{currentGasPrice || "—"}</p>
+                )}
+                <span className="text-sm text-muted-foreground">Gwei</span>
+              </div>
+            </div>
+            <div className="h-8 w-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+              <DollarSign className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">ETH Price</p>
+              <div className="flex items-center gap-2">
+                <p className="text-2xl font-bold">${ethPrice ? ethPrice.toLocaleString() : "—"}</p>
+                <span className="text-sm text-muted-foreground">USD</span>
+              </div>
+            </div>
+            <div className="h-8 w-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+              <DollarSign className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Simple Transfer Cost</p>
+              <div className="flex items-center gap-2">
+                {currentGasPrice && ethPrice ? (
+                  <p className="text-2xl font-bold">
+                    ${((21000 * parseFloat(currentGasPrice) * ethPrice) / 1000000000).toFixed(2)}
+                  </p>
+                ) : (
+                  <p className="text-2xl font-bold">—</p>
+                )}
+                <span className="text-sm text-muted-foreground">USD</span>
+              </div>
+            </div>
+            <div className="h-8 w-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+              <Info className="h-4 w-4 text-green-600 dark:text-green-400" />
+            </div>
+          </div>
+        </Card>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -161,17 +249,19 @@ export default function GasCalculator() {
                     {isLoadingGasPrice ? <Loader2 className="h-4 w-4 animate-spin" /> : "Refresh"}
                   </Button>
                 </div>
-                {currentGasPrice && (
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Current network gas price: {currentGasPrice} Gwei
-                  </p>
-                )}
+                <div className="flex items-center justify-between mt-1">
+                  {currentGasPrice && <p className="text-sm text-muted-foreground">Network: {currentGasPrice} Gwei</p>}
+                  <div className="flex items-center gap-1">
+                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-xs text-muted-foreground">Live data</span>
+                  </div>
+                </div>
               </div>
 
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  Gas prices auto-update every 30 seconds. Calculations update in real-time as you type.
+                  Gas prices auto-refresh every 30 seconds. Calculations update in real-time as you type.
                 </AlertDescription>
               </Alert>
             </div>
@@ -219,37 +309,44 @@ export default function GasCalculator() {
         <div>
           <Card className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Live Fee Estimation</h2>
+              <h2 className="text-lg font-semibold">Transaction Cost</h2>
               {isLoadingGasPrice && <Loader2 className="h-4 w-4 animate-spin" />}
             </div>
             {results ? (
               <div className="space-y-6">
-                <div className="p-4 bg-muted rounded-lg">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">Network Fee</span>
-                      <span className="font-mono text-lg">{results.inEth} ETH</span>
-                    </div>
-                    <div className="flex items-center justify-between text-muted-foreground">
-                      <span className="text-sm">USD Equivalent</span>
-                      <span className="font-mono flex items-center gap-1">
-                        <DollarSign className="h-4 w-4" />
-                        {results.inUsd}
-                      </span>
+                {/* Main Result - Prominent Display */}
+                <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-lg border">
+                  <div className="text-center space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground">Estimated Transaction Fee</p>
+                    <div className="space-y-1">
+                      <p className="text-3xl font-bold font-mono">{results.inEth} ETH</p>
+                      <p className="text-xl font-semibold text-muted-foreground flex items-center justify-center gap-1">
+                        <DollarSign className="h-5 w-5" />
+                        {results.inUsd} USD
+                      </p>
                     </div>
                   </div>
                 </div>
 
+                {/* Detailed Breakdown */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium">Detailed Breakdown</h3>
-                  <div className="space-y-2 font-mono text-sm">
-                    <div className="flex justify-between p-2 bg-muted/50 rounded">
-                      <span>Wei:</span>
-                      <span>{results.inWei}</span>
+                  <h3 className="text-sm font-medium">Breakdown</h3>
+                  <div className="grid gap-2">
+                    <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                      <span className="text-sm">Gas Limit:</span>
+                      <span className="font-mono font-medium">{gasLimit.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between p-2 bg-muted/50 rounded">
-                      <span>Gwei:</span>
-                      <span>{results.inGwei}</span>
+                    <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                      <span className="text-sm">Gas Price:</span>
+                      <span className="font-mono font-medium">{effectiveGasPrice || "—"} Gwei</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                      <span className="text-sm">Total (Wei):</span>
+                      <span className="font-mono font-medium text-xs">{results.inWei}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
+                      <span className="text-sm">Total (Gwei):</span>
+                      <span className="font-mono font-medium">{results.inGwei}</span>
                     </div>
                   </div>
                 </div>
@@ -257,13 +354,14 @@ export default function GasCalculator() {
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    This is an estimate. Actual transaction costs may vary based on network conditions.
+                    This is an estimate based on current network conditions. Actual costs may vary.
                   </AlertDescription>
                 </Alert>
               </div>
             ) : (
               <div className="text-center text-muted-foreground py-8">
-                Enter gas parameters to see live fee estimates
+                <DollarSign className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p className="text-sm">Enter gas parameters to see cost estimates</p>
               </div>
             )}
           </Card>

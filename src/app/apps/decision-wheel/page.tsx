@@ -8,165 +8,168 @@ import { Plus, X, RotateCw } from "lucide-react";
 import { motion, animate, useMotionValue } from "framer-motion";
 
 export default function DecisionWheel() {
-  const [options, setOptions] = useState<string[]>(["Option 1", "Option 2", "Option 3"]);
+  const [options, setOptions] = useState<string[]>(["Pizza", "Burgers", "Sushi"]);
   const [newOption, setNewOption] = useState("");
   const [isSpinning, setIsSpinning] = useState(false);
-  const wheelRef = useRef<HTMLDivElement>(null);
+  const [winner, setWinner] = useState<string | null>(null);
   const wheelRotation = useMotionValue(0);
 
   const addOption = () => {
-    if (newOption.trim() && options.length < 12) {
+    if (newOption.trim() && options.length < 8) {
       setOptions([...options, newOption.trim()]);
       setNewOption("");
     }
   };
 
   const removeOption = (index: number) => {
-    setOptions(options.filter((_, i) => i !== index));
+    if (options.length > 2) {
+      setOptions(options.filter((_, i) => i !== index));
+      setWinner(null);
+    }
   };
 
   const spinWheel = () => {
     if (isSpinning || options.length < 2) return;
     setIsSpinning(true);
+    setWinner(null);
 
-    // Reset wheel position first
-    wheelRotation.set(0);
+    const spins = 3 + Math.random() * 2;
+    const finalAngle = Math.random() * 360;
+    const totalRotation = 360 * spins + finalAngle;
 
-    // Calculate final rotation
-    const spins = 5 + Math.random() * 3; // Random number of spins (5-8)
-    const baseAngle = 360 * spins;
-    const randomAngle = Math.random() * 360;
-    const targetRotation = baseAngle + randomAngle;
-
-    // Animate with spring physics
-    animate(wheelRotation, targetRotation, {
-      type: "spring",
-      duration: 5,
-      bounce: 0.1,
-      velocity: 2,
-      stiffness: 40,
-      damping: 30,
+    animate(wheelRotation, wheelRotation.get() + totalRotation, {
+      duration: 3,
+      ease: "easeOut",
       onComplete: () => {
         setIsSpinning(false);
-        const normalizedAngle = randomAngle;
-        const optionAngle = 360 / options.length;
-        const winningIndex = Math.floor(normalizedAngle / optionAngle);
-        console.log("Winner:", options[winningIndex]);
+        const segmentAngle = 360 / options.length;
+        // Get the final rotation position
+        const finalRotation = totalRotation % 360;
+        // Since segments start at -90 degrees (top) and the pointer is at top (0 degrees),
+        // we need to find which segment is under the pointer
+        const normalizedAngle = (finalRotation + 90) % 360;
+        const winnerIndex = Math.floor(normalizedAngle / segmentAngle) % options.length;
+        setWinner(options[winnerIndex]);
       },
     });
   };
 
-  const getWheelColors = (index: number, total: number) => {
-    return `hsl(${(360 / total) * index}, 80%, 70%)`;
+  const getSegmentColor = (index: number) => {
+    const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF", "#5F27CD"];
+    return colors[index % colors.length];
   };
 
   return (
-    <div className="min-h-screen p-4 max-w-6xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Decision Wheel</h1>
-        <p className="text-gray-600">Add options and spin the wheel to make a random decision.</p>
+    <div className="min-h-screen p-4 max-w-4xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-2">Decision Wheel</h1>
+        <p className="text-gray-600">Add options and spin the wheel to make a random decision</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
-        {/* Wheel Section */}
-        <Card className="p-6 flex items-center justify-center">
-          <div className="relative w-[300px] h-[300px]">
-            <motion.div ref={wheelRef} className="absolute w-full h-full" style={{ rotate: wheelRotation }}>
-              <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-                {options.map((option, index) => {
-                  const percent = 100 / options.length;
-                  const startAngle = (index * 360) / options.length;
-                  const endAngle = ((index + 1) * 360) / options.length;
-                  const start = polarToCartesian(50, 50, 50, startAngle);
-                  const end = polarToCartesian(50, 50, 50, endAngle);
-                  const largeArcFlag = percent > 50 ? 1 : 0;
-                  const midAngle = startAngle + (endAngle - startAngle) / 2;
-                  const textRadius = 35; // Slightly inside the wheel edge
-                  const textPosition = polarToCartesian(50, 50, textRadius, midAngle);
-
-                  return (
-                    <g key={index}>
-                      <path
-                        d={`
-                          M 50 50
-                          L ${start.x} ${start.y}
-                          A 50 50 0 ${largeArcFlag} 1 ${end.x} ${end.y}
-                          Z
-                        `}
-                        fill={getWheelColors(index, options.length)}
-                        stroke="white"
-                        strokeWidth="0.5"
-                      />
-                      <text
-                        x={textPosition.x}
-                        y={textPosition.y}
-                        className="text-[3.5px]"
-                        fill="black"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        transform={`rotate(${midAngle + 90}, ${textPosition.x}, ${textPosition.y})`}
-                      >
-                        {option}
-                      </text>
-                    </g>
-                  );
-                })}
-              </svg>
-            </motion.div>
-
-            {/* Updated pointer with better styling */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 z-10">
-              <div className="w-6 h-6">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3L2 20h20L12 3z" fill="#1a1a1a" stroke="white" strokeWidth="2" />
-                </svg>
-              </div>
-            </div>
+      {/* Winner Display */}
+      {winner && (
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-6 py-3 rounded-full text-lg font-semibold">
+            🎉 Winner: {winner}
           </div>
-        </Card>
+        </div>
+      )}
 
-        {/* Controls Section */}
-        <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex gap-2">
-              <Input
-                placeholder="Add option..."
-                value={newOption}
-                onChange={(e) => setNewOption(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && addOption()}
-                maxLength={20}
-              />
-              <Button onClick={addOption} disabled={!newOption.trim() || options.length >= 12} size="icon">
-                <Plus className="h-4 w-4" />
+      {/* Wheel Section */}
+      <div className="flex justify-center mb-8">
+        <div className="relative">
+          <motion.div
+            className="w-80 h-80 rounded-full border-4 border-gray-300 shadow-lg"
+            style={{ rotate: wheelRotation }}
+          >
+            <svg viewBox="0 0 200 200" className="w-full h-full">
+              {options.map((option, index) => {
+                const angle = 360 / options.length;
+                // Start from top (90 degrees offset) and go clockwise
+                const startAngle = -90 + index * angle;
+                const endAngle = -90 + (index + 1) * angle;
+
+                const x1 = 100 + 95 * Math.cos((startAngle * Math.PI) / 180);
+                const y1 = 100 + 95 * Math.sin((startAngle * Math.PI) / 180);
+                const x2 = 100 + 95 * Math.cos((endAngle * Math.PI) / 180);
+                const y2 = 100 + 95 * Math.sin((endAngle * Math.PI) / 180);
+
+                const largeArcFlag = angle > 180 ? 1 : 0;
+
+                const textAngle = startAngle + angle / 2;
+                const textX = 100 + 60 * Math.cos((textAngle * Math.PI) / 180);
+                const textY = 100 + 60 * Math.sin((textAngle * Math.PI) / 180);
+
+                return (
+                  <g key={index}>
+                    <path
+                      d={`M 100 100 L ${x1} ${y1} A 95 95 0 ${largeArcFlag} 1 ${x2} ${y2} Z`}
+                      fill={getSegmentColor(index)}
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                    <text
+                      x={textX}
+                      y={textY}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fill="white"
+                      fontSize="10"
+                      fontWeight="bold"
+                      transform={`rotate(${textAngle + 90}, ${textX}, ${textY})`}
+                    >
+                      {option.length > 8 ? option.substring(0, 8) + "..." : option}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </motion.div>
+
+          {/* Pointer */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
+            <div className="w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-gray-800"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="max-w-md mx-auto space-y-4">
+        <div className="flex gap-2">
+          <Input
+            placeholder="Add new option..."
+            value={newOption}
+            onChange={(e) => setNewOption(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && addOption()}
+            maxLength={15}
+            className="flex-1"
+          />
+          <Button onClick={addOption} disabled={!newOption.trim() || options.length >= 8} size="icon">
+            <Plus className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 gap-2 max-h-32 overflow-y-auto">
+          {options.map((option, index) => (
+            <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: getSegmentColor(index) }} />
+                <span className="text-sm">{option}</span>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => removeOption(index)} disabled={options.length <= 2}>
+                <X className="h-3 w-3" />
               </Button>
             </div>
+          ))}
+        </div>
 
-            <div className="space-y-2">
-              {options.map((option, index) => (
-                <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-3 h-3 rounded-full"
-                      style={{ backgroundColor: getWheelColors(index, options.length) }}
-                    />
-                    <span>{option}</span>
-                  </div>
-                  <Button variant="ghost" size="icon" onClick={() => removeOption(index)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-            </div>
+        <Button className="w-full" size="lg" onClick={spinWheel} disabled={isSpinning || options.length < 2}>
+          {isSpinning ? <RotateCw className="mr-2 h-4 w-4 animate-spin" /> : <RotateCw className="mr-2 h-4 w-4" />}
+          {isSpinning ? "Spinning..." : "Spin the Wheel"}
+        </Button>
 
-            <Button className="w-full" size="lg" onClick={spinWheel} disabled={isSpinning || options.length < 2}>
-              <RotateCw className="mr-2 h-4 w-4" />
-              Spin the Wheel
-            </Button>
-
-            {options.length < 2 && <p className="text-sm text-red-500">Add at least 2 options to spin the wheel</p>}
-            {options.length >= 12 && <p className="text-sm text-red-500">Maximum 12 options allowed</p>}
-          </div>
-        </Card>
+        {options.length < 2 && <p className="text-sm text-red-500 text-center">Add at least 2 options to spin</p>}
+        {options.length >= 8 && <p className="text-sm text-orange-500 text-center">Maximum 8 options reached</p>}
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -293,12 +296,4 @@ export default function DecisionWheel() {
       </div>
     </div>
   );
-}
-
-function polarToCartesian(centerX: number, centerY: number, radius: number, angleInDegrees: number) {
-  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
-  return {
-    x: centerX + radius * Math.cos(angleInRadians),
-    y: centerY + radius * Math.sin(angleInRadians),
-  };
 }

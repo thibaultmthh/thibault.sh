@@ -89,11 +89,6 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">View all my blog posts</span>
               </Button>
-              <Button href="/tutorials" icon={<BoxIcon className="size-4" />} variant="secondary">
-                open --tutorials
-                <br />
-                <span className="text-[#858585]">Check out my coding tutorials</span>
-              </Button>
               <Button href="/hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --react hooks
                 <br />

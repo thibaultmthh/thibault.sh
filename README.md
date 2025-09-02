@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 thibault.sh
 
-## Getting Started
+Welcome to my personal developer playground! This is where I share my passion for web development through tools, tutorials, and creative projects.
 
-First, run the development server:
+**🛠️ Developer Tools** - A curated collection of handy utilities for developers:
+- Text manipulation tools
+- Design helpers
+- Web3 utilities
+- DNS and networking tools
+- And much more!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**🎣 React Hooks Collection** - Custom React hooks ready to use in your projects:
+- State management hooks
+- UI interaction hooks
+- Performance optimization hooks
+- Browser API hooks
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**📚 Tutorials & Blog Posts** - In-depth guides and insights on:
+- Modern web development
+- React and Next.js best practices
+- Backend development with Node.js
+- Real-world project experiences
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**🎮 Interactive Apps** - Fun web applications including:
+- 2048 Game
+- Memory Game
+- Decision Wheel
+- Pixel Art Creator
+- And more creative experiments!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 About This Project
 
-## Learn More
+This website serves as my digital portfolio and knowledge sharing platform. As a freelance fullstack developer, I believe in giving back to the community by sharing useful tools and educational content.
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Visit the Site
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Check out the live site at **[thibault.sh](https://thibault.sh)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💼 About Me
 
-## Deploy on Vercel
+I'm Thibault Mathian, a passionate fullstack developer specializing in:
+- **Frontend**: React, Next.js, TypeScript
+- **Backend**: Node.js, NestJS, Python
+- **Tools**: Modern web technologies and best practices
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Currently available for freelance projects from France 🇫🇷
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📬 Get in Touch
+
+- **Email**: [dev@thibault.sh](mailto:dev@thibault.sh)
+- **GitHub**: [@thibaultmthh](https://github.com/thibaultmthh)
+- **LinkedIn**: [Thibault Mathian](https://www.linkedin.com/in/thibault-mathian/)
+- **Twitter**: [@thibault_mthh](https://twitter.com/thibault_mthh)
+
+## 📄 License
+
+This project is licensed under the Creative Commons Attribution 4.0 International License - see the [LICENSE](LICENSE) file for details.
+
+**TL;DR**: You're free to use, modify, and distribute this code, but please give credit and include a link back to [thibault.sh](https://thibault.sh) ❤️
+
+---
+
+*Built with ❤️ using Next.js, React, and TypeScript*

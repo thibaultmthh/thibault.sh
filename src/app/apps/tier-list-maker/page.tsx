@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLocalStorageState } from "@thibault.sh/hooks/useLocalStorageState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Trash2, Download, Edit2, Plus, RotateCcw, GripVertical, Check } from "lucide-react";
+import { Trash2, Download, Edit2, Plus, RotateCcw, GripVertical, Check, Upload } from "lucide-react";
 
 interface TierItem {
   id: string;
@@ -68,6 +68,7 @@ export default function TierListMaker() {
   const [editingTitle, setEditingTitle] = useState(false);
   const [draggedOverTier, setDraggedOverTier] = useState<string | null>(null);
   const tierListRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = useCallback(
     async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -269,6 +270,10 @@ export default function TierListMaker() {
     });
   }, [setTierListData]);
 
+  const triggerFileUpload = useCallback(() => {
+    fileInputRef.current?.click();
+  }, []);
+
   // Simplified and reliable export functionality
   const exportToImage = useCallback(async () => {
     const exportButton = document.querySelector("[data-export-button]") as HTMLButtonElement;
@@ -446,9 +451,14 @@ export default function TierListMaker() {
 
         {/* Action buttons */}
         <div className="flex flex-wrap justify-center gap-2">
-          <Button onClick={exportToImage} className="bg-blue-600 hover:bg-blue-700 text-sm" data-export-button>
+          {/* Export button is temporarily disabled/hidden */}
+          {/* <Button onClick={exportToImage} className="bg-blue-600 hover:bg-blue-700 text-sm" data-export-button>
             <Download className="w-4 h-4 mr-1" />
             Export Image
+          </Button> */}
+          <Button onClick={triggerFileUpload} className="bg-blue-600 hover:bg-blue-700 text-sm">
+            <Upload className="w-4 h-4 mr-1" />
+            Import Images
           </Button>
           <Button variant="outline" onClick={addTier} className="text-sm">
             <Plus className="w-4 h-4 mr-1" />
@@ -628,6 +638,15 @@ export default function TierListMaker() {
                 file:bg-blue-50 file:text-blue-600
                 hover:file:bg-blue-100
                 cursor-pointer transition-colors"
+            />
+            {/* Hidden file input for the Import Images button */}
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleFileUpload}
+              ref={fileInputRef}
+              style={{ display: 'none' }}
             />
             <p className="text-xs text-gray-500 mt-1">JPG, PNG, GIF, WebP</p>
           </div>

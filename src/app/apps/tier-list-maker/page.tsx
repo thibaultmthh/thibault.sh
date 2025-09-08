@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLocalStorageState } from "@thibault.sh/hooks/useLocalStorageState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Trash2, Download, Edit2, Plus, RotateCcw, GripVertical, Check, Upload } from "lucide-react";
+import { Trash2, Edit2, Plus, RotateCcw, GripVertical, Check, Upload } from "lucide-react";
 
 interface TierItem {
   id: string;
@@ -274,141 +274,12 @@ export default function TierListMaker() {
     fileInputRef.current?.click();
   }, []);
 
-  // Simplified and reliable export functionality
+  // Export functionality temporarily disabled
+  /* 
   const exportToImage = useCallback(async () => {
-    const exportButton = document.querySelector("[data-export-button]") as HTMLButtonElement;
-    const originalText = exportButton?.textContent || "Export Image";
-
-    try {
-      // Show loading state
-      if (exportButton) {
-        exportButton.textContent = "Exporting...";
-        exportButton.disabled = true;
-      }
-
-      if (!tierListRef.current) {
-        throw new Error("Tier list reference not found");
-      }
-
-      console.log("Starting export process...");
-
-      // Create a temporary container for export
-      const exportContainer = document.createElement("div");
-      exportContainer.style.position = "absolute";
-      exportContainer.style.left = "-9999px";
-      exportContainer.style.top = "-9999px";
-      exportContainer.style.width = "1400px";
-      exportContainer.style.background = "#ffffff";
-      exportContainer.style.padding = "40px";
-      exportContainer.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-
-      // Clone the tier list content
-      const clone = tierListRef.current.cloneNode(true) as HTMLElement;
-
-      // Remove all buttons and controls from the clone
-      const buttonsAndControls = clone.querySelectorAll("button, .tier-controls, [data-export-button]");
-      buttonsAndControls.forEach((element) => element.remove());
-
-      // Style the clone for better export appearance
-      clone.style.width = "100%";
-      clone.style.maxWidth = "none";
-      clone.style.backgroundColor = "#ffffff";
-      clone.style.border = "none";
-      clone.style.boxShadow = "none";
-
-      // Add footer to clone
-      const footer = document.createElement("div");
-      footer.style.marginTop = "30px";
-      footer.style.padding = "20px 0";
-      footer.style.borderTop = "1px solid #e2e8f0";
-      footer.style.textAlign = "center";
-      footer.style.fontSize = "14px";
-      footer.style.color = "#64748b";
-      footer.textContent = "Created with thibault.sh/apps/tier-list-maker";
-
-      exportContainer.appendChild(clone);
-      exportContainer.appendChild(footer);
-      document.body.appendChild(exportContainer);
-
-      // Use html2canvas with optimized settings
-      const html2canvas = (await import("html2canvas")).default;
-
-      console.log("Rendering with html2canvas...");
-
-      const canvas = await html2canvas(exportContainer, {
-        backgroundColor: "#ffffff",
-        scale: 2, // High resolution
-        useCORS: false, // Disable CORS to avoid data URL issues
-        allowTaint: true, // Allow tainted canvas for data URLs
-        foreignObjectRendering: false, // Disable for better compatibility
-        logging: false,
-        width: 1400,
-        onclone: (clonedDoc) => {
-          // Additional cleanup in cloned document
-          const allButtons = clonedDoc.querySelectorAll("button, .tier-controls");
-          allButtons.forEach((btn) => btn.remove());
-
-          // Ensure images are visible
-          const allImages = clonedDoc.querySelectorAll("img");
-          allImages.forEach((img) => {
-            img.style.display = "block";
-            img.style.visibility = "visible";
-          });
-        },
-      });
-
-      // Clean up temporary container
-      document.body.removeChild(exportContainer);
-
-      console.log("Export rendered successfully, downloading...");
-
-      // Download the image
-      const link = document.createElement("a");
-      const timestamp = new Date().toISOString().slice(0, 10);
-      link.download = `${tierListData.title.replace(/[^a-z0-9]/gi, "_").toLowerCase()}_tierlist_${timestamp}.png`;
-      link.href = canvas.toDataURL("image/png", 0.95);
-
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      console.log("Export completed successfully!");
-
-      // Show success message briefly
-      if (exportButton) {
-        exportButton.textContent = "✓ Downloaded!";
-        setTimeout(() => {
-          if (exportButton) {
-            exportButton.textContent = originalText;
-          }
-        }, 2000);
-      }
-    } catch (error) {
-      console.error("Export failed:", error);
-
-      // Show error message
-      if (exportButton) {
-        exportButton.textContent = "Export Failed";
-        setTimeout(() => {
-          if (exportButton) {
-            exportButton.textContent = originalText;
-          }
-        }, 3000);
-      }
-
-      // User-friendly error message
-      const errorMsg = error instanceof Error ? error.message : "Unknown error";
-      alert(
-        `Export failed: ${errorMsg}\n\nTips:\n- Try with fewer/smaller images\n- Check browser console for details\n- Refresh the page and try again`
-      );
-    } finally {
-      // Always re-enable the button
-      if (exportButton) {
-        exportButton.disabled = false;
-      }
-    }
+    // ... export functionality commented out for now
   }, [tierListData]);
+  */
 
   return (
     <div className="p-6 w-full min-h-screen bg-gray-100">
@@ -646,7 +517,7 @@ export default function TierListMaker() {
               accept="image/*"
               onChange={handleFileUpload}
               ref={fileInputRef}
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
             />
             <p className="text-xs text-gray-500 mt-1">JPG, PNG, GIF, WebP</p>
           </div>

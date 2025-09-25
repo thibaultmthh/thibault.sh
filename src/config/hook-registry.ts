@@ -9,6 +9,14 @@ import useElementSizeDoc from "@/docs/hooks/use-element-size.doc";
 import useEventListenerDoc from "@/docs/hooks/use-event-listener.doc";
 import useHoverDoc from "@/docs/hooks/use-hover.doc";
 import useIntersectionObserverDoc from "@/docs/hooks/use-intersection-observer.doc";
+import useIntervalDoc from "@/docs/hooks/use-interval.doc";
+import useKeyComboDoc from "@/docs/hooks/use-key-combo.doc";
+import useKeyPressDoc from "@/docs/hooks/use-key-press.doc";
+import useLocalStorageStateDoc from "@/docs/hooks/use-local-storage-state.doc";
+import useLongPressDoc from "@/docs/hooks/use-long-press.doc";
+import useMediaQueryDoc from "@/docs/hooks/use-media-query.doc";
+import useQueryParamsStateDoc from "@/docs/hooks/use-query-params-state.doc";
+import useResizeObserverDoc from "@/docs/hooks/use-resize-observer.doc";
 
 // Registry of all hook documentation
 export const HOOK_REGISTRY: Record<string, HookDocumentation> = {
@@ -22,6 +30,14 @@ export const HOOK_REGISTRY: Record<string, HookDocumentation> = {
   "use-event-listener": useEventListenerDoc,
   "use-hover": useHoverDoc,
   "use-intersection-observer": useIntersectionObserverDoc,
+  "use-interval": useIntervalDoc,
+  "use-key-combo": useKeyComboDoc,
+  "use-key-press": useKeyPressDoc,
+  "use-local-storage-state": useLocalStorageStateDoc,
+  "use-long-press": useLongPressDoc,
+  "use-media-query": useMediaQueryDoc,
+  "use-query-params-state": useQueryParamsStateDoc,
+  "use-resize-observer": useResizeObserverDoc,
 };
 
 // Helper function to get hook documentation by slug

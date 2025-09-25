@@ -17,6 +17,10 @@ import useLongPressDoc from "@/docs/hooks/use-long-press.doc";
 import useMediaQueryDoc from "@/docs/hooks/use-media-query.doc";
 import useQueryParamsStateDoc from "@/docs/hooks/use-query-params-state.doc";
 import useResizeObserverDoc from "@/docs/hooks/use-resize-observer.doc";
+import useScrollPositionDoc from "@/docs/hooks/use-scroll-position.doc";
+import useSessionStorageStateDoc from "@/docs/hooks/use-session-storage-state.doc";
+import useThrottleDoc from "@/docs/hooks/use-throttle.doc";
+import useWindowSizeDoc from "@/docs/hooks/use-window-size.doc";
 
 // Registry of all hook documentation
 export const HOOK_REGISTRY: Record<string, HookDocumentation> = {
@@ -38,6 +42,10 @@ export const HOOK_REGISTRY: Record<string, HookDocumentation> = {
   "use-media-query": useMediaQueryDoc,
   "use-query-params-state": useQueryParamsStateDoc,
   "use-resize-observer": useResizeObserverDoc,
+  "use-scroll-position": useScrollPositionDoc,
+  "use-session-storage-state": useSessionStorageStateDoc,
+  "use-throttle": useThrottleDoc,
+  "use-window-size": useWindowSizeDoc,
 };
 
 // Helper function to get hook documentation by slug

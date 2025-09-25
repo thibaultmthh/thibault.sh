@@ -91,32 +91,6 @@ function KeyDemo() {
   );
 }`,
   },
-  {
-    title: "Window Resize",
-    component: ResizeDemo,
-    source: `import { useState } from "react";
-import { useEventListener } from "@thibault.sh/hooks/useEventListener";
-
-function ResizeDemo() {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-
-  useEventListener('resize', () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  });
-
-  return (
-    <div>
-      <div>Resize your browser window</div>
-      <div className="p-2 bg-gray-100 rounded">
-        Window: {windowSize.width} × {windowSize.height}
-      </div>
-    </div>
-  );
-}`,
-  },
 ];
 
 export default examples;

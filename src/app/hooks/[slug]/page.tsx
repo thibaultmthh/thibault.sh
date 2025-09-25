@@ -3,13 +3,13 @@ import HookDocRenderer from "@/components/HookDocRenderer";
 import { getHookDoc, getAllHookSlugs } from "@/config/hook-registry";
 
 interface HookPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function HookPage({ params }: HookPageProps) {
-  const hookDoc = getHookDoc(params.slug);
+export default async function HookPage({ params }: HookPageProps) {
+  const hookDoc = getHookDoc((await params).slug);
 
   if (!hookDoc) {
     notFound();

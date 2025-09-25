@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import { useElementSize } from "@thibault.sh/hooks/useElementSize";
 
 // Demo component showcasing element size tracking
 function ElementSizeDemo() {
   const boxRef = useRef<HTMLDivElement>(null);
-  const { width, height } = useElementSize(boxRef);
+  const { width, height } = useElementSize(boxRef as RefObject<HTMLDivElement>);
 
   return (
     <div className="space-y-4">

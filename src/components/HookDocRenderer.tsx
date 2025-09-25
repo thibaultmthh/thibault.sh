@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { CodeBlock } from "./ui/code-block";

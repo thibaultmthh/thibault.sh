@@ -1,8 +1,11 @@
+import { HookCategory, HookSEO } from "@/config/hook-categories";
+
 export interface HookDocumentation {
   // Basic information
   name: string;
   description: string;
-  category: string;
+  category: HookCategory;
+  seo: HookSEO;
 
   // Installation
   installation?: {

@@ -4,7 +4,12 @@ const useAsyncDoc: HookDocumentation = {
   name: "useAsync",
   description:
     "A React hook that manages asynchronous operations with built-in loading, error, and success states, making it easy to handle data fetching, form submissions, and other async tasks.",
-  category: "Data/State",
+  category: "Utility",
+  seo: {
+    title: "useAsync Hook - React Asynchronous State Management",
+    description: "A React hook for managing asynchronous operations with loading, error, and success states.",
+    keywords: "react hooks, useAsync, async operations, loading state, error handling",
+  },
   installation: {
     package: "@thibault.sh/hooks",
     command: "npm install @thibault.sh/hooks",

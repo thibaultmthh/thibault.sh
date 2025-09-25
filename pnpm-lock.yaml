@@ -63,8 +63,8 @@ importers:
         specifier: ^3.13.12
         version: 3.13.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@thibault.sh/hooks':
-        specifier: ^0.0.15
-        version: 0.0.15(react@19.1.0)
+        specifier: ^0.0.17
+        version: 0.0.17(react@19.1.0)
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
@@ -1599,8 +1599,8 @@ packages:
   '@tanstack/virtual-core@3.13.12':
     resolution: {integrity: sha512-1YBOJfRHV4sXUmWsFSf5rQor4Ss82G8dQWLRbnk3GA4jeP8hQt1hxXh0tmflpC0dz3VgEv/1+qwPyLeWkQuPFA==}
 
-  '@thibault.sh/hooks@0.0.15':
-    resolution: {integrity: sha512-RTYYSOtOlTsAF9FgBSeJZpkR7MX4vu8XKdZLkCf4s9HC6VzC7G8pSxAbJ7ruvB1G7gpo9s4daG12KLLcdNcZrA==}
+  '@thibault.sh/hooks@0.0.17':
+    resolution: {integrity: sha512-xqTwoI08oktH5s/mHskKvW5t7GAFggHVLkykYq0vgDnGs/cs1JH399V17fH7i8Nj3RjfbGZOmP3OK2DXYumgKA==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -5824,7 +5824,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.13.12': {}
 
-  '@thibault.sh/hooks@0.0.15(react@19.1.0)':
+  '@thibault.sh/hooks@0.0.17(react@19.1.0)':
     dependencies:
       react: 19.1.0
 

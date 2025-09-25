@@ -39,6 +39,7 @@ export async function loadHookDoc(hookName: string): Promise<HookDocumentation |
 /**
  * Validate hook documentation structure
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function validateHookDoc(doc: any): doc is HookDocumentation {
   return (
     typeof doc === "object" &&

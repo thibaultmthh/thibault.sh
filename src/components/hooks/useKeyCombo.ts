@@ -29,6 +29,7 @@ export function useKeyCombo(combo: KeyCombo, callback: KeyComboCallback) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       pressedKeys.current.clear();
     };
   }, [combo, callback]);

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -106,7 +106,7 @@
   }
 
   & pre {
-    @apply p-4 rounded-lg my-4 bg-gray-50 text-sm;
+    @apply p-4 rounded-lg my-0 bg-gray-50 text-sm;
   }
 
   & code {

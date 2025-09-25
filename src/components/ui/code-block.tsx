@@ -25,7 +25,7 @@ export function CodeBlock({ code, language = "typescript", initial }: CodeBlockP
   };
 
   return (
-    <div className="bg-gray-700 border border-border rounded-lg overflow-auto relative">
+    <div className="bg-gray-700 border border-border rounded-lg overflow-auto relative h-fit">
       <Button
         onClick={handleCopy}
         variant="ghost"
@@ -35,8 +35,8 @@ export function CodeBlock({ code, language = "typescript", initial }: CodeBlockP
         <CopyIcon className="text-white" />
       </Button>
       {nodes ?? (
-        <pre className="rounded-lg p-3">
-          <code>{code}</code>
+        <pre className="rounded-lg p-3 my-0 bg-[#24292e]!">
+          <code className="text-[#e1e4e8]!">{code}</code>
         </pre>
       )}
     </div>

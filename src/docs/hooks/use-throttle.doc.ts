@@ -45,3 +45,4 @@ const useThrottleDoc: HookDocumentation = {
 
 export default useThrottleDoc;
 
+

@@ -107,6 +107,16 @@ export default function Home() {
           <h2 className="text-sm text-gray-500 mb-4">→ featured-projects --list</h2>
           <div className="space-y-8">
             <CardSpotlight
+              title="GenLook"
+              year="2025"
+              status="In Progress"
+              link="https://apps.shopify.com/genlook"
+              description="A Shopify extension for AI-powered virtual try-on, allowing customers to see how clothes look on them before buying."
+              type="personal"
+              projectType="app"
+              techs={["Next.js", "React", "TypeScript", "NestJS", "Node.js", "Prisma", "Google Cloud"]}
+            />
+            <CardSpotlight
               title="Elevora"
               year="2024"
               status="In Progress"

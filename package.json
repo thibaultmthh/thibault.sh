@@ -57,7 +57,7 @@
     "jsonwebtoken-esm": "^2.0.1",
     "jszip": "^3.10.1",
     "lucide-react": "^0.545.0",
-    "next": "15.5.4",
+    "next": "15.5.7",
     "papaparse": "^5.5.3",
     "prettier": "^3.6.2",
     "qrcode.react": "^4.2.0",

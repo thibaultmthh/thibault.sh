@@ -9,7 +9,9 @@ import { headers } from "next/headers";
 import { Metadata } from "next";
 import { getHookMetadata } from "@/lib/get-hook-metadata";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const slug = (await params).slug;
+  console.log(await params);
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
 

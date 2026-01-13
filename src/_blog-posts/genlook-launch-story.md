@@ -1,6 +1,6 @@
 ---
-title: Building a virtual try-on Shopify app to $800 MRR
-excerpt: "From an abandoned project to $800 MRR: My journey building a Virtual Try-On Shopify App using AI and finding my first customers."
+title: Building a virtual try-on Shopify app to $700 MRR
+excerpt: "From an abandoned project to $700 MRR: My journey building a Virtual Try-On Shopify App using AI and finding my first customers."
 date: 2026-01-12
 ---
 

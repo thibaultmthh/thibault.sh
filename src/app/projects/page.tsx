@@ -38,8 +38,8 @@ export default function ProjectsPage() {
             title="GenLook"
             year="2025"
             status="In Progress"
-            link="https://apps.shopify.com/genlook"
-            description="A Shopify extension for AI-powered virtual try-on, allowing customers to see how clothes look on them before buying."
+            link="https://genlook.app"
+            description="A Shopify app for AI-powered virtual try-on, allowing customers to see how clothes look on them before buying."
             type="personal"
             projectType="app"
             techs={["Next.js", "React", "TypeScript", "NestJS", "Node.js", "Prisma", "Google Cloud"]}
@@ -47,7 +47,7 @@ export default function ProjectsPage() {
           <CardSpotlight
             title="Elevora"
             year="2024"
-            status="In Progress"
+            status="Discontinued"
             link="https://elevora.app"
             description="Elevora is a platform that allows businesses to create giveaways or waitlists where users can increase their rank or chance by inviting friends and completing tasks"
             type="personal"
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
           <CardSpotlight
             title="Kboom"
             year="2023-2024"
-            status="In Progress"
+            status="Completed"
             link="https://app.kboom.gg/"
             description="Kboom is a platform that helps esports clubs generate engagement and loyalty with their fans."
             type="client"
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
           <CardSpotlight
             title="Tornado.fun"
             year="2024"
-            status="Finished"
+            status="Completed"
             link="https://tornado.fun"
             description="Tornado.fun is an app that allows you to create crypto tokens on the Blast blockchain."
             type="client"
@@ -134,7 +134,7 @@ export default function ProjectsPage() {
           <CardSpotlight
             title="Portfolio V1"
             year="2021-2022"
-            status="Finished"
+            status="Completed"
             link="https://v1.thibault.sh"
             description="Portfolio inspired by Lee Robinson Portfolio"
             type="personal"
@@ -143,7 +143,7 @@ export default function ProjectsPage() {
           <CardSpotlight
             title="Parakeet"
             year="2020-2023"
-            status="Finished"
+            status="Completed"
             description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
             type="personal"
             projectType="app"

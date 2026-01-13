@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 interface CardSpotlightProps {
   title: string;
   year: string;
-  status: "In Progress" | "Finished" | "Discontinued";
+  status: "In Progress" | "Completed" | "Discontinued";
   link?: string;
   description: string;
   type: "personal" | "client";

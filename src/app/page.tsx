@@ -47,8 +47,8 @@ export default function Home() {
 
           <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
             <p className="text-gray-700 leading-relaxed mb-4">
-              Hi! I&apos;m a passionate fullstack developer with expertise in React, Next.js, and Node.js. I&apos;m
-              currently freelancing from France.
+              Hi! I&apos;m a passionate fullstack developer with expertise in React, Next.js, and Node.js. Currently
+              building GenLook, a Shopify app for AI-powered virtual try-on.
             </p>
             <div className="flex gap-3">
               <SocialLink
@@ -79,17 +79,17 @@ export default function Home() {
                 <br />
                 <span className="text-[#858585]">Get in touch via email</span>
               </Button>
-              <Button href="/tools" icon={<BoxIcon className="size-4" />} variant="secondary">
+              {/* <Button href="/tools" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --tools
                 <br />
                 <span className="text-[#858585]">Check out my developer tools</span>
-              </Button>
+              </Button> */}
               <Button href="/blog" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --blog
                 <br />
                 <span className="text-[#858585]">View all my blog posts</span>
               </Button>
-              <Button href="/hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
+              {/* <Button href="/hooks" icon={<BoxIcon className="size-4" />} variant="secondary">
                 open --react hooks
                 <br />
                 <span className="text-[#858585]">Check out my react hooks collection</span>
@@ -98,7 +98,7 @@ export default function Home() {
                 open --apps
                 <br />
                 <span className="text-[#858585]">Check out my web apps collection</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </section>
@@ -110,8 +110,8 @@ export default function Home() {
               title="GenLook"
               year="2025"
               status="In Progress"
-              link="https://apps.shopify.com/genlook"
-              description="A Shopify extension for AI-powered virtual try-on, allowing customers to see how clothes look on them before buying."
+              link="https://genlook.app"
+              description="A Shopify app for AI-powered virtual try-on, allowing customers to see how clothes look on them before buying."
               type="personal"
               projectType="app"
               techs={["Next.js", "React", "TypeScript", "NestJS", "Node.js", "Prisma", "Google Cloud"]}
@@ -119,39 +119,18 @@ export default function Home() {
             <CardSpotlight
               title="Elevora"
               year="2024"
-              status="In Progress"
+              status="Discontinued"
               link="https://elevora.app"
               description="Elevora is a platform that allows businesses to create giveaways or waitlists where users can increase their rank or chance by inviting friends and completing tasks"
               type="personal"
               projectType="app"
               techs={["Next.js", "React", "TypeScript", "NestJS", "Node.js"]}
             />
-            <CardSpotlight
-              title="Kboom"
-              year="2023-2024"
-              status="In Progress"
-              link="https://app.kboom.gg/"
-              description="Kboom is a platform that helps esports clubs generate engagement and loyalty with their fans."
-              type="client"
-              projectType="app"
-              techs={["Next.js", "React", "Django", "NestJS"]}
-              myImplication="Developed frontend with React/Next.js and contributed to Django backend."
-            />
-            <CardSpotlight
-              title="Tornado.fun"
-              year="2024"
-              status="Finished"
-              link="https://tornado.fun"
-              description="Tornado.fun is an app that allows you to create crypto tokens on the Blast blockchain."
-              type="client"
-              projectType="app"
-              myImplication="Built React frontend with Web3 integration, contributed to NestJS backend."
-              techs={["Next.js", "React", "TypeScript", "web3", "GraphQL"]}
-            />
+
             <CardSpotlight
               title="Pokeforge"
               year="2024"
-              status="Finished"
+              status="Completed"
               link="https://pokeforge.com"
               description="Pokeforge transforms your favorite Pokémon TCG Pocket cards into beautiful wallpapers. "
               type="personal"
@@ -161,7 +140,7 @@ export default function Home() {
             <CardSpotlight
               title="Parakeet"
               year="2020-2023"
-              status="Finished"
+              status="Completed"
               description="Parakeet is a Twitter giveaway bot. It's an app that allows you to manage hundreds of Twitter accounts and enter twitter giveaways with them."
               type="personal"
               projectType="app"

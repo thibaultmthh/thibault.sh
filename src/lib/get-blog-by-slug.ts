@@ -31,5 +31,7 @@ export function getPostBySlug(slug: string) {
 }
 
 export function getPosts() {
-  return getPostSlugs().map((slug) => getPostBySlug(slug));
+  return getPostSlugs()
+    .map((slug) => getPostBySlug(slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

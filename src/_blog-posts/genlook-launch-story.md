@@ -77,7 +77,7 @@ Thanks for reading. If you want to check out GenLook, here are the links:
 
 
 
-- [Shopify App Store](https://apps.shopify.com/genlook)
+- [Shopify App Store](https://apps.shopify.com/genlook-virtual-try-on)
 - [Genlook.app](https://genlook.app)
 
 ![GenLook MRR Growth Chart](/assets/genlook/genlook-mrr.png)

@@ -19,7 +19,7 @@ function shouldFollowLink(href: string | undefined): boolean {
   if (href.startsWith("/")) return true;
 
   // Our own domains that should be followed
-  const followDomains = ["apps.shopify.com/genlook", "genlook.app", "emmabortot.fr", "thibault.sh"];
+  const followDomains = ["apps.shopify.com/genlook-virtual-try-on", "genlook.app", "emmabortot.fr", "thibault.sh"];
 
   try {
     const url = new URL(href);

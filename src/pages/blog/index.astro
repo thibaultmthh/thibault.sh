@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import Row from "@/components/Row.astro";
+import readingTime from "reading-time";
+import { getPosts, fmtDate } from "@/lib/blog";
+const posts = getPosts();
+---
+<Base title="Blog" description="Notes on building companies and products.">
+  <h1 class="text-2xl font-semibold tracking-tight">Blog</h1>
+  <p class="text-muted mt-1">Notes on building companies and products.</p>
+  <ul class="mt-6 border-t border-rule">
+    {posts.map((p) => (
+      <Row href={`/blog/${p.slug}`} meta={fmtDate(p.date)} title={p.title} aside={readingTime(p.content).text} description={p.description} />
+    ))}
+  </ul>
+</Base>

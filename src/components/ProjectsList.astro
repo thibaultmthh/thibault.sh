@@ -1,0 +1,20 @@
+---
+import ProjectRow from "@/components/ProjectRow.astro";
+import { getProjects } from "@/lib/projects";
+interface Props { showAll: boolean }
+const { showAll } = Astro.props;
+const projects = getProjects({ includeHidden: showAll });
+const hiddenCount = getProjects({ includeHidden: true }).length - getProjects().length;
+---
+<h1 class="text-2xl font-semibold tracking-tight">Projects</h1>
+<p class="text-muted mt-1">Products I started or shipped since 2019.</p>
+<ul class="mt-6 border-t border-rule">
+  {projects.map((p) => <ProjectRow p={p} />)}
+</ul>
+{hiddenCount > 0 && (
+  <p class="mt-4 text-[13px] text-muted">
+    {showAll
+      ? <a href="/projects" class="underline decoration-muted hover:text-accent">hide client work</a>
+      : <a href="/projects/all" class="underline decoration-muted hover:text-accent">show {hiddenCount} older client projects</a>}
+  </p>
+)}

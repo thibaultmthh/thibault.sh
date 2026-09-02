@@ -1,0 +1,14 @@
+---
+interface Props { href: string; title: string; meta?: string; aside?: string; description?: string }
+const { href, title, meta, aside, description } = Astro.props;
+---
+<li>
+  <a href={href} class="group block py-3 border-b border-rule">
+    <div class="flex items-baseline gap-3">
+      {meta && <span class="shrink-0 w-[5.5rem] font-mono text-[13px] text-muted tabular-nums">{meta}</span>}
+      <span class="flex-1 min-w-0 group-hover:text-accent">{title}</span>
+      {aside && <span class="shrink-0 font-mono text-[13px] text-muted hidden sm:inline">{aside}</span>}
+    </div>
+    {description && <p class:list={["text-[14.5px] text-muted mt-0.5", { "pl-[calc(5.5rem+0.75rem)]": !!meta }]}>{description}</p>}
+  </a>
+</li>

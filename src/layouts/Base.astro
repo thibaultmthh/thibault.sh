@@ -1,0 +1,95 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+}
+const SITE = "Thibault Mathian";
+const DEFAULT_DESC = "Founder of Genlook, AI virtual try-on for Shopify. Notes on building products.";
+const { title, description = DEFAULT_DESC, type = "website", publishedTime, modifiedTime, noindex } = Astro.props;
+const fullTitle = title ? `${title} — thibault.sh` : SITE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+const GA_ON = import.meta.env.PUBLIC_GA_ENABLED === "true" && !!GA_ID;
+
+const nav = [
+  { href: "/blog", label: "blog" },
+  { href: "/projects", label: "projects" },
+  { href: "/contact", label: "contact" },
+];
+const socials = [
+  { href: "https://github.com/thibaultmthh", label: "github" },
+  { href: "https://twitter.com/thibault_mthh", label: "x" },
+  { href: "https://www.linkedin.com/in/thibault-mathian/", label: "linkedin" },
+  { href: "mailto:dev@thibault.sh", label: "email" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Thibault Mathian" href="/feed.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href="/fonts/GeistVF.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/GeistMonoVF.woff" as="font" type="font/woff" crossorigin />
+    <meta property="og:site_name" content="thibault.sh" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/og-banner.png", Astro.site)} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@thibault_mthh" />
+    {
+      GA_ON && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+          <script is:inline define:vars={{ GA_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag("js", new Date());
+            gtag("config", GA_ID);
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div class="w-full max-w-2xl mx-auto px-5 flex-1 flex flex-col">
+      <header class="flex items-center justify-between gap-4 h-12 border-b border-rule text-[15px]">
+        <a href="/" class="font-semibold tracking-tight hover:text-accent">thibault.sh</a>
+        <nav class="flex gap-5">
+          {nav.map((n) => <a href={n.href} class="text-muted hover:text-ink">{n.label}</a>)}
+        </nav>
+      </header>
+      <main class="flex-1 py-8"><slot /></main>
+      <footer class="border-t border-rule py-4 flex flex-wrap items-center justify-between gap-2 text-[13px] text-muted">
+        <span>
+          © {new Date().getFullYear()} Thibault Mathian
+          <span class="mx-2">·</span>
+          powered by <a href="https://scribe.genlook.app" class="underline decoration-rule hover:text-ink" target="_blank" rel="noopener">Scribe CMS</a>
+        </span>
+        <nav class="flex gap-3">
+          {socials.map((s) => <a href={s.href} class="hover:text-ink" target="_blank" rel="noopener">{s.label}</a>)}
+          <a href="/feed.xml" class="hover:text-ink">rss</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+---
+export const CAL_URL = "https://cal.com/thibault-mthh/consulting-1-1";
+const ctas = [
+  { href: "https://genlook.app", label: "Genlook", title: "AI virtual try-on for Shopify", text: "Let shoppers see clothes on themselves before they buy." },
+  { href: CAL_URL, label: "1:1 call", title: "Talk with me", text: "Any subject, no agenda needed. I share what I know and help if I can." },
+];
+---
+<div class="mt-6 grid sm:grid-cols-2 gap-3">
+  {ctas.map((c) => (
+    <a href={c.href} target="_blank" rel="noopener" class="group block border border-rule p-4 hover:border-ink transition-colors">
+      <div class="label">{c.label}</div>
+      <div class="mt-1.5 font-semibold group-hover:text-accent">{c.title} <span aria-hidden="true">↗</span></div>
+      <p class="mt-0.5 text-[14.5px] text-muted">{c.text}</p>
+    </a>
+  ))}
+</div>

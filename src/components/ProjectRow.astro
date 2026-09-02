@@ -1,0 +1,28 @@
+---
+import { isExternal, linkLabel, type Project } from "@/lib/projects";
+interface Props { p: Project }
+const { p } = Astro.props;
+const links = [...(p.href ? [{ label: linkLabel(p.href), href: p.href }] : []), ...(p.links ?? [])];
+---
+<li class="py-3 border-b border-rule sm:grid sm:grid-cols-[5.5rem_1fr] sm:gap-3">
+  <div class="font-mono text-[13px] text-muted tabular-nums">{p.year}</div>
+  <div>
+    <div class="flex items-baseline gap-3">
+      <span class="font-semibold">{p.name}</span>
+      {p.status === "active" && <span class="font-mono text-[12px] text-accent">● live</span>}
+    </div>
+    <p class="text-[15px] text-muted mt-0.5 max-w-[60ch]">{p.description}</p>
+    {links.length > 0 && (
+      <p class="mt-1 flex flex-wrap gap-x-3 text-[13px]">
+        {links.map((l, i) => (
+          <a
+            href={l.href}
+            class:list={["underline decoration-muted hover:text-accent", { "text-muted": i > 0 }]}
+            target={isExternal(l.href) ? "_blank" : undefined}
+            rel={isExternal(l.href) ? "noopener" : undefined}
+          >{l.label} {isExternal(l.href) ? "↗" : "→"}</a>
+        ))}
+      </p>
+    )}
+  </div>
+</li>

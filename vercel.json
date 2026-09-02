@@ -3,5 +3,7 @@
   "framework": "astro",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install",
+  "cleanUrls": true,
+  "trailingSlash": false
 }

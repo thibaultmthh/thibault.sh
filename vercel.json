@@ -5,5 +5,18 @@
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/", "has": [{ "type": "cookie", "key": "locale", "value": "fr" }], "destination": "/fr", "permanent": false },
+    { "source": "/", "has": [{ "type": "cookie", "key": "locale", "value": "es" }], "destination": "/es", "permanent": false },
+    { "source": "/", "has": [{ "type": "cookie", "key": "locale", "value": "pt" }], "destination": "/pt", "permanent": false },
+    { "source": "/", "has": [{ "type": "cookie", "key": "locale", "value": "zh-CN" }], "destination": "/zh-CN", "permanent": false },
+    { "source": "/", "has": [{ "type": "cookie", "key": "locale", "value": "zh-TW" }], "destination": "/zh-TW", "permanent": false },
+
+    { "source": "/", "missing": [{ "type": "cookie", "key": "locale" }], "has": [{ "type": "header", "key": "accept-language", "value": "^fr(-[A-Za-z]+)?([,;]|$).*" }], "destination": "/fr", "permanent": false },
+    { "source": "/", "missing": [{ "type": "cookie", "key": "locale" }], "has": [{ "type": "header", "key": "accept-language", "value": "^es(-[A-Za-z]+)?([,;]|$).*" }], "destination": "/es", "permanent": false },
+    { "source": "/", "missing": [{ "type": "cookie", "key": "locale" }], "has": [{ "type": "header", "key": "accept-language", "value": "^pt(-[A-Za-z]+)?([,;]|$).*" }], "destination": "/pt", "permanent": false },
+    { "source": "/", "missing": [{ "type": "cookie", "key": "locale" }], "has": [{ "type": "header", "key": "accept-language", "value": "^zh-(TW|HK|MO|Hant)(-[A-Za-z]+)?([,;]|$).*" }], "destination": "/zh-TW", "permanent": false },
+    { "source": "/", "missing": [{ "type": "cookie", "key": "locale" }], "has": [{ "type": "header", "key": "accept-language", "value": "^zh(-CN|-SG|-Hans(-[A-Za-z]+)?)?([,;]|$).*" }], "destination": "/zh-CN", "permanent": false }
+  ]
 }

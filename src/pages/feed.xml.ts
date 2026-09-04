@@ -1,9 +1,10 @@
 import type { APIRoute } from "astro";
 import { getPosts } from "@/lib/blog";
+import { DEFAULT_LOCALE } from "@/lib/i18n";
 
 export const GET: APIRoute = ({ site }) => {
   const base = (site ?? new URL("https://thibault.sh")).toString().replace(/\/$/, "");
-  const items = getPosts()
+  const items = getPosts(DEFAULT_LOCALE)
     .map(
       (p) => `    <item>
       <title><![CDATA[${p.title}]]></title>

@@ -12,7 +12,6 @@
   },
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
-    "@astrojs/sitemap": "^3.4.1",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.13.0",
     "better-sqlite3": "^12.4.1",

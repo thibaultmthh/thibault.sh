@@ -1,0 +1,41 @@
+---
+import Base from "@/layouts/Base.astro";
+import readingTime from "reading-time";
+import { getPost, fmtDate, postStaticParams } from "@/lib/blog";
+import { renderMarkdown } from "@/lib/markdown";
+import { currentLocale, fmt, localeParam, localePath, t } from "@/lib/i18n";
+
+// One page per locale × post. Untranslated locales are still built (Scribe
+// falls back to English) but are marked noindex with an English canonical.
+export function getStaticPaths() {
+  return postStaticParams().map(({ locale, slug }) => ({ params: { locale: localeParam(locale), slug } }));
+}
+
+const locale = currentLocale(Astro);
+const s = t(locale).blog;
+const resolved = getPost(Astro.params.slug!, locale);
+if (!resolved) return new Response(null, { status: 404 });
+const { post, translated, canonicalPath, alternates } = resolved;
+const html = await renderMarkdown(post.content);
+const minutes = Math.max(1, Math.ceil(readingTime(post.content).minutes));
+---
+<Base
+  title={post.title}
+  description={post.description}
+  type="article"
+  publishedTime={post.date}
+  modifiedTime={post.updatedAt}
+  canonicalPath={canonicalPath}
+  alternates={alternates}
+  noindex={!translated}
+>
+  <article lang={post.locale}>
+    <header class="mb-8">
+      <a href={localePath("/blog", locale)} lang={locale} class="text-[14px] text-muted hover:text-ink">{s.back}</a>
+      <h1 class="mt-3 text-2xl font-semibold tracking-tight leading-snug max-w-[40ch]">{post.title}</h1>
+      <p class="mt-2 font-mono text-[13px] text-muted" lang={locale}><time datetime={post.date}>{fmtDate(post.date)}</time> · {fmt(s.minRead, { n: minutes })}</p>
+      {!translated && <p class="mt-3 text-[13px] text-muted border-l-2 border-rule pl-3" lang={locale}>{s.untranslated}</p>}
+    </header>
+    <div class="prose" set:html={html} />
+  </article>
+</Base>

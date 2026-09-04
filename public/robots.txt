@@ -15,4 +15,4 @@ Disallow: /search
 Disallow: /*?*
 
 # Add your sitemap location (if you have one)
-Sitemap: https://thibault.sh/sitemap-index.xml 
+Sitemap: https://thibault.sh/sitemap.xml 

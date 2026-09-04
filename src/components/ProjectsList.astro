@@ -1,20 +1,23 @@
 ---
 import ProjectRow from "@/components/ProjectRow.astro";
 import { getProjects } from "@/lib/projects";
+import { currentLocale, fmt, localePath, t } from "@/lib/i18n";
 interface Props { showAll: boolean }
 const { showAll } = Astro.props;
-const projects = getProjects({ includeHidden: showAll });
-const hiddenCount = getProjects({ includeHidden: true }).length - getProjects().length;
+const locale = currentLocale(Astro);
+const s = t(locale).projects;
+const projects = getProjects(locale, { includeHidden: showAll });
+const hiddenCount = getProjects(locale, { includeHidden: true }).length - getProjects(locale).length;
 ---
-<h1 class="text-2xl font-semibold tracking-tight">Projects</h1>
-<p class="text-muted mt-1">Products I started or shipped since 2019.</p>
+<h1 class="text-2xl font-semibold tracking-tight">{s.title}</h1>
+<p class="text-muted mt-1">{s.desc}</p>
 <ul class="mt-6 border-t border-rule">
   {projects.map((p) => <ProjectRow p={p} />)}
 </ul>
 {hiddenCount > 0 && (
   <p class="mt-4 text-[13px] text-muted">
     {showAll
-      ? <a href="/projects" class="underline decoration-muted hover:text-accent">hide client work</a>
-      : <a href="/projects/all" class="underline decoration-muted hover:text-accent">show {hiddenCount} older client projects</a>}
+      ? <a href={localePath("/projects", locale)} class="underline decoration-muted hover:text-accent">{s.hide}</a>
+      : <a href={localePath("/projects/all", locale)} class="underline decoration-muted hover:text-accent">{fmt(s.show, { n: hiddenCount })}</a>}
   </p>
 )}

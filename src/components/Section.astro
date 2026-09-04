@@ -1,11 +1,13 @@
 ---
+import { currentLocale, t } from "@/lib/i18n";
 interface Props { title: string; href?: string }
 const { title, href } = Astro.props;
+const more = t(currentLocale(Astro)).home.all;
 ---
 <section class="mt-10">
   <div class="flex items-baseline justify-between mb-2">
     <h2 class="label">{title}</h2>
-    {href && <a href={href} class="text-[14px] text-muted hover:text-ink">all →</a>}
+    {href && <a href={href} class="text-[14px] text-muted hover:text-ink">{more}</a>}
   </div>
   <slot />
 </section>

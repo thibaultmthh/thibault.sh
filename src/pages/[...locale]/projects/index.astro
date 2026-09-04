@@ -1,0 +1,12 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectsList from "@/components/ProjectsList.astro";
+import { currentLocale, localeStaticPaths, t } from "@/lib/i18n";
+
+export const getStaticPaths = localeStaticPaths;
+
+const s = t(currentLocale(Astro)).projects;
+---
+<Base title={s.title} description={s.desc}>
+  <ProjectsList showAll={false} />
+</Base>

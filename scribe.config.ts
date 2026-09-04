@@ -28,7 +28,7 @@ const byOrder = (a: { frontmatter: { order: number } }, b: { frontmatter: { orde
 
 export default defineConfig({
   rootDir: ".",
-  locales: ["en"],
+  locales: ["en", "fr", "es", "pt", "zh-CN", "zh-TW"],
   defaultLocale: "en",
   types: [
     defineContentType({

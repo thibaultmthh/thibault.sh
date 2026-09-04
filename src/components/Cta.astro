@@ -1,8 +1,10 @@
 ---
+import { currentLocale, t } from "@/lib/i18n";
 export const CAL_URL = "https://cal.com/thibault-mthh/consulting-1-1";
+const s = t(currentLocale(Astro)).cta;
 const ctas = [
-  { href: "https://genlook.app", label: "Genlook", title: "AI virtual try-on for Shopify", text: "Let shoppers see clothes on themselves before they buy." },
-  { href: CAL_URL, label: "1:1 call", title: "Talk with me", text: "Any subject, no agenda needed. I share what I know and help if I can." },
+  { href: "https://genlook.app", ...s.genlook },
+  { href: CAL_URL, ...s.call },
 ];
 ---
 <div class="mt-6 grid sm:grid-cols-2 gap-3">

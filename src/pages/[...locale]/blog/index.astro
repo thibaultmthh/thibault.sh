@@ -13,11 +13,11 @@ const posts = getPosts(locale);
 const minutes = (content: string) => Math.max(1, Math.ceil(readingTime(content).minutes));
 ---
 <Base title={s.title} description={s.desc}>
-  <h1 class="text-2xl font-semibold tracking-tight">{s.title}</h1>
-  <p class="text-muted mt-1">{s.desc}</p>
-  <ul class="mt-6 border-t border-rule">
+  <h1 class="text-3xl font-semibold tracking-tight">{s.title}</h1>
+  <p class="text-muted mt-2">{s.desc}</p>
+  <ul class="mt-6">
     {posts.map((p) => (
-      <Row href={postPath(p.slug, locale)} meta={fmtDate(p.date)} title={p.title} aside={fmt(s.minRead, { n: minutes(p.content) })} description={p.description} />
+      <Row href={postPath(p.slug, locale)} meta={`${fmtDate(p.date, locale)} · ${fmt(s.minRead, { n: minutes(p.content) })}`} title={p.title} description={p.description} />
     ))}
   </ul>
 </Base>

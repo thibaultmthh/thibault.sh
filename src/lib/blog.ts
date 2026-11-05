@@ -61,6 +61,7 @@ export const postStaticParams = () => scribe.blog.staticParams();
 
 export const postPath = (slug: string, locale: string) => localePath(`/blog/${slug}`, locale);
 
-export function fmtDate(d: string) {
-  return d ? new Date(d).toISOString().slice(0, 10) : "";
+/** Human date in the page locale, e.g. "Jan 25, 2025" / "25 janv. 2025". */
+export function fmtDate(d: string, locale = DEFAULT_LOCALE) {
+  return d ? new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(d)) : "";
 }

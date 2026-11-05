@@ -7,12 +7,11 @@ const ctas = [
   { href: CAL_URL, ...s.call },
 ];
 ---
-<div class="mt-6 grid sm:grid-cols-2 gap-3">
+<div class="mt-8 grid sm:grid-cols-2 gap-3">
   {ctas.map((c) => (
-    <a href={c.href} target="_blank" rel="noopener" class="group block border border-rule p-4 hover:border-ink transition-colors">
-      <div class="label">{c.label}</div>
-      <div class="mt-1.5 font-semibold group-hover:text-accent">{c.title} <span aria-hidden="true">↗</span></div>
-      <p class="mt-0.5 text-[14.5px] text-muted">{c.text}</p>
+    <a href={c.href} target="_blank" rel="noopener" class="group block rounded-lg bg-surface p-4">
+      <div class="font-medium group-hover:text-accent">{c.title} <span aria-hidden="true">↗</span></div>
+      <p class="mt-1 text-[15px] text-muted">{c.text}</p>
     </a>
   ))}
 </div>

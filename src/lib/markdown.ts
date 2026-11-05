@@ -47,6 +47,10 @@ export async function renderMarkdown(md: string): Promise<string> {
     if (tokens.length === 1 && tokens[0].type === "image") return this.parser.parseInline(tokens) + "\n";
     return `<p>${this.parser.parseInline(tokens)}</p>\n`;
   };
+  const baseTable = renderer.table;
+  renderer.table = function (token: Tokens.Table) {
+    return `<div class="table-wrap">${baseTable.call(this, token)}</div>\n`;
+  };
   renderer.link = function ({ href, title, tokens }: Tokens.Link) {
     const inner = this.parser.parseInline(tokens);
     const external = !href.startsWith("/") && !href.startsWith("#");

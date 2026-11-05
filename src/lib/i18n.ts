@@ -71,7 +71,7 @@ const en = {
   },
   cta: {
     genlook: { label: "Genlook", title: "AI virtual try-on for Shopify", text: "Let shoppers see clothes on themselves before they buy." },
-    call: { label: "1:1 call", title: "Talk with me", text: "Any subject, no agenda needed. I share what I know and help if I can." },
+    call: { label: "1:1 call", title: "Book a 1:1 consulting call", text: "A one-on-one call about your product, Shopify app or startup. Bring your questions, I share what I know." },
   },
   blog: {
     title: "Blog",
@@ -117,7 +117,7 @@ const fr: Dictionary = {
   },
   cta: {
     genlook: { label: "Genlook", title: "Essayage virtuel par IA pour Shopify", text: "Vos clients voient les vêtements sur eux avant d'acheter." },
-    call: { label: "appel 1:1", title: "Discutons", text: "N'importe quel sujet, sans agenda. Je partage ce que je sais et j'aide si je peux." },
+    call: { label: "appel 1:1", title: "Réserver un appel conseil 1:1", text: "Un appel en tête-à-tête sur votre produit, votre app Shopify ou votre startup. Venez avec vos questions, je partage ce que je sais." },
   },
   blog: {
     title: "Blog",
@@ -161,7 +161,7 @@ const es: Dictionary = {
   },
   cta: {
     genlook: { label: "Genlook", title: "Probador virtual con IA para Shopify", text: "Que tus clientes se vean con la ropa puesta antes de comprar." },
-    call: { label: "llamada 1:1", title: "Hablemos", text: "Cualquier tema, sin agenda. Comparto lo que sé y ayudo si puedo." },
+    call: { label: "llamada 1:1", title: "Reserva una consultoría 1:1", text: "Una llamada individual sobre tu producto, tu app de Shopify o tu startup. Trae tus preguntas, comparto lo que sé." },
   },
   blog: {
     title: "Blog",
@@ -205,7 +205,7 @@ const pt: Dictionary = {
   },
   cta: {
     genlook: { label: "Genlook", title: "Prova virtual com IA para Shopify", text: "Seus clientes veem as roupas em si mesmos antes de comprar." },
-    call: { label: "conversa 1:1", title: "Fale comigo", text: "Qualquer assunto, sem pauta. Compartilho o que sei e ajudo se puder." },
+    call: { label: "conversa 1:1", title: "Agende uma consultoria 1:1", text: "Uma conversa individual sobre o seu produto, app Shopify ou startup. Traga suas perguntas, compartilho o que sei." },
   },
   blog: {
     title: "Blog",
@@ -249,7 +249,7 @@ const zhCN: Dictionary = {
   },
   cta: {
     genlook: { label: "Genlook", title: "为 Shopify 提供 AI 虚拟试穿", text: "让顾客在购买前看到衣服穿在自己身上的效果。" },
-    call: { label: "1:1 通话", title: "和我聊聊", text: "任何话题，无需议程。我分享所知，力所能及地提供帮助。" },
+    call: { label: "1:1 通话", title: "预约 1:1 咨询通话", text: "一对一通话，聊聊你的产品、Shopify 应用或创业项目。带上你的问题，我分享所知。" },
   },
   blog: {
     title: "博客",
@@ -293,7 +293,7 @@ const zhTW: Dictionary = {
   },
   cta: {
     genlook: { label: "Genlook", title: "為 Shopify 提供 AI 虛擬試穿", text: "讓顧客在購買前看到衣服穿在自己身上的樣子。" },
-    call: { label: "1:1 通話", title: "和我聊聊", text: "任何話題，不需議程。我分享所知，盡力提供協助。" },
+    call: { label: "1:1 通話", title: "預約 1:1 諮詢通話", text: "一對一通話，聊聊你的產品、Shopify 應用或創業專案。帶上你的問題，我分享所知。" },
   },
   blog: {
     title: "部落格",

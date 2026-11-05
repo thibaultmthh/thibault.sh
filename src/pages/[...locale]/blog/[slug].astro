@@ -30,11 +30,11 @@ const minutes = Math.max(1, Math.ceil(readingTime(post.content).minutes));
   noindex={!translated}
 >
   <article lang={post.locale}>
-    <header class="mb-8">
-      <a href={localePath("/blog", locale)} lang={locale} class="text-[14px] text-muted hover:text-ink">{s.back}</a>
-      <h1 class="mt-3 text-2xl font-semibold tracking-tight leading-snug max-w-[40ch]">{post.title}</h1>
-      <p class="mt-2 font-mono text-[13px] text-muted" lang={locale}><time datetime={post.date}>{fmtDate(post.date)}</time> · {fmt(s.minRead, { n: minutes })}</p>
-      {!translated && <p class="mt-3 text-[13px] text-muted border-l-2 border-rule pl-3" lang={locale}>{s.untranslated}</p>}
+    <header class="mb-10">
+      <a href={localePath("/blog", locale)} lang={locale} class="text-[15px] text-muted hover:text-ink">{s.back}</a>
+      <h1 class="mt-4 text-[32px] font-semibold tracking-tight leading-tight">{post.title}</h1>
+      <p class="mt-3 text-[15px] text-muted" lang={locale}><time datetime={post.date}>{fmtDate(post.date, locale)}</time> · {fmt(s.minRead, { n: minutes })}</p>
+      {!translated && <p class="mt-4 text-[15px] text-muted border-l-2 border-rule pl-3" lang={locale}>{s.untranslated}</p>}
     </header>
     <div class="prose" set:html={html} />
   </article>

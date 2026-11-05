@@ -98,14 +98,14 @@ const xDefault = alternates[LOCALES[0]] ?? alternates.en;
   </head>
   <body class="min-h-screen flex flex-col">
     <div class="w-full max-w-2xl mx-auto px-5 flex-1 flex flex-col">
-      <header class="flex items-center justify-between gap-4 h-12 border-b border-rule text-[15px]">
+      <header class="flex items-center justify-between gap-4 h-16 text-[16px]">
         <a href={l("/")} class="font-semibold tracking-tight hover:text-accent">thibault.sh</a>
         <nav class="flex gap-5">
           {nav.map((n) => <a href={n.href} class="text-muted hover:text-ink">{n.label}</a>)}
         </nav>
       </header>
-      <main class="flex-1 py-8"><slot /></main>
-      <footer class="border-t border-rule py-4 text-[13px] text-muted">
+      <main class="flex-1 pt-6 pb-16"><slot /></main>
+      <footer class="border-t border-rule py-6 text-[14px] text-muted">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <span>
             © {new Date().getFullYear()} Thibault Mathian
